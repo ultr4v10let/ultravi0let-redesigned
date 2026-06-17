@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --paper: #FAF7F0;
-  --paper-2: #F2ECD9;
-  --ink: #0E0A1F;
+  --paper: #FAFAFA;
+  --paper-2: #F4F4F6;
+  --ink: #0A0710;
   --ink-2: #15102A;
   --violet: #6D28D9;
   --violet-soft: #A78BFA;
@@ -37,14 +37,14 @@ body {
   color: var(--paper);
 }
 
-/* Subtle paper grain overlay, very low opacity — keeps the cream feeling tactile */
+/* Very faint cool grain — adds tactile texture without warmth */
 .grain::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.04;
+  opacity: 0.025;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
@@ -53,13 +53,11 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Violet glow — used on hover for the primary CTA */
 .violet-glow {
-  box-shadow: 0 8px 40px -10px rgba(109, 40, 217, 0.45),
-    0 0 80px -20px rgba(167, 139, 250, 0.3);
+  box-shadow: 0 8px 40px -10px rgba(109, 40, 217, 0.4),
+    0 0 80px -20px rgba(167, 139, 250, 0.25);
 }
 
-/* Scrollbar — cream track, ink thumb */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -68,7 +66,7 @@ body {
   background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(14, 10, 31, 0.18);
+  background: rgba(10, 7, 16, 0.18);
   border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -115,8 +113,8 @@ button {
   padding: 1px;
   background: linear-gradient(
     180deg,
-    rgba(14, 10, 31, 0.18),
-    rgba(14, 10, 31, 0.02) 40%,
+    rgba(10, 7, 16, 0.18),
+    rgba(10, 7, 16, 0.02) 40%,
     rgba(109, 40, 217, 0.18)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -124,7 +122,6 @@ button {
   mask-composite: exclude;
 }
 
-/* Eyebrow chip — light surface with a subtle ink border */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -134,9 +131,9 @@ button {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(14, 10, 31, 0.7);
-  background: rgba(14, 10, 31, 0.025);
-  border: 1px solid rgba(14, 10, 31, 0.1);
+  color: rgba(10, 7, 16, 0.7);
+  background: rgba(10, 7, 16, 0.025);
+  border: 1px solid rgba(10, 7, 16, 0.1);
   backdrop-filter: blur(8px);
 }
 .eyebrow .dot {

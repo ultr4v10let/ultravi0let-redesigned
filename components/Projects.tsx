@@ -6,15 +6,15 @@ import { projects } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
 import { cn } from "@/lib/cn";
 
-// Bento rhythm — feature top-left spans two rows, two stacked mediums next to it,
-// three smaller cards on the bottom row. Designed for a 12-column grid.
+// Bento rhythm for five cards: feature top-left spans two rows, two stacked
+// mediums next to it, two half-widths on the bottom row. Designed for a
+// 12-column grid with auto-rows-[300px] so heights align cleanly.
 const layouts = [
   "md:col-span-7 md:row-span-2", // 1 · feature
   "md:col-span-5",                // 2 · medium top
   "md:col-span-5",                // 3 · medium bottom (under #2)
-  "md:col-span-4",                // 4 · small
-  "md:col-span-4",                // 5 · small
-  "md:col-span-4",                // 6 · small
+  "md:col-span-6",                // 4 · bottom-left
+  "md:col-span-6",                // 5 · bottom-right
 ];
 
 export function Projects() {

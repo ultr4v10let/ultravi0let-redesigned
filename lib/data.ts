@@ -78,29 +78,45 @@ export const services = [
 
 export const projects = [
   {
+    name: "AG Law",
+    category: "Legal Tech · Web",
+    year: "2024",
+    blurb:
+      "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
+    accent: "from-amber-300 to-rose-400",
+    href: "/demos/ag-law",
+    subdomain: "aglaw.ultravi0let.com",
+    stats: [
+      { k: "Modules", v: "6" },
+      { k: "Uptime", v: "99.9%" },
+    ],
+  },
+  {
     name: "Lumen Health",
     category: "Healthcare · iOS + Web",
     year: "2024",
     blurb:
       "Telemedicine platform connecting patients with verified clinicians across the GCC. Built for low-bandwidth networks and high regulatory bars.",
     accent: "from-violet-500 to-fuchsia-500",
-    href: "#",
+    href: "/demos/lumen-health",
+    subdomain: "lumen.ultravi0let.com",
     stats: [
       { k: "Surface", v: "iOS · Web" },
       { k: "Markets", v: "GCC" },
     ],
   },
   {
-    name: "AG Law",
-    category: "Legal Tech · Web",
+    name: "Aizu",
+    category: "GovTech · Compliance",
     year: "2024",
     blurb:
-      "Practice-management suite for a regional law firm. Document workflows, billing, and a secure client portal.",
-    accent: "from-amber-300 to-rose-400",
-    href: "#",
+      "Carbon disclosure platform for Japanese corporates. Scope 1–3 ingestion, calculation engine with MOEJ factors, and TCFD-aligned report generation.",
+    accent: "from-emerald-300 to-teal-500",
+    href: "/demos/aizu",
+    subdomain: "aizu.ultravi0let.com",
     stats: [
-      { k: "Modules", v: "6" },
-      { k: "Uptime", v: "99.9%" },
+      { k: "Framework", v: "TCFD" },
+      { k: "Filings", v: "Auto" },
     ],
   },
   {
@@ -108,51 +124,27 @@ export const projects = [
     category: "FinTech · Mobile + Web",
     year: "2023",
     blurb:
-      "Group-savings and rotating-credit platform. KYC, ledger, and payouts on a custom double-entry engine.",
+      "Rotating-credit platform with KYC, double-entry ledger, and on-chain custody via audited smart contracts.",
     accent: "from-cyan-300 to-violet-500",
-    href: "#",
+    href: "/demos/circle-of-trust",
+    subdomain: "circle.ultravi0let.com",
     stats: [
-      { k: "Ledger", v: "Custom" },
+      { k: "Custody", v: "Smart contract" },
       { k: "Markets", v: "3" },
     ],
   },
   {
-    name: "Connect 6",
+    name: "Connect6",
     category: "SaaS · Web",
     year: "2023",
     blurb:
-      "Omnichannel CRM that unifies WhatsApp, Instagram, and email into a single thread per customer.",
-    accent: "from-emerald-300 to-teal-500",
-    href: "#",
-    stats: [
-      { k: "Channels", v: "5" },
-      { k: "Teams", v: "200+" },
-    ],
-  },
-  {
-    name: "Atlas Fleet",
-    category: "Logistics · Internal",
-    year: "2022",
-    blurb:
-      "Real-time fleet visibility and route optimisation for a regional courier. Live maps, driver app, and dispatcher console.",
-    accent: "from-orange-300 to-pink-500",
-    href: "#",
-    stats: [
-      { k: "Surface", v: "3 apps" },
-      { k: "Live", v: "Real-time" },
-    ],
-  },
-  {
-    name: "Halo Studio",
-    category: "Creative · Brand + Site",
-    year: "2022",
-    blurb:
-      "Identity system and editorial portfolio for an architecture practice. Type-led, image-forward, performance-obsessed.",
+      "Omnichannel CRM for hospitality. Unifies Instagram, WhatsApp, X and Snapchat into a single guest inbox with AI-drafted replies and analytics.",
     accent: "from-violet-400 to-indigo-500",
-    href: "#",
+    href: "/demos/connect6",
+    subdomain: "connect6.ultravi0let.com",
     stats: [
-      { k: "PSI", v: "100/100" },
-      { k: "Stack", v: "Static" },
+      { k: "Channels", v: "4" },
+      { k: "Use case", v: "Restaurants" },
     ],
   },
 ];
@@ -168,7 +160,7 @@ export const testimonials = [
   {
     quote:
       "They write code the way good lawyers write contracts. Every line is there for a reason. We've worked with three vendors before them. None compared.",
-    name: "Ahmed Abdelgawad",
+    name: "Ahmed AbdelGawad",
     title: "Managing Partner, AG Law",
   },
   {
@@ -179,15 +171,9 @@ export const testimonials = [
   },
   {
     quote:
-      "The design work alone moved the needle on our app store rating. The engineering kept us from drowning when we did.",
-    name: "Nadia Hosny",
-    title: "Founder, Connect 6",
-  },
-  {
-    quote:
       "Senior people, sensible decisions, and an honest no when 'no' is the right answer. Rare combination.",
-    name: "Omar El-Sayed",
-    title: "VP Engineering, Lumen Health",
+    name: "Bashir Al-Hubaishi",
+    title: "Co-founder, Lumen Health",
   },
 ];
 

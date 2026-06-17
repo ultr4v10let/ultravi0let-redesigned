@@ -5,20 +5,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Light surfaces — warm cream / paper
+        // Neutral light surfaces — no warm undertone
         paper: {
-          50: "#FAF7F0",  // page background
-          100: "#F2ECD9", // raised card
-          200: "#E8DEC5", // deeper card
-          300: "#D9CCAE", // borders / muted blocks
-          400: "#BFB291",
+          50: "#FAFAFA",  // page background (near-white, cool neutral)
+          100: "#F4F4F6", // raised card
+          200: "#E8E8EC", // deeper card
+          300: "#D4D4D9",
+          400: "#A8A8B0",
         },
-        // Dark text / ink
+        // Deep ink for text — slight violet undertone to match accent
         ink: {
           700: "#3A2F4C",
           800: "#231A36",
           900: "#15102A",
-          950: "#0E0A1F", // primary text / headings
+          950: "#0A0710",
         },
         violet: {
           300: "#C4A5FF",
@@ -30,8 +30,8 @@ const config: Config = {
           900: "#4C1D95",
         },
         accent: {
-          DEFAULT: "#6D28D9",  // italic accent on cream
-          warm: "#9F6A2D",      // optional warm gold for variety
+          DEFAULT: "#C4A5FF",
+          warm: "#9F6A2D",
         },
       },
       fontFamily: {
@@ -69,18 +69,10 @@ const config: Config = {
           "100%": { backgroundPosition: "200% 0" },
         },
         breathe: {
-          "0%,100%": {
-            transform: "translate(0,0) scale(1) rotate(0deg)",
-          },
-          "25%": {
-            transform: "translate(40px,-30px) scale(1.08) rotate(2deg)",
-          },
-          "50%": {
-            transform: "translate(-30px,42px) scale(1.16) rotate(-2deg)",
-          },
-          "75%": {
-            transform: "translate(50px,18px) scale(1.06) rotate(1deg)",
-          },
+          "0%,100%": { transform: "translate(0,0) scale(1) rotate(0deg)" },
+          "25%": { transform: "translate(40px,-30px) scale(1.08) rotate(2deg)" },
+          "50%": { transform: "translate(-30px,42px) scale(1.16) rotate(-2deg)" },
+          "75%": { transform: "translate(50px,18px) scale(1.06) rotate(1deg)" },
         },
         pulseSoft: {
           "0%,100%": { opacity: "0.55" },

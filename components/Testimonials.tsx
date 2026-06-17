@@ -19,7 +19,7 @@ export function Testimonials() {
           }
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
             <motion.figure
               key={t.name}
@@ -29,11 +29,11 @@ export function Testimonials() {
               transition={{
                 duration: 0.8,
                 ease: [0.16, 1, 0.3, 1],
-                delay: (i % 2) * 0.1,
+                delay: (i % 3) * 0.08,
               }}
-              className="group relative isolate flex flex-col gap-6 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/70 p-7 transition-colors duration-500 hover:border-ink-950/20 md:p-8"
+              className="group relative isolate flex flex-col gap-5 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/70 p-6 transition-colors duration-500 hover:border-ink-950/20 md:p-7"
             >
-              <blockquote className="font-display text-xl leading-snug tracking-verytight text-ink-950 md:text-2xl">
+              <blockquote className="font-display text-lg leading-snug tracking-verytight text-ink-950 md:text-xl">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-auto border-t border-ink-950/10 pt-5">

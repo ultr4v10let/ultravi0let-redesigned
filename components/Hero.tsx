@@ -2,6 +2,7 @@
 
 import {
   motion,
+  type MotionValue,
   useMotionValue,
   useScroll,
   useSpring,
@@ -174,10 +175,10 @@ function Aurora({
   x2,
   y2,
 }: {
-  x: ReturnType<typeof useTransform>;
-  y: ReturnType<typeof useTransform>;
-  x2: ReturnType<typeof useTransform>;
-  y2: ReturnType<typeof useTransform>;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+  x2: MotionValue<number>;
+  y2: MotionValue<number>;
 }) {
   return (
     <>
@@ -198,32 +199,32 @@ function Aurora({
         </div>
       </motion.div>
 
-      {/* Warm gold aurora — bottom left */}
+      {/* Cool sky aurora — bottom left */}
       <motion.div
         aria-hidden
         style={{ x: x2, y: y2 }}
-        className="pointer-events-none absolute -left-32 top-[35%] -z-10 h-[520px] w-[520px] rounded-full opacity-60 blur-[110px] animate-drift-2"
+        className="pointer-events-none absolute -left-32 top-[35%] -z-10 h-[520px] w-[520px] rounded-full opacity-55 blur-[110px] animate-drift-2"
       >
         <div
           className="h-full w-full rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(232,201,141,0.65) 0%, transparent 70%)",
+              "radial-gradient(closest-side, rgba(140,180,255,0.5) 0%, transparent 70%)",
           }}
         />
       </motion.div>
 
-      {/* Cool pink aurora — right */}
+      {/* Magenta aurora — right */}
       <motion.div
         aria-hidden
         style={{ x, y: y2 }}
-        className="pointer-events-none absolute -right-32 top-24 -z-10 h-[460px] w-[460px] rounded-full opacity-55 blur-[100px] animate-drift-3"
+        className="pointer-events-none absolute -right-32 top-24 -z-10 h-[460px] w-[460px] rounded-full opacity-50 blur-[100px] animate-drift-3"
       >
         <div
           className="h-full w-full rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(244,114,182,0.45) 0%, transparent 70%)",
+              "radial-gradient(closest-side, rgba(220,120,200,0.4) 0%, transparent 70%)",
           }}
         />
       </motion.div>

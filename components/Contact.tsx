@@ -17,10 +17,10 @@ export function Contact() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-10 -z-10 h-[420px] w-[420px] rounded-full opacity-55 blur-[110px] animate-drift-3"
+        className="pointer-events-none absolute -right-16 -bottom-10 -z-10 h-[420px] w-[420px] rounded-full opacity-50 blur-[110px] animate-drift-3"
         style={{
           background:
-            "radial-gradient(closest-side, rgba(232,201,141,0.55) 0%, transparent 70%)",
+            "radial-gradient(closest-side, rgba(140,180,255,0.45) 0%, transparent 70%)",
         }}
       />
 
