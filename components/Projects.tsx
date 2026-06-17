@@ -19,10 +19,10 @@ const layouts = [
 
 export function Projects() {
   return (
-    <section id="work" className="relative py-20 md:py-28">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+    <section id="work" className="relative py-16 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <SectionHeader
-          eyebrow="Selected work · since 2022"
+          eyebrow="Selected work"
           title={
             <>
               A few things
@@ -32,7 +32,7 @@ export function Projects() {
           }
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:grid-cols-12 md:auto-rows-[300px]">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:grid-cols-12 md:auto-rows-[300px] md:gap-6">
           {projects.map((p, i) => (
             <ProjectCard
               key={p.name}
@@ -56,6 +56,7 @@ type Project = (typeof projects)[number] & {
 
 function ProjectCard({
   name,
+  type,
   category,
   year,
   blurb,
@@ -78,7 +79,7 @@ function ProjectCard({
         delay: (index % 3) * 0.08,
       }}
       className={cn(
-        "group relative isolate flex aspect-square flex-col justify-between overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100 p-5 transition-all duration-500 hover:border-ink-950/20 sm:aspect-square md:aspect-auto md:p-6",
+        "group relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100 p-5 transition-all duration-500 hover:border-ink-950/20 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
         layout,
         feature && "md:p-8"
       )}
@@ -104,7 +105,17 @@ function ProjectCard({
 
       {/* Top row */}
       <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col gap-1.5">
+          <span
+            className={cn(
+              "w-fit rounded-full px-2 py-0.5 text-[9px] uppercase tracking-[0.16em]",
+              type === "project"
+                ? "bg-ink-950/10 text-ink-950/80"
+                : "border border-ink-950/15 bg-paper-50/60 text-ink-950/70"
+            )}
+          >
+            {type === "project" ? "Delivered" : "Prototype"}
+          </span>
           <span className="text-[10px] uppercase tracking-[0.18em] text-ink-950/75">
             {category}
           </span>
@@ -126,8 +137,8 @@ function ProjectCard({
           className={cn(
             "font-display leading-[0.98] tracking-tightest text-ink-950",
             feature
-              ? "text-[clamp(2rem,4vw,3.4rem)]"
-              : "text-[clamp(1.5rem,3vw,2.4rem)]"
+              ? "text-[clamp(1.75rem,7vw,3.4rem)]"
+              : "text-[clamp(1.5rem,5.5vw,2.4rem)]"
           )}
         >
           {name}

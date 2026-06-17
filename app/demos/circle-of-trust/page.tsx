@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 const stats = [
-  { v: "AED 38M", k: "Pooled across circles" },
+  { v: "EGP 38M", k: "Pooled across circles" },
   { v: "11,400", k: "Members" },
   { v: "98.4%", k: "On-time contribution rate" },
   { v: "Zero", k: "Defaults to date" },
@@ -40,8 +40,8 @@ const features = [
 ];
 
 const live = [
-  { name: "Layali Family Circle", size: 8, slot: "3 / 8", monthly: "AED 1,500", next: "12 days" },
-  { name: "Founders Group · Dubai", size: 12, slot: "Joining", monthly: "AED 5,000", next: "—" },
+  { name: "Layali Family Circle", size: 8, slot: "3 / 8", monthly: "EGP 1,500", next: "12 days" },
+  { name: "Founders Group · Dubai", size: 12, slot: "Joining", monthly: "EGP 5,000", next: "—" },
   { name: "Sherouq Engineers", size: 6, slot: "5 / 6", monthly: "EGP 4,000", next: "8 days" },
 ];
 

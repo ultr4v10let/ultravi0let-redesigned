@@ -26,7 +26,7 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Ultravi0let · Digital craft for ambitious products",
   description:
-    "A senior product studio based in Dubai. Design, engineering, cloud, and AI for teams who plan to ship and keep shipping.",
+    "A founder-led product studio for design, engineering, cloud, and AI — one senior team from prototype to production.",
   metadataBase: new URL("https://ultravi0let.com"),
   openGraph: {
     title: "Ultravi0let",
@@ -34,6 +34,12 @@ export const metadata: Metadata = {
       "Design, engineering, cloud, and AI for ambitious products.",
     type: "website",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover" as const,
 };
 
 export default function RootLayout({

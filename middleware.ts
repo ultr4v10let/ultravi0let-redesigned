@@ -9,14 +9,13 @@ const SUBDOMAINS: Record<string, string> = {
   aizu: "/demos/aizu",
   circle: "/demos/circle-of-trust",
   connect6: "/demos/connect6",
+  merlin: "/demos/merlin",
+  zanobia: "/demos/zanobia",
+  maquette: "/demos/maquette",
+  haven: "/demos/haven",
 };
 
-const ROOT_HOSTS = new Set([
-  "ultravi0let.com",
-  "www.ultravi0let.com",
-  "localhost",
-  "localhost:3000",
-]);
+const ROOT_HOSTS = new Set(["ultravi0let.com", "www.ultravi0let.com", "localhost", "localhost:3000"]);
 
 export function middleware(req: NextRequest) {
   const host = (req.headers.get("host") || "").toLowerCase();

@@ -45,30 +45,17 @@ export function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative isolate flex min-h-[92svh] items-end overflow-hidden pb-16 pt-32 md:pb-20"
+      className="relative isolate flex min-h-[100svh] min-h-[100dvh] items-end overflow-hidden pb-12 pt-[max(7rem,env(safe-area-inset-top)+5rem)] sm:pb-16 md:pb-20"
     >
       <Aurora x={auroraX} y={auroraY} x2={auroraX2} y2={auroraY2} />
       <Grid />
 
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-10"
+        className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] px-5 sm:px-6 md:px-10"
       >
-        {/* Eyebrow row */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.1 }}
-          className="mb-7 flex flex-wrap items-center gap-3"
-        >
-          <span className="eyebrow">
-            <span className="dot" />
-            Dubai · est. 2022
-          </span>
-        </motion.div>
-
         {/* Headline */}
-        <h1 className="font-display text-[14vw] leading-[0.95] tracking-tightest text-ink-950 md:text-[8.5vw] lg:text-[8vw]">
+        <h1 className="font-display text-[clamp(2.35rem,13.5vw,5.75rem)] leading-[0.95] tracking-tightest text-ink-950 md:text-[clamp(3.5rem,8.5vw,7rem)] lg:text-[8vw]">
           <Line delay={0.18}>We build the</Line>
           <Line delay={0.28}>
             <span className="serif-italic font-normal text-accent">
@@ -80,24 +67,28 @@ export function Hero() {
           </Line>
         </h1>
 
-        {/* Subhead + CTAs */}
+        {/* Statement + CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: 0.7 }}
-          className="mt-8 flex flex-col items-start gap-6 md:mt-10 md:flex-row md:items-end md:justify-between"
+          className="mt-6 flex w-full min-w-0 flex-col items-stretch gap-6 sm:mt-8 md:mt-10 md:flex-row md:items-end md:justify-between md:gap-8"
         >
-          <p className="max-w-xl text-balance text-[17px] leading-relaxed text-ink-900/75 md:text-lg">
-            A senior product studio based in Dubai. Design, engineering, cloud
-            and AI for teams who plan to ship, and keep shipping. Trusted by{" "}
-            <span className="text-ink-950">12+ clients</span> across{" "}
-            <span className="text-ink-950">4 countries</span>.
-          </p>
+          <div className="min-w-0 max-w-2xl space-y-3 sm:space-y-4">
+            <p className="text-pretty text-base leading-relaxed text-ink-900/75 sm:text-[17px] md:text-lg">
+              A founder-led product studio for design, engineering, cloud and AI.
+              One senior team from first prototype to production — shipping
+              full-stack work internationally, with founders on every engagement.
+            </p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-900/50 sm:text-[11px] sm:tracking-[0.2em]">
+              Design · Engineering · Cloud · AI
+            </p>
+          </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex w-full min-w-0 flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-full border border-violet-700/30 bg-violet-700/10 px-6 py-4 text-sm font-medium text-ink-950 backdrop-blur-sm transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50 hover:violet-glow"
+              className="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-violet-700/30 bg-violet-700/10 px-6 py-3.5 text-sm font-medium text-ink-950 backdrop-blur-sm transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50 hover:violet-glow sm:w-auto sm:py-4"
             >
               Start a project
               <ArrowUpRight
@@ -107,7 +98,7 @@ export function Hero() {
             </a>
             <a
               href="#work"
-              className="group inline-flex items-center gap-2 rounded-full border border-ink-950/20 px-6 py-4 text-sm font-medium text-ink-950 transition-colors hover:border-ink-950/60 hover:bg-ink-950/[0.03]"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-ink-950/20 px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:border-ink-950/60 hover:bg-ink-950/[0.03] sm:w-auto sm:py-4"
             >
               See our work
               <span className="text-ink-950/55 transition-transform group-hover:translate-x-0.5">
@@ -115,33 +106,6 @@ export function Hero() {
               </span>
             </a>
           </div>
-        </motion.div>
-
-        {/* Bottom rail */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.1 }}
-          className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink-950/12 bg-ink-950/[0.04] md:mt-14 md:grid-cols-4"
-        >
-          {[
-            { k: "Projects", v: "30+" },
-            { k: "Countries", v: "04" },
-            { k: "Clients", v: "12+" },
-            { k: "Years of experience", v: "80" },
-          ].map((s) => (
-            <div
-              key={s.k}
-              className="bg-paper-50/80 p-5 backdrop-blur-sm md:p-7"
-            >
-              <div className="font-display text-4xl tabnum text-ink-950 md:text-5xl">
-                {s.v}
-              </div>
-              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-ink-900/55">
-                {s.k}
-              </div>
-            </div>
-          ))}
         </motion.div>
       </motion.div>
     </section>
@@ -186,11 +150,11 @@ function Aurora({
       <motion.div
         aria-hidden
         style={{ x, y }}
-        className="pointer-events-none absolute -top-32 left-1/2 -z-10 -translate-x-1/2"
+        className="pointer-events-none absolute -top-32 left-1/2 -z-10 -translate-x-1/2 max-md:scale-[0.65] max-md:opacity-80"
       >
-        <div className="h-[820px] w-[1100px] origin-center animate-breathe">
+        <div className="h-[520px] w-[700px] origin-center animate-breathe md:h-[820px] md:w-[1100px]">
           <div
-            className="h-full w-full rounded-full opacity-70 blur-[120px] animate-pulse-soft"
+            className="h-full w-full rounded-full opacity-70 blur-[80px] animate-pulse-soft md:blur-[120px]"
             style={{
               background:
                 "radial-gradient(closest-side, rgba(139,92,246,0.65) 0%, rgba(167,139,250,0.28) 38%, transparent 72%)",
@@ -203,7 +167,7 @@ function Aurora({
       <motion.div
         aria-hidden
         style={{ x: x2, y: y2 }}
-        className="pointer-events-none absolute -left-32 top-[35%] -z-10 h-[520px] w-[520px] rounded-full opacity-55 blur-[110px] animate-drift-2"
+        className="pointer-events-none absolute -left-32 top-[35%] -z-10 h-[320px] w-[320px] rounded-full opacity-45 blur-[70px] animate-drift-2 md:h-[520px] md:w-[520px] md:opacity-55 md:blur-[110px]"
       >
         <div
           className="h-full w-full rounded-full"
@@ -218,7 +182,7 @@ function Aurora({
       <motion.div
         aria-hidden
         style={{ x, y: y2 }}
-        className="pointer-events-none absolute -right-32 top-24 -z-10 h-[460px] w-[460px] rounded-full opacity-50 blur-[100px] animate-drift-3"
+        className="pointer-events-none absolute -right-32 top-24 -z-10 h-[280px] w-[280px] rounded-full opacity-40 blur-[60px] animate-drift-3 md:h-[460px] md:w-[460px] md:opacity-50 md:blur-[100px]"
       >
         <div
           className="h-full w-full rounded-full"

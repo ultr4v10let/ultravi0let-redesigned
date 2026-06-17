@@ -11,7 +11,7 @@ import { Footer } from "@/components/Footer";
 
 export default function Page() {
   return (
-    <main className="relative">
+    <main className="relative min-w-0 overflow-x-hidden">
       <Nav />
       <Hero />
       <Marquee />
