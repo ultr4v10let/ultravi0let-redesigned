@@ -15,7 +15,7 @@ export const services = [
     icon: Palette,
     title: "Interface Design",
     blurb:
-      "Editorial-grade UI/UX systems engineered to convert. We treat every pixel like it has rent to pay.",
+      "UI and brand systems that feel inevitable. Visual identity, product surfaces, and design tokens built to scale across teams.",
     keywords: ["Brand", "Product", "Motion"],
   },
   {
@@ -23,7 +23,7 @@ export const services = [
     icon: Code2,
     title: "Engineering",
     blurb:
-      "Type-safe, performant web and mobile applications built on modern stacks — Next.js, React Native, Go, Rust.",
+      "Web and mobile applications written by senior engineers. Type-safe, observable, and built to be maintained, not rewritten.",
     keywords: ["Web", "Mobile", "API"],
   },
   {
@@ -31,7 +31,7 @@ export const services = [
     icon: Cloud,
     title: "Cloud & Infra",
     blurb:
-      "Scalable AWS, GCP, and bare-metal deployments with observability baked in from day zero.",
+      "AWS and GCP architectures, CI/CD, and infrastructure-as-code. Predictable cost, predictable uptime.",
     keywords: ["AWS", "GCP", "DevOps"],
   },
   {
@@ -39,7 +39,7 @@ export const services = [
     icon: Compass,
     title: "Architecture",
     blurb:
-      "Systems design for products that need to survive their first ten thousand users — and the next ten million.",
+      "Systems design for products that need to last. We choose the boring technology so you can take the exciting risks.",
     keywords: ["Systems", "DDD", "Scale"],
   },
   {
@@ -47,7 +47,7 @@ export const services = [
     icon: ShieldCheck,
     title: "Security",
     blurb:
-      "Threat modeling, pen-testing, SOC-2 readiness. Sleep at night knowing the locks actually work.",
+      "Threat modelling, code audits, and compliance readiness. Built-in, not bolted-on.",
     keywords: ["Audit", "Pen-test", "SOC-2"],
   },
   {
@@ -55,7 +55,7 @@ export const services = [
     icon: Workflow,
     title: "Integrations",
     blurb:
-      "Stripe, Twilio, AI providers, ERPs, custom protocols. We make foreign systems feel native.",
+      "Payment rails, messaging, identity, AI providers, and legacy systems. We make foreign services feel native.",
     keywords: ["Stripe", "AI", "ERP"],
   },
   {
@@ -63,15 +63,15 @@ export const services = [
     icon: Sparkles,
     title: "AI Engineering",
     blurb:
-      "Production LLM pipelines, RAG, evaluations and guardrails — not demos, real systems that ship.",
+      "Production LLM pipelines with retrieval, evaluation, and guardrails. AI that ships, not AI that demos.",
     keywords: ["LLM", "RAG", "Eval"],
   },
   {
     n: "08",
     icon: LifeBuoy,
-    title: "24/7 Support",
+    title: "Care & Support",
     blurb:
-      "Real humans, real timezones, real SLAs. We're awake while your competition is sleeping.",
+      "Ongoing partnership after launch. Monitoring, on-call rotation, and a real human at the other end of the line.",
     keywords: ["SLA", "On-call", "Care"],
   },
 ];
@@ -82,12 +82,12 @@ export const projects = [
     category: "Healthcare · iOS + Web",
     year: "2024",
     blurb:
-      "End-to-end telemedicine platform serving four MENA markets. HIPAA-aligned, sub-second clinic search.",
+      "Telemedicine platform connecting patients with verified clinicians across the GCC. Built for low-bandwidth networks and high regulatory bars.",
     accent: "from-violet-500 to-fuchsia-500",
     href: "#",
     stats: [
-      { k: "DAU", v: "42k" },
-      { k: "p95", v: "180ms" },
+      { k: "Surface", v: "iOS · Web" },
+      { k: "Markets", v: "GCC" },
     ],
   },
   {
@@ -95,24 +95,24 @@ export const projects = [
     category: "Legal Tech · Web",
     year: "2024",
     blurb:
-      "Practice management suite for one of Egypt's largest law firms. Document AI, billing, and a client portal.",
+      "Practice-management suite for a regional law firm. Document workflows, billing, and a secure client portal.",
     accent: "from-amber-300 to-rose-400",
     href: "#",
     stats: [
-      { k: "Cases", v: "11k+" },
-      { k: "Uptime", v: "99.98%" },
+      { k: "Modules", v: "6" },
+      { k: "Uptime", v: "99.9%" },
     ],
   },
   {
     name: "Circle of Trust",
-    category: "FinTech · Web + Mobile",
+    category: "FinTech · Mobile + Web",
     year: "2023",
     blurb:
-      "Group-savings and rotating-credit platform. KYC, ledger, payouts — built on a custom double-entry engine.",
+      "Group-savings and rotating-credit platform. KYC, ledger, and payouts on a custom double-entry engine.",
     accent: "from-cyan-300 to-violet-500",
     href: "#",
     stats: [
-      { k: "GMV", v: "$8.4M" },
+      { k: "Ledger", v: "Custom" },
       { k: "Markets", v: "3" },
     ],
   },
@@ -121,25 +121,25 @@ export const projects = [
     category: "SaaS · Web",
     year: "2023",
     blurb:
-      "Omnichannel CRM with WhatsApp, IG, and email threading. Built for sales teams that live in DMs.",
+      "Omnichannel CRM that unifies WhatsApp, Instagram, and email into a single thread per customer.",
     accent: "from-emerald-300 to-teal-500",
     href: "#",
     stats: [
-      { k: "Threads/day", v: "120k" },
+      { k: "Channels", v: "5" },
       { k: "Teams", v: "200+" },
     ],
   },
   {
-    name: "Sherouq Atlas",
+    name: "Atlas Fleet",
     category: "Logistics · Internal",
     year: "2022",
     blurb:
-      "Real-time fleet visibility for a regional courier. Live maps, route optimization, driver mobile app.",
+      "Real-time fleet visibility and route optimisation for a regional courier. Live maps, driver app, and dispatcher console.",
     accent: "from-orange-300 to-pink-500",
     href: "#",
     stats: [
-      { k: "Vehicles", v: "1.2k" },
-      { k: "Drops/day", v: "38k" },
+      { k: "Surface", v: "3 apps" },
+      { k: "Live", v: "Real-time" },
     ],
   },
   {
@@ -147,12 +147,12 @@ export const projects = [
     category: "Creative · Brand + Site",
     year: "2022",
     blurb:
-      "Identity system and editorial site for an architecture practice. Won D&AD wood pencil for digital craft.",
+      "Identity system and editorial portfolio for an architecture practice. Type-led, image-forward, performance-obsessed.",
     accent: "from-violet-400 to-indigo-500",
     href: "#",
     stats: [
-      { k: "Award", v: "D&AD" },
       { k: "PSI", v: "100/100" },
+      { k: "Stack", v: "Static" },
     ],
   },
 ];
@@ -167,27 +167,27 @@ export const stats = [
 export const testimonials = [
   {
     quote:
-      "Ultravi0let didn't just deliver software — they delivered a competitive advantage. Six months in and our ops cost is down 38%.",
+      "They write code the way good lawyers write contracts. Every line is there for a reason. We've worked with three vendors before them. None compared.",
     name: "Ahmed Abdelgawad",
-    title: "CEO, AG Law",
+    title: "Managing Partner, AG Law",
   },
   {
     quote:
-      "They take ownership in a way our previous vendors never did. It feels like an in-house team that just happens to sit in another timezone.",
+      "They run like an in-house team that just happens to sit in another timezone. Ownership, not order-taking.",
     name: "Karim Saad",
-    title: "CTO, Circle of Trust",
+    title: "Co-founder, Circle of Trust",
   },
   {
     quote:
-      "The design polish alone justified the engagement. Our app store rating jumped from 3.6 to 4.8 in the first month after the redesign.",
+      "The design work alone moved the needle on our app store rating. The engineering kept us from drowning when we did.",
     name: "Nadia Hosny",
     title: "Founder, Connect 6",
   },
   {
     quote:
-      "They architected something that genuinely scales. We went from 2k to 200k users without re-platforming once.",
+      "Senior people, sensible decisions, and an honest no when 'no' is the right answer. Rare combination.",
     name: "Omar El-Sayed",
-    title: "VP Eng, Lumen Health",
+    title: "VP Engineering, Lumen Health",
   },
 ];
 

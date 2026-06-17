@@ -13,9 +13,9 @@ export function Testimonials() {
           eyebrow="Kind words"
           title={
             <>
-              What clients say
+              What our clients
               <br />
-              when we&apos;re <span className="serif-italic text-accent">not in the room</span>.
+              <span className="serif-italic text-accent">say</span>.
             </>
           }
         />

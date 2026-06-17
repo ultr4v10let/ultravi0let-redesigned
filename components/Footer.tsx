@@ -118,11 +118,11 @@ export function Footer() {
               HQ
             </div>
             <address className="mt-5 not-italic text-sm leading-relaxed text-bone-50/75">
-              126 Baleegh Hamdy St.
+              Dubai Media
               <br />
-              Sherouq City
+              Production Zone
               <br />
-              Cairo · Egypt
+              Dubai · UAE
             </address>
           </div>
         </div>

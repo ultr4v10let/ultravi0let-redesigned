@@ -38,9 +38,9 @@ export function Manifesto() {
         </p>
 
         <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] uppercase tracking-[0.18em] text-bone-50/45">
-          <span>— Founders, Ultravi0let</span>
+          <span>Founders, Ultravi0let</span>
           <span className="h-px w-12 bg-bone-50/15" />
-          <span>Cairo · Sherouq City</span>
+          <span>Dubai · Media Production Zone</span>
         </div>
       </div>
     </section>

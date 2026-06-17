@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, type LucideIcon } from "lucide-react";
 
 export function Contact() {
   return (
@@ -50,13 +50,8 @@ export function Contact() {
                 href="mailto:hello@ultravi0let.com"
               />
               <ContactRow
-                icon={Phone}
-                label="+20 111 333 7710"
-                href="tel:+201113337710"
-              />
-              <ContactRow
                 icon={MapPin}
-                label="Cairo · Sherouq City"
+                label="Dubai · Media Production Zone"
               />
             </div>
           </motion.div>
@@ -72,7 +67,7 @@ export function Contact() {
               const data = new FormData(e.currentTarget);
               const name = data.get("name");
               const subject = `New inquiry from ${name}`;
-              const body = `${data.get("message")}\n\n— ${name}\n${data.get(
+              const body = `${data.get("message")}\n\nFrom: ${name}\n${data.get(
                 "email"
               )}\n${data.get("company") ?? ""}`;
               window.location.href = `mailto:hello@ultravi0let.com?subject=${encodeURIComponent(
@@ -92,26 +87,6 @@ export function Contact() {
               textarea
               required
             />
-
-            <fieldset className="mt-2 flex flex-wrap gap-2">
-              <legend className="mb-2 text-[11px] uppercase tracking-[0.18em] text-bone-50/45">
-                Budget range
-              </legend>
-              {["< $20k", "$20–60k", "$60–150k", "$150k+"].map((b) => (
-                <label
-                  key={b}
-                  className="cursor-pointer rounded-full border border-bone-50/10 px-3.5 py-1.5 text-xs text-bone-50/65 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/10 has-[:checked]:text-bone-50"
-                >
-                  <input
-                    type="radio"
-                    name="budget"
-                    value={b}
-                    className="sr-only"
-                  />
-                  {b}
-                </label>
-              ))}
-            </fieldset>
 
             <button
               type="submit"
@@ -177,7 +152,7 @@ function ContactRow({
   label,
   href,
 }: {
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  icon: LucideIcon;
   label: string;
   href?: string;
 }) {

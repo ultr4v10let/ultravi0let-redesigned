@@ -24,9 +24,9 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Ultravi0let — Digital craft for ambitious products",
+  title: "Ultravi0let · Digital craft for ambitious products",
   description:
-    "A senior product studio out of Cairo. Design, engineering, cloud, and AI — built for teams who plan to ship and keep shipping.",
+    "A senior product studio based in Dubai. Design, engineering, cloud, and AI for teams who plan to ship and keep shipping.",
   metadataBase: new URL("https://ultravi0let.com"),
   openGraph: {
     title: "Ultravi0let",

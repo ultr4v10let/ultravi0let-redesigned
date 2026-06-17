@@ -10,30 +10,18 @@ export function Projects() {
   return (
     <section id="work" className="relative py-32 md:py-44">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <div className="grid items-end gap-10 md:grid-cols-[1fr_auto]">
-          <SectionHeader
-            eyebrow="Selected work · 2022 — 2024"
-            title={
-              <>
-                A few things
-                <br />
-                we&apos;ve <span className="serif-italic text-accent">shipped</span>.
-              </>
-            }
-          />
-          <a
-            href="#contact"
-            className="group hidden items-center gap-2 self-end text-sm text-bone-50/70 transition-colors hover:text-bone-50 md:inline-flex"
-          >
-            Full case studies on request
-            <ArrowUpRight
-              size={14}
-              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </a>
-        </div>
+        <SectionHeader
+          eyebrow="Selected work · since 2022"
+          title={
+            <>
+              A few things
+              <br />
+              we&apos;ve <span className="serif-italic text-accent">shipped</span>.
+            </>
+          }
+        />
 
-        <div className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
+        <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {projects.map((p, i) => (
             <ProjectCard key={p.name} {...p} index={i} />
           ))}
@@ -42,15 +30,6 @@ export function Projects() {
     </section>
   );
 }
-
-const layouts = [
-  "md:col-span-7 md:row-span-2 md:aspect-[16/13]",
-  "md:col-span-5 md:aspect-[8/9]",
-  "md:col-span-5 md:aspect-[8/9]",
-  "md:col-span-6 md:aspect-[8/7]",
-  "md:col-span-6 md:aspect-[8/7]",
-  "md:col-span-12 md:aspect-[24/9]",
-];
 
 type Project = (typeof projects)[number] & { index: number };
 
@@ -76,9 +55,7 @@ function ProjectCard({
         delay: (index % 3) * 0.08,
       }}
       className={cn(
-        "group relative isolate flex flex-col justify-between overflow-hidden rounded-3xl border border-bone-50/10 bg-ink-900 p-7 md:p-10 transition-all duration-500 hover:border-bone-50/20",
-        "aspect-[5/4]",
-        layouts[index]
+        "group relative isolate flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-3xl border border-bone-50/10 bg-ink-900 p-7 transition-all duration-500 hover:border-bone-50/20 md:p-8"
       )}
     >
       {/* Background gradient (project accent) */}

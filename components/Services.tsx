@@ -20,7 +20,7 @@ export function Services() {
             }
           />
           <p className="max-w-md text-balance text-base text-bone-50/60 md:text-right">
-            We bring the full surface area of a modern product company — from
+            We bring the full surface area of a modern product company, from
             the first sketch to the on-call rotation that keeps it alive at
             3am.
           </p>

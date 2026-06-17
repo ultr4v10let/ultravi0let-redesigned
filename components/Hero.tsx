@@ -38,10 +38,7 @@ export function Hero() {
         >
           <span className="eyebrow">
             <span className="dot" />
-            Cairo · est. 2022
-          </span>
-          <span className="eyebrow border-bone-50/[0.04]">
-            Currently taking Q3 engagements
+            Dubai · est. 2022
           </span>
         </motion.div>
 
@@ -66,8 +63,8 @@ export function Hero() {
           className="mt-12 flex flex-col items-start gap-8 md:mt-16 md:flex-row md:items-end md:justify-between"
         >
           <p className="max-w-xl text-balance text-base text-bone-50/65 md:text-lg">
-            A senior product studio out of Cairo. Design, engineering, cloud
-            and AI for teams who plan to ship — and keep shipping. Trusted by{" "}
+            A senior product studio based in Dubai. Design, engineering, cloud
+            and AI for teams who plan to ship, and keep shipping. Trusted by{" "}
             <span className="text-bone-50">12+ clients</span> across{" "}
             <span className="text-bone-50">4 countries</span>.
           </p>
@@ -106,7 +103,7 @@ export function Hero() {
             { k: "Projects", v: "30+" },
             { k: "Countries", v: "04" },
             { k: "Clients", v: "12+" },
-            { k: "Years combined", v: "80" },
+            { k: "Years of experience", v: "80" },
           ].map((s) => (
             <div
               key={s.k}
@@ -134,7 +131,7 @@ function Line({
   delay: number;
 }) {
   return (
-    <span className="block overflow-hidden">
+    <span className="block overflow-hidden pb-[0.18em] -mb-[0.12em]">
       <motion.span
         initial={{ y: "110%" }}
         animate={{ y: "0%" }}
