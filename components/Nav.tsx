@@ -30,12 +30,12 @@ export function Nav() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled ? "py-3" : "py-5"
+          scrolled ? "py-2 pt-[max(0.5rem,env(safe-area-inset-top))]" : "py-4 pt-[max(1rem,env(safe-area-inset-top))]"
         )}
       >
         <div
           className={cn(
-            "mx-auto flex max-w-[1440px] items-center justify-between px-6 md:px-10 transition-all duration-500",
+            "mx-auto flex max-w-[1440px] items-center justify-between px-5 sm:px-6 md:px-10 transition-all duration-500",
             scrolled &&
               "rounded-full max-w-[920px] border border-ink-950/10 bg-paper-100/70 backdrop-blur-xl px-5 py-2"
           )}
@@ -78,7 +78,7 @@ export function Nav() {
           {/* Mobile toggle */}
           <button
             aria-label="Menu"
-            className="md:hidden text-ink-950"
+            className="-mr-1 flex h-11 w-11 items-center justify-center rounded-full text-ink-950 md:hidden"
             onClick={() => setOpen(!open)}
           >
             {open ? <X size={22} /> : <Menu size={22} />}
@@ -93,7 +93,7 @@ export function Nav() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="fixed inset-x-4 top-20 z-40 rounded-3xl border border-ink-950/10 bg-paper-100/95 p-6 backdrop-blur-2xl md:hidden"
+            className="fixed inset-x-4 top-[calc(4.75rem+env(safe-area-inset-top))] z-40 rounded-3xl border border-ink-950/10 bg-paper-100/95 p-6 backdrop-blur-2xl md:hidden"
           >
             <nav className="flex flex-col gap-4">
               {links.map((l) => (

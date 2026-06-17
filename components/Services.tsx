@@ -6,9 +6,9 @@ import { SectionHeader } from "./SectionHeader";
 
 export function Services() {
   return (
-    <section id="services" className="relative py-20 md:py-28">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <div className="grid items-end gap-16 md:grid-cols-[1fr_auto]">
+    <section id="services" className="relative py-16 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
+        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-16">
           <SectionHeader
             eyebrow="What we do"
             title={
@@ -19,14 +19,14 @@ export function Services() {
               </>
             }
           />
-          <p className="max-w-md text-balance text-base text-ink-950/60 md:text-right">
+          <p className="max-w-md text-pretty text-base text-ink-950/60 md:text-right">
             We bring the full surface area of a modern product company, from
             the first sketch to the on-call rotation that keeps it alive at
             3am.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-ink-950/10 bg-ink-950/10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink-950/10 bg-ink-950/10 sm:mt-12 sm:rounded-3xl md:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <ServiceCard key={s.n} {...s} index={i} />
           ))}
@@ -49,7 +49,7 @@ function ServiceCard({ n, icon: Icon, title, blurb, keywords, index }: Service) 
         ease: [0.16, 1, 0.3, 1],
         delay: (index % 4) * 0.07,
       }}
-      className="group relative isolate flex flex-col gap-5 bg-paper-100/70 p-7 transition-colors duration-500 hover:bg-paper-200 md:p-8"
+      className="group relative isolate flex flex-col gap-4 bg-paper-100/70 p-6 transition-colors duration-500 hover:bg-paper-200 sm:gap-5 sm:p-7 md:p-8"
     >
       {/* Hover glow */}
       <div
@@ -66,7 +66,7 @@ function ServiceCard({ n, icon: Icon, title, blurb, keywords, index }: Service) 
         />
       </div>
 
-      <h3 className="font-display text-3xl leading-tight tracking-verytight text-ink-950">
+      <h3 className="font-display text-2xl leading-tight tracking-verytight text-ink-950 sm:text-3xl">
         {title}
       </h3>
 

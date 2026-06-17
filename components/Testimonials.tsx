@@ -6,8 +6,8 @@ import { SectionHeader } from "./SectionHeader";
 
 export function Testimonials() {
   return (
-    <section className="relative py-20 md:py-28">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+    <section className="relative py-16 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <SectionHeader
           eyebrow="Testimonials"
           title={
@@ -19,7 +19,7 @@ export function Testimonials() {
           }
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 lg:grid-cols-3">
           {testimonials.map((t, i) => (
             <motion.figure
               key={t.name}
@@ -31,9 +31,9 @@ export function Testimonials() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: (i % 3) * 0.08,
               }}
-              className="group relative isolate flex flex-col gap-5 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/70 p-6 transition-colors duration-500 hover:border-ink-950/20 md:p-7"
+              className="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/70 p-5 transition-colors duration-500 hover:border-ink-950/20 sm:gap-5 sm:p-6 md:p-7"
             >
-              <blockquote className="font-display text-lg leading-snug tracking-verytight text-ink-950 md:text-xl">
+              <blockquote className="font-display text-base leading-snug tracking-verytight text-ink-950 sm:text-lg md:text-xl">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-auto border-t border-ink-950/10 pt-5">

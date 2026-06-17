@@ -13,7 +13,7 @@ const myCircle = {
   name: "Layali Family Circle",
   size: 8,
   monthly: 1500,
-  currency: "AED",
+  currency: "EGP",
   payout: 12000,
   position: 4,
   cycle: 8,
@@ -198,7 +198,7 @@ export default function Portfolio() {
                   </div>
                   <div className="text-right">
                     <div className="font-mono text-sm text-[#28160E]">
-                      −{l.credit.toLocaleString()} AED
+                      −{l.credit.toLocaleString()} EGP
                     </div>
                     <div className="font-mono text-[10px] text-[#28160E]/55">
                       tx {l.ref}
@@ -211,7 +211,7 @@ export default function Portfolio() {
           <div className="border-t border-[#28160E]/10 bg-[#FBF2E4] px-6 py-4 text-[11px] text-[#28160E]/65">
             Balance reconciles to{" "}
             <span className="font-mono text-[#28160E]">
-              0x4f8…b3c2 · 6,000.00 AED
+              0x4f8…b3c2 · 6,000.00 EGP
             </span>
           </div>
         </section>

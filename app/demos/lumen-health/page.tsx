@@ -108,9 +108,9 @@ export default function LumenHome() {
             {/* Modality chips */}
             <div className="mt-10 flex flex-wrap items-center gap-2">
               {[
-                { i: MessageCircle, t: "Text · from AED 80" },
-                { i: Phone, t: "Voice · from AED 100" },
-                { i: Video, t: "Video · from AED 120" },
+                { i: MessageCircle, t: "Text · from EGP 80" },
+                { i: Phone, t: "Voice · from EGP 100" },
+                { i: Video, t: "Video · from EGP 120" },
               ].map((m) => (
                 <div
                   key={m.t}

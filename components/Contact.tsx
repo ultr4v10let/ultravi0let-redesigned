@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight, Check, Mail, MapPin, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Check, Mail, type LucideIcon } from "lucide-react";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -46,7 +46,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative isolate overflow-hidden py-20 md:py-28">
+    <section id="contact" className="relative isolate overflow-hidden py-16 sm:py-20 md:py-28">
       {/* Aurora */}
       <div
         aria-hidden
@@ -65,8 +65,8 @@ export function Contact() {
         }}
       />
 
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <div className="grid items-end gap-10 md:grid-cols-2 md:gap-12">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
+        <div className="grid items-start gap-8 md:grid-cols-2 md:items-end md:gap-12">
           {/* Left: pitch */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -79,7 +79,7 @@ export function Contact() {
               <span className="dot" />
               Let&apos;s build
             </span>
-            <h2 className="font-display text-[12vw] leading-[0.95] tracking-tightest text-ink-950 md:text-[clamp(3.5rem,7vw,7rem)]">
+            <h2 className="font-display text-[clamp(2.35rem,11vw,7rem)] leading-[0.95] tracking-tightest text-ink-950">
               Got an idea?
               <br />
               <span className="serif-italic text-accent">Let&apos;s make</span>
@@ -92,15 +92,11 @@ export function Contact() {
               right team.
             </p>
 
-            <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-ink-950/75 sm:grid-cols-2">
+            <div className="mt-6">
               <ContactRow
                 icon={Mail}
                 label="hello@ultravi0let.com"
                 href="mailto:hello@ultravi0let.com"
-              />
-              <ContactRow
-                icon={MapPin}
-                label="Dubai · Media Production Zone"
               />
             </div>
           </motion.div>
@@ -111,7 +107,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="relative isolate overflow-hidden rounded-3xl border border-ink-950/10 bg-paper-100/70 p-7 backdrop-blur-xl md:p-9"
+            className="relative isolate overflow-hidden rounded-3xl border border-ink-950/10 bg-paper-100/70 p-5 backdrop-blur-xl sm:p-7 md:p-9"
           >
             <AnimatePresence mode="wait" initial={false}>
               {status === "sent" ? (
@@ -165,7 +161,7 @@ export function Contact() {
 
                     <button
                       type="submit"
-                      className="group mt-4 inline-flex items-center justify-center gap-2 rounded-full border border-violet-700/30 bg-violet-700/10 px-6 py-4 text-sm font-medium text-ink-950 backdrop-blur-sm transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50 hover:violet-glow disabled:cursor-not-allowed"
+                      className="group mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-violet-700/30 bg-violet-700/10 px-6 py-3.5 text-sm font-medium text-ink-950 backdrop-blur-sm transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50 hover:violet-glow disabled:cursor-not-allowed sm:py-4"
                     >
                       {status === "sending" ? "Sending…" : "Send to Ultravi0let"}
                       <ArrowUpRight
@@ -253,19 +249,19 @@ function ContactRow({
 }) {
   const inner = (
     <>
-      <Icon size={14} strokeWidth={1.6} className="text-ink-950/50" />
-      <span>{label}</span>
+      <Icon size={14} strokeWidth={1.6} className="shrink-0 text-ink-950/50" />
+      <span className="min-w-0 break-all sm:break-normal">{label}</span>
     </>
   );
   return href ? (
     <a
       href={href}
-      className="group inline-flex items-center gap-3 rounded-full border border-ink-950/10 bg-ink-950/[0.02] px-4 py-2.5 transition-colors hover:border-ink-950/25 hover:text-ink-950"
+      className="group inline-flex max-w-full items-center gap-3 rounded-full border border-ink-950/10 bg-ink-950/[0.02] px-4 py-2.5 text-sm transition-colors hover:border-ink-950/25 hover:text-ink-950"
     >
       {inner}
     </a>
   ) : (
-    <div className="inline-flex items-center gap-3 rounded-full border border-ink-950/10 bg-ink-950/[0.02] px-4 py-2.5">
+    <div className="inline-flex max-w-full items-center gap-3 rounded-full border border-ink-950/10 bg-ink-950/[0.02] px-4 py-2.5 text-sm">
       {inner}
     </div>
   );

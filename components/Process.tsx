@@ -36,8 +36,8 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="studio" className="relative py-20 md:py-28">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+    <section id="studio" className="relative py-16 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <SectionHeader
           eyebrow="How we work"
           title={
@@ -50,7 +50,7 @@ export function Process() {
           caption="Our engagements run lean. Small teams, short feedback loops, and demos every Friday. The process is the product."
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-14 md:gap-y-14">
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:mt-12 md:grid-cols-2 md:gap-x-14 md:gap-y-14">
           {steps.map((s, i) => (
             <motion.div
               key={s.n}
@@ -62,16 +62,16 @@ export function Process() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: (i % 2) * 0.1,
               }}
-              className="relative flex gap-6 md:gap-8"
+              className="relative flex gap-4 sm:gap-6 md:gap-8"
             >
-              <div className="flex flex-col items-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-ink-950/15 bg-paper-100 font-mono text-[11px] tracking-widest text-ink-950/70">
+              <div className="flex shrink-0 flex-col items-center">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-950/15 bg-paper-100 font-mono text-[10px] tracking-widest text-ink-950/70 sm:h-12 sm:w-12 sm:text-[11px]">
                   {s.n}
                 </div>
                 <div className="mt-3 h-full w-px bg-gradient-to-b from-ink-950/15 to-transparent" />
               </div>
-              <div className="flex flex-1 flex-col gap-3 pb-6">
-                <h3 className="font-display text-3xl tracking-verytight text-ink-950 md:text-4xl">
+              <div className="flex min-w-0 flex-1 flex-col gap-2 pb-4 sm:gap-3 sm:pb-6">
+                <h3 className="font-display text-2xl tracking-verytight text-ink-950 sm:text-3xl md:text-4xl">
                   {s.title}
                 </h3>
                 <p className="text-[15px] leading-relaxed text-ink-950/65">

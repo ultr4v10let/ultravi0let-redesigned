@@ -263,7 +263,7 @@ export default function BookPage() {
               <SumRow k="Time" v={time || "Select a time"} />
               <SumRow k="Concern" v={concern} />
               <SumRow k="Modality" v="Video · 15 minutes" />
-              <SumRow k="Fee" v="AED 120 (covered by most insurance)" />
+              <SumRow k="Fee" v="EGP 120 (covered by most insurance)" />
             </dl>
             <button
               type="submit"

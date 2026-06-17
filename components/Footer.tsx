@@ -34,11 +34,11 @@ const cols = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-ink-950/10 bg-paper-50 pt-20 pb-10">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-12">
+    <footer className="relative overflow-hidden border-t border-ink-950/10 bg-paper-50 pt-16 pb-8 sm:pt-20 sm:pb-10">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-12 md:gap-10">
           {/* Brand block */}
-          <div className="col-span-2 md:col-span-5">
+          <div className="sm:col-span-2 md:col-span-5">
             <div className="flex items-center gap-3">
               <svg
                 width="32"
@@ -112,27 +112,14 @@ export function Footer() {
             </div>
           ))}
 
-          {/* Address */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-ink-950/60">
-              HQ
-            </div>
-            <address className="mt-5 not-italic text-sm leading-relaxed text-ink-950/75">
-              Dubai Media
-              <br />
-              Production Zone
-              <br />
-              Dubai · UAE
-            </address>
-          </div>
         </div>
 
         {/* Oversized mark */}
         <div
           aria-hidden
-          className="mt-24 select-none overflow-hidden"
+          className="mt-16 select-none overflow-hidden sm:mt-20 md:mt-24"
         >
-          <div className="font-display text-[clamp(5rem,17vw,17rem)] leading-[0.85] tracking-tightest text-transparent [-webkit-text-stroke:1px_rgba(14,10,31,0.22)]">
+          <div className="font-display text-[clamp(3.25rem,16vw,17rem)] leading-[0.85] tracking-tightest text-transparent [-webkit-text-stroke:1px_rgba(14,10,31,0.22)]">
             ULTRAVI<span className="serif-italic">0</span>LET
           </div>
         </div>
