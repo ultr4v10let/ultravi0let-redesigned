@@ -5,27 +5,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: {
-          950: "#08070B",
-          900: "#0C0A11",
-          800: "#15121C",
-          700: "#1E1A28",
-          600: "#2B2438",
+        // Light surfaces — warm cream / paper
+        paper: {
+          50: "#FAF7F0",  // page background
+          100: "#F2ECD9", // raised card
+          200: "#E8DEC5", // deeper card
+          300: "#D9CCAE", // borders / muted blocks
+          400: "#BFB291",
         },
-        bone: {
-          50: "#F5F2EC",
-          100: "#EAE5DA",
-          200: "#D9D1BF",
+        // Dark text / ink
+        ink: {
+          700: "#3A2F4C",
+          800: "#231A36",
+          900: "#15102A",
+          950: "#0E0A1F", // primary text / headings
         },
         violet: {
+          300: "#C4A5FF",
           400: "#A78BFA",
           500: "#8B5CF6",
           600: "#7C3AED",
           700: "#6D28D9",
+          800: "#5B21B6",
+          900: "#4C1D95",
         },
         accent: {
-          DEFAULT: "#C4A5FF",
-          warm: "#E8D9B5",
+          DEFAULT: "#6D28D9",  // italic accent on cream
+          warm: "#9F6A2D",      // optional warm gold for variety
         },
       },
       fontFamily: {
@@ -42,7 +48,11 @@ const config: Config = {
         marquee: "marquee 40s linear infinite",
         "marquee-reverse": "marquee 40s linear infinite reverse",
         shimmer: "shimmer 3s linear infinite",
-        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
+        breathe: "breathe 14s ease-in-out infinite",
+        "pulse-soft": "pulseSoft 9s ease-in-out infinite",
+        "drift-1": "drift1 22s ease-in-out infinite",
+        "drift-2": "drift2 28s ease-in-out infinite",
+        "drift-3": "drift3 18s ease-in-out infinite",
         "spin-slow": "spin 24s linear infinite",
       },
       keyframes: {
@@ -58,14 +68,36 @@ const config: Config = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
-        pulseGlow: {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "1" },
+        breathe: {
+          "0%,100%": {
+            transform: "translate(0,0) scale(1) rotate(0deg)",
+          },
+          "25%": {
+            transform: "translate(40px,-30px) scale(1.08) rotate(2deg)",
+          },
+          "50%": {
+            transform: "translate(-30px,42px) scale(1.16) rotate(-2deg)",
+          },
+          "75%": {
+            transform: "translate(50px,18px) scale(1.06) rotate(1deg)",
+          },
         },
-      },
-      backgroundImage: {
-        "noise":
-          "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>\")",
+        pulseSoft: {
+          "0%,100%": { opacity: "0.55" },
+          "50%": { opacity: "0.85" },
+        },
+        drift1: {
+          "0%,100%": { transform: "translate(-50%, 0) scale(1)" },
+          "50%": { transform: "translate(-46%, 28px) scale(1.08)" },
+        },
+        drift2: {
+          "0%,100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(-40px, 24px) scale(1.12)" },
+        },
+        drift3: {
+          "0%,100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(28px, -20px) scale(1.06)" },
+        },
       },
     },
   },

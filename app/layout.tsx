@@ -46,7 +46,7 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${mono.variable} ${instrument.variable}`}
     >
-      <body className="grain bg-ink-950 font-sans text-bone-50">{children}</body>
+      <body className="grain bg-paper-50 font-sans text-ink-950">{children}</body>
     </html>
   );
 }

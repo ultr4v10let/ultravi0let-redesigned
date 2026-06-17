@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --ink: #08070b;
-  --ink-2: #0c0a11;
-  --bone: #f5f2ec;
-  --violet: #8b5cf6;
-  --violet-glow: #a78bfa;
-  --warm: #e8d9b5;
+  --paper: #FAF7F0;
+  --paper-2: #F2ECD9;
+  --ink: #0E0A1F;
+  --ink-2: #15102A;
+  --violet: #6D28D9;
+  --violet-soft: #A78BFA;
+  --violet-glow: #6D28D9;
+  --warm: #9F6A2D;
 }
 
 * {
@@ -18,68 +20,66 @@
 }
 
 html {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--paper);
+  color: var(--ink);
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--paper);
+  color: var(--ink);
   font-feature-settings: "ss01", "cv11";
   overflow-x: hidden;
 }
 
 ::selection {
   background: var(--violet);
-  color: var(--bone);
+  color: var(--paper);
 }
 
-/* Soft grain overlay layer for the whole page */
+/* Subtle paper grain overlay, very low opacity — keeps the cream feeling tactile */
 .grain::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-/* Editorial number style */
 .tabnum {
   font-variant-numeric: tabular-nums;
 }
 
-/* Glow utility */
+/* Violet glow — used on hover for the primary CTA */
 .violet-glow {
-  box-shadow: 0 0 60px -10px rgba(139, 92, 246, 0.5),
-    0 0 120px -20px rgba(167, 139, 250, 0.3);
+  box-shadow: 0 8px 40px -10px rgba(109, 40, 217, 0.45),
+    0 0 80px -20px rgba(167, 139, 250, 0.3);
 }
 
-/* Custom scrollbar */
+/* Scrollbar — cream track, ink thumb */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--ink);
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b2438;
+  background: rgba(14, 10, 31, 0.18);
   border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--violet);
 }
 
-/* Smooth interaction cursor */
-a, button {
+a,
+button {
   cursor: pointer;
 }
 
-/* Ticker / marquee */
 .marquee-mask {
   -webkit-mask-image: linear-gradient(
     90deg,
@@ -97,14 +97,12 @@ a, button {
   );
 }
 
-/* Display-serif italic detail used in hero */
 .serif-italic {
   font-family: var(--font-instrument), Georgia, serif;
   font-style: italic;
   font-weight: 400;
 }
 
-/* Subtle hairline border using a soft gradient */
 .hairline {
   position: relative;
 }
@@ -117,16 +115,16 @@ a, button {
   padding: 1px;
   background: linear-gradient(
     180deg,
-    rgba(245, 242, 236, 0.18),
-    rgba(245, 242, 236, 0.02) 40%,
-    rgba(124, 58, 237, 0.18)
+    rgba(14, 10, 31, 0.18),
+    rgba(14, 10, 31, 0.02) 40%,
+    rgba(109, 40, 217, 0.18)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
 
-/* Tag pill */
+/* Eyebrow chip — light surface with a subtle ink border */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -136,15 +134,15 @@ a, button {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245, 242, 236, 0.7);
-  background: rgba(245, 242, 236, 0.04);
-  border: 1px solid rgba(245, 242, 236, 0.08);
+  color: rgba(14, 10, 31, 0.7);
+  background: rgba(14, 10, 31, 0.025);
+  border: 1px solid rgba(14, 10, 31, 0.1);
   backdrop-filter: blur(8px);
 }
 .eyebrow .dot {
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: var(--violet-glow);
-  box-shadow: 0 0 12px var(--violet-glow);
+  background: var(--violet);
+  box-shadow: 0 0 12px rgba(109, 40, 217, 0.55);
 }

@@ -37,7 +37,7 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-        className="font-display text-[10vw] leading-[0.95] tracking-tightest text-bone-50 md:text-[clamp(3rem,6vw,6rem)]"
+        className="font-display text-[10vw] leading-[0.95] tracking-tightest text-ink-950 md:text-[clamp(3rem,6vw,6rem)]"
       >
         {title}
       </motion.h2>
@@ -49,7 +49,7 @@ export function SectionHeader({
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           className={cn(
-            "max-w-2xl text-balance text-base text-bone-50/60 md:text-lg",
+            "max-w-2xl text-balance text-base text-ink-950/60 md:text-lg",
             align === "center" && "mx-auto"
           )}
         >
