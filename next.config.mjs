@@ -1,17 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-    ],
-  },
+  reactStrictMode: true,
+  images: { formats: ["image/avif", "image/webp"] },
 };
 
 export default nextConfig;
