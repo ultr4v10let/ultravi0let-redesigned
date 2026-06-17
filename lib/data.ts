@@ -206,14 +206,16 @@ export const testimonials = [
     title: "Managing Partner, AG Law",
   },
   {
-    quote: "They run like an in-house team that just happens to sit in another timezone. Ownership, not order-taking.",
-    name: "Karim Saad",
-    title: "Co-founder, Circle of Trust",
+    quote:
+      "Architectural runs, apparel batches and merch jobs on one queue — they understood our floor before we finished explaining it. Production finally feels coordinated, not chaotic.",
+    name: "Abdelrahman Tarek",
+    title: "Founder, Maquette",
   },
   {
-    quote: "Senior people, sensible decisions, and an honest no when 'no' is the right answer. Rare combination.",
-    name: "Bashir Al-Hubaishi",
-    title: "Co-founder, Lumen Health",
+    quote:
+      "Factory, shops and back office in one system changed how we operate. Shop requisitions hit production automatically — we stopped losing orders between the counter and the kitchen.",
+    name: "Karim Badr",
+    title: "Co-founder, Zanobia Patisserie",
   },
 ];
 
