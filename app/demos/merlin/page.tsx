@@ -31,7 +31,7 @@ const themes = [
   { name: "Slate", colors: ["#1E293B", "#94A3B8", "#F8FAFC"] },
 ];
 
-export default function MarlyinHome() {
+export default function MerlinHome() {
   return (
     <main>
       <section className="relative overflow-hidden border-b border-[#0F1729]/10">

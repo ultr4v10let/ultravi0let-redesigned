@@ -18,7 +18,7 @@ const TABS = [
   { id: "gallery", label: "Gallery", icon: ImageIcon, enabled: false },
 ];
 
-export default function MarlyinEditor() {
+export default function MerlinEditor() {
   const [themeId, setThemeId] = useState("aurora");
   const [company, setCompany] = useState("Northline Ventures");
   const [tagline, setTagline] = useState("Building the infrastructure behind tomorrow's products.");

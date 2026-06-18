@@ -25,7 +25,7 @@ const services = [
   { title: "Design", desc: "Brand, product UI and design systems that scale with your team." },
 ];
 
-export default function MarlyinPreview() {
+export default function MerlinPreview() {
   return (
     <main className="bg-[#F4F6FB]">
       <div className="border-b border-[#0F1729]/10 bg-white px-6 py-3">
