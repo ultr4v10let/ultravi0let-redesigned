@@ -13,6 +13,7 @@ const SUBDOMAINS: Record<string, string> = {
   zanobia: "/demos/zanobia",
   maquette: "/demos/maquette",
   haven: "/demos/haven",
+  facet: "/demos/facet",
 };
 
 const ROOT_HOSTS = new Set(["ultravi0let.com", "www.ultravi0let.com", "localhost", "localhost:3000"]);

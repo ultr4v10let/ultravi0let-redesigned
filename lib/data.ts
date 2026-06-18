@@ -135,6 +135,21 @@ export const projects = [
       { k: "Checkout", v: "Cart + filters" },
     ],
   },
+  {
+    name: "Facet",
+    type: "prototype" as const,
+    category: "Portfolio · Builder",
+    year: "2025",
+    blurb:
+      "Field-aware portfolio builder — CS, architecture and medical templates with tailored prompts, two themes per discipline, sign-in and live preview.",
+    accent: "from-rose-300 to-teal-400",
+    href: "/demos/facet",
+    subdomain: "facet.ultravi0let.com",
+    stats: [
+      { k: "Fields", v: "3" },
+      { k: "Templates", v: "6" },
+    ],
+  },
   // ── Previous portfolio entries (kept for reference) ──────────────────────
   // {
   //   name: "Lumen Health",

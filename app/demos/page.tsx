@@ -42,6 +42,14 @@ const demos = [
     swatch: ["#F7F5F2", "#1C1917"],
     type: "Prototype",
   },
+  {
+    name: "Facet",
+    blurb: "Field-specific portfolio builder — CS, architecture and medical.",
+    href: "/demos/facet",
+    sub: "facet.ultravi0let.com",
+    swatch: ["#F7F4EF", "#E07A5F"],
+    type: "Prototype",
+  },
   // ── Previous demos (still reachable via direct URL) ───────────────────────
   // {
   //   name: "Lumen Health",
