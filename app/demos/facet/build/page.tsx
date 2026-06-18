@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { ArrowLeft, Eye, Save } from "lucide-react";
+import { GalleryImageUploader, ProfileImageUploader } from "@/components/demo/facet/ImageUploaders";
 import { PortfolioPreview } from "@/components/demo/facet/PortfolioPreview";
 import {
   createDefaultPortfolio,
@@ -11,6 +12,7 @@ import {
   FACET_THEMES,
   getFacetPortfolio,
   getFacetUser,
+  normalizePortfolio,
   setFacetPortfolio,
   type FacetField,
   type FacetPortfolio,
@@ -28,6 +30,7 @@ function FacetBuilder() {
 
   const [portfolio, setPortfolio] = useState<FacetPortfolio | null>(null);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
     const user = getFacetUser();
@@ -42,7 +45,7 @@ function FacetBuilder() {
 
     const existing = getFacetPortfolio();
     if (existing?.field === fieldParam) {
-      setPortfolio(existing);
+      setPortfolio(normalizePortfolio(existing));
     } else {
       setPortfolio(createDefaultPortfolio(fieldParam, user.name));
     }
@@ -62,6 +65,7 @@ function FacetBuilder() {
   function update<K extends keyof FacetPortfolio>(key: K, value: FacetPortfolio[K]) {
     setPortfolio((prev) => (prev ? { ...prev, [key]: value } : prev));
     setSaved(false);
+    setSaveError(null);
   }
 
   function updateDetail(key: string, value: string) {
@@ -69,15 +73,21 @@ function FacetBuilder() {
       prev ? { ...prev, details: { ...prev.details, [key]: value } } : prev
     );
     setSaved(false);
+    setSaveError(null);
   }
 
   function save() {
     if (!portfolio) return;
     const next = { ...portfolio, updatedAt: new Date().toISOString() };
-    setFacetPortfolio(next);
-    setPortfolio(next);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    try {
+      setFacetPortfolio(next);
+      setPortfolio(next);
+      setSaved(true);
+      setSaveError(null);
+      setTimeout(() => setSaved(false), 2000);
+    } catch {
+      setSaveError("Could not save — try fewer or smaller photos.");
+    }
   }
 
   return (
@@ -146,6 +156,14 @@ function FacetBuilder() {
               />
             </div>
             <div>
+              <label className="text-[11px] uppercase tracking-[0.16em]" style={{ color: FACET_SHELL.inkMuted, fontFamily: "var(--facet-mono)" }}>Profile photo</label>
+              <ProfileImageUploader
+                value={portfolio.profilePhoto}
+                onChange={(dataUrl) => update("profilePhoto", dataUrl)}
+                name={portfolio.name}
+              />
+            </div>
+            <div>
               <label className="text-[11px] uppercase tracking-[0.16em]" style={{ color: FACET_SHELL.inkMuted, fontFamily: "var(--facet-mono)" }}>Headline</label>
               <input
                 value={portfolio.headline}
@@ -162,6 +180,13 @@ function FacetBuilder() {
                 rows={3}
                 className={`${fieldInput} resize-none`}
                 style={{ borderColor: FACET_SHELL.border, background: FACET_SHELL.paper, color: FACET_SHELL.ink }}
+              />
+            </div>
+            <div>
+              <label className="text-[11px] uppercase tracking-[0.16em]" style={{ color: FACET_SHELL.inkMuted, fontFamily: "var(--facet-mono)" }}>Gallery photos</label>
+              <GalleryImageUploader
+                values={portfolio.galleryPhotos}
+                onChange={(photos) => update("galleryPhotos", photos)}
               />
             </div>
           </div>
@@ -198,9 +223,13 @@ function FacetBuilder() {
 
         {/* Action bar — pinned to sidebar bottom, never viewport-fixed */}
         <div
-          className="z-20 flex shrink-0 gap-2 border-t p-4 backdrop-blur"
+          className="z-20 flex shrink-0 flex-col gap-2 border-t p-4 backdrop-blur"
           style={{ borderColor: FACET_SHELL.border, background: `${FACET_SHELL.paperElevated}f2` }}
         >
+          {saveError ? (
+            <p className="text-center text-xs text-rose-600">{saveError}</p>
+          ) : null}
+          <div className="flex gap-2">
           <button
             type="button"
             onClick={save}
@@ -213,7 +242,13 @@ function FacetBuilder() {
           <Link
             href="/demos/facet/preview"
             onClick={() => {
-              if (portfolio) setFacetPortfolio({ ...portfolio, updatedAt: new Date().toISOString() });
+              if (portfolio) {
+                try {
+                  setFacetPortfolio({ ...portfolio, updatedAt: new Date().toISOString() });
+                } catch {
+                  setSaveError("Could not save — try fewer or smaller photos.");
+                }
+              }
             }}
             className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border py-3 text-sm font-medium"
             style={{ borderColor: FACET_SHELL.border, color: FACET_SHELL.ink, background: FACET_SHELL.paper }}
@@ -221,6 +256,7 @@ function FacetBuilder() {
             <Eye size={16} />
             Full preview
           </Link>
+          </div>
         </div>
       </aside>
 
