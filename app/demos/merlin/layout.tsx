@@ -21,7 +21,7 @@ export const metadata = {
   title: "Merlin · Ship your company site in hours",
 };
 
-export default function MarlyinLayout({ children }: { children: React.ReactNode }) {
+export default function MerlinLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={`${sans.variable} ${display.variable}`}
