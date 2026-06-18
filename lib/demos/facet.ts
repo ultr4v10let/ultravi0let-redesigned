@@ -10,10 +10,45 @@ export type FacetPortfolio = {
   field: FacetField;
   theme: FacetTheme;
   name: string;
+  profilePhoto: string;
   headline: string;
   bio: string;
+  galleryPhotos: string[];
   details: Record<string, string>;
   updatedAt: string;
+};
+
+export const FACET_DEFAULT_PHOTOS: Record<
+  FacetField,
+  { profile: string; gallery: string[] }
+> = {
+  cs: {
+    profile:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&h=600&fit=crop&q=80",
+    ],
+  },
+  architecture: {
+    profile:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1487958449943-2429e8be8627?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1448632109177-0ac0938781a5?w=800&h=600&fit=crop&q=80",
+    ],
+  },
+  medical: {
+    profile:
+      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=600&fit=crop&q=80",
+    ],
+  },
 };
 
 export const FACET_FIELDS: {
@@ -152,19 +187,46 @@ export function setFacetUser(user: FacetUser | null) {
   window.dispatchEvent(new Event(AUTH_EVENT));
 }
 
+export function normalizePortfolio(portfolio: FacetPortfolio): FacetPortfolio {
+  const defaults = FACET_DEFAULT_PHOTOS[portfolio.field];
+  const gallery =
+    Array.isArray(portfolio.galleryPhotos) && portfolio.galleryPhotos.some((u) => u.trim())
+      ? portfolio.galleryPhotos.map((u) => u.trim()).filter(Boolean)
+      : [...defaults.gallery];
+
+  return {
+    ...portfolio,
+    profilePhoto:
+      typeof portfolio.profilePhoto === "string" && portfolio.profilePhoto.trim()
+        ? portfolio.profilePhoto.trim()
+        : defaults.profile,
+    galleryPhotos: gallery,
+  };
+}
+
 export function getFacetPortfolio(): FacetPortfolio | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = localStorage.getItem(PORTFOLIO_KEY);
-    return raw ? (JSON.parse(raw) as FacetPortfolio) : null;
+    return raw ? normalizePortfolio(JSON.parse(raw) as FacetPortfolio) : null;
   } catch {
     return null;
   }
 }
 
 export function setFacetPortfolio(portfolio: FacetPortfolio | null) {
-  if (portfolio) localStorage.setItem(PORTFOLIO_KEY, JSON.stringify(portfolio));
-  else localStorage.removeItem(PORTFOLIO_KEY);
+  if (portfolio) {
+    try {
+      localStorage.setItem(PORTFOLIO_KEY, JSON.stringify(portfolio));
+    } catch (err) {
+      if (err instanceof DOMException && (err.name === "QuotaExceededError" || err.code === 22)) {
+        throw new Error("Storage quota exceeded");
+      }
+      throw err;
+    }
+  } else {
+    localStorage.removeItem(PORTFOLIO_KEY);
+  }
   window.dispatchEvent(new Event(PORTFOLIO_EVENT));
 }
 
@@ -174,12 +236,15 @@ export function createDefaultPortfolio(
   theme: FacetTheme = "a"
 ): FacetPortfolio {
   const config = FACET_FIELD_CONFIG[field];
+  const photos = FACET_DEFAULT_PHOTOS[field];
   return {
     field,
     theme,
     name: userName,
+    profilePhoto: photos.profile,
     headline: defaultHeadline(field, userName),
     bio: defaultBio(field),
+    galleryPhotos: [...photos.gallery],
     details: { ...config.defaults },
     updatedAt: new Date().toISOString(),
   };

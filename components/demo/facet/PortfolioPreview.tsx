@@ -2,6 +2,7 @@
 
 import type { FacetPortfolio } from "@/lib/demos/facet";
 import { FACET_FIELD_CONFIG, FACET_THEMES } from "@/lib/demos/facet";
+import { PhotoGallery, ProfilePhoto } from "@/components/demo/facet/PortfolioImages";
 import { ExternalLink, Github, Linkedin } from "lucide-react";
 
 function splitLines(value?: string) {
@@ -84,10 +85,18 @@ function CsTerminal({
       </div>
       <div className="mx-auto max-w-3xl px-6 py-12 md:py-16">
         <MetaBar fieldLabel={fieldLabel} themeName={themeName} className="text-emerald-400/70" />
-        <p className="mt-6 text-emerald-400">$ whoami</p>
-        <h1 className="mt-2 text-3xl font-bold text-white md:text-4xl">{data.name}</h1>
-        <p className="mt-3 text-lg text-emerald-300/90">{data.headline}</p>
+        <div className="mt-6 flex items-start gap-5">
+          <ProfilePhoto src={data.profilePhoto} name={data.name} variant="terminal" />
+          <div className="min-w-0 flex-1">
+            <p className="text-emerald-400">$ whoami</p>
+            <h1 className="mt-2 text-3xl font-bold text-white md:text-4xl">{data.name}</h1>
+            <p className="mt-3 text-lg text-emerald-300/90">{data.headline}</p>
+          </div>
+        </div>
         <p className="mt-6 leading-relaxed text-[#94A3B8]">{data.bio}</p>
+        <div className="mt-10">
+          <PhotoGallery urls={data.galleryPhotos} variant="terminal" />
+        </div>
 
         <div className="mt-10 space-y-10">
           {fields.map((field) => (
@@ -174,14 +183,22 @@ function CsLumen({
     <div className="min-h-full bg-[#F8FAFC] text-[#0F172A]" style={{ fontFamily: "var(--facet-sans)" }}>
       <div className="mx-auto max-w-3xl px-6 py-12 md:py-16">
         <MetaBar fieldLabel={fieldLabel} themeName={themeName} />
-        <h1
-          className="mt-6 text-4xl font-bold tracking-tight text-[#0F172A] md:text-5xl"
-          style={{ fontFamily: "var(--facet-display)" }}
-        >
-          {data.name}
-        </h1>
-        <p className="mt-4 text-xl text-[#6366F1]">{data.headline}</p>
+        <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
+          <ProfilePhoto src={data.profilePhoto} name={data.name} variant="lumen" />
+          <div className="min-w-0 flex-1">
+            <h1
+              className="text-4xl font-bold tracking-tight text-[#0F172A] md:text-5xl"
+              style={{ fontFamily: "var(--facet-display)" }}
+            >
+              {data.name}
+            </h1>
+            <p className="mt-4 text-xl text-[#6366F1]">{data.headline}</p>
+          </div>
+        </div>
         <p className="mt-6 text-lg leading-relaxed text-[#475569]">{data.bio}</p>
+        <div className="mt-10">
+          <PhotoGallery urls={data.galleryPhotos} variant="lumen" label="Gallery" />
+        </div>
 
         <div className="mt-12 space-y-10">
           {fields.map((field) => (
@@ -273,14 +290,22 @@ function ArchBlueprint({
     >
       <div className="mx-auto max-w-3xl px-6 py-12 md:py-16">
         <MetaBar fieldLabel={fieldLabel} themeName={themeName} className="text-[#93C5FD]/70" />
-        <h1
-          className="mt-8 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl"
-          style={{ fontFamily: "var(--facet-display)" }}
-        >
-          {data.name}
-        </h1>
-        <p className="mt-4 text-xl text-[#BFDBFE]">{data.headline}</p>
+        <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
+          <ProfilePhoto src={data.profilePhoto} name={data.name} variant="blueprint" />
+          <div className="min-w-0 flex-1">
+            <h1
+              className="text-4xl font-bold uppercase tracking-tight text-white md:text-5xl"
+              style={{ fontFamily: "var(--facet-display)" }}
+            >
+              {data.name}
+            </h1>
+            <p className="mt-4 text-xl text-[#BFDBFE]">{data.headline}</p>
+          </div>
+        </div>
         <p className="mt-6 max-w-xl leading-relaxed text-[#93C5FD]/90">{data.bio}</p>
+        <div className="mt-10">
+          <PhotoGallery urls={data.galleryPhotos} variant="blueprint" label="Project imagery" />
+        </div>
 
         <div className="mt-12 space-y-8">
           {fields.map((field) => (
@@ -346,9 +371,17 @@ function ArchAtelier({
     <div className="min-h-full bg-[#F5F0E8] text-[#292524]" style={{ fontFamily: "var(--facet-display)" }}>
       <div className="mx-auto max-w-3xl px-6 py-14 md:py-20">
         <MetaBar fieldLabel={fieldLabel} themeName={themeName} />
-        <h1 className="mt-8 text-[clamp(2.5rem,6vw,4rem)] italic leading-tight text-[#1C1917]">{data.name}</h1>
-        <p className="mt-4 text-lg text-[#78716C]">{data.headline}</p>
+        <div className="mt-8 flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left">
+          <ProfilePhoto src={data.profilePhoto} name={data.name} variant="atelier" className="shrink-0" />
+          <div className="mt-6 min-w-0 flex-1 sm:mt-0 sm:pl-10">
+            <h1 className="text-[clamp(2.5rem,6vw,4rem)] italic leading-tight text-[#1C1917]">{data.name}</h1>
+            <p className="mt-4 text-lg text-[#78716C]">{data.headline}</p>
+          </div>
+        </div>
         <p className="mt-8 max-w-xl text-base leading-relaxed text-[#57534E]">{data.bio}</p>
+        <div className="mt-10">
+          <PhotoGallery urls={data.galleryPhotos} variant="atelier" label="Selected work" />
+        </div>
 
         <div className="mt-14 space-y-10">
           {fields.map((field) => (
@@ -404,16 +437,21 @@ function MedClinical({
     <div className="min-h-full bg-[#F0FDFA] text-[#134E4A]" style={{ fontFamily: "var(--facet-sans)" }}>
       <div className="border-b border-[#99F6E4] bg-white">
         <div className="mx-auto max-w-3xl px-6 py-8">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0D9488] text-lg font-bold text-white">
-            {data.name.charAt(0)}
+          <div className="flex items-start gap-5">
+            <ProfilePhoto src={data.profilePhoto} name={data.name} variant="clinical" />
+            <div className="min-w-0 flex-1">
+              <h1 className="text-3xl font-semibold text-[#0F766E]">{data.name}</h1>
+              <p className="mt-2 text-lg text-[#0D9488]">{data.headline}</p>
+            </div>
           </div>
-          <h1 className="mt-4 text-3xl font-semibold text-[#0F766E]">{data.name}</h1>
-          <p className="mt-2 text-lg text-[#0D9488]">{data.headline}</p>
         </div>
       </div>
       <div className="mx-auto max-w-3xl px-6 py-10">
         <MetaBar fieldLabel={fieldLabel} themeName={themeName} />
         <p className="mt-6 text-lg leading-relaxed text-[#115E59]">{data.bio}</p>
+        <div className="mt-8">
+          <PhotoGallery urls={data.galleryPhotos} variant="clinical" label="Practice & environment" />
+        </div>
 
         <div className="mt-10 space-y-6">
           {fields.map((field) => (
@@ -470,9 +508,17 @@ function MedScholar({
       <div className="mx-auto max-w-3xl px-6 py-14">
         <MetaBar fieldLabel={fieldLabel} themeName={themeName} className="text-[#94A3B8]/70" />
         <p className="mt-8 text-[11px] uppercase tracking-[0.24em] text-[#D4A574]">Curriculum vitae</p>
-        <h1 className="mt-4 text-4xl text-white">{data.name}</h1>
-        <p className="mt-3 text-xl italic text-[#94A3B8]">{data.headline}</p>
+        <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
+          <ProfilePhoto src={data.profilePhoto} name={data.name} variant="scholar" />
+          <div className="min-w-0 flex-1">
+            <h1 className="text-4xl text-white">{data.name}</h1>
+            <p className="mt-3 text-xl italic text-[#94A3B8]">{data.headline}</p>
+          </div>
+        </div>
         <p className="mt-8 leading-relaxed text-[#CBD5E1]">{data.bio}</p>
+        <div className="mt-10">
+          <PhotoGallery urls={data.galleryPhotos} variant="scholar" label="Clinical photography" />
+        </div>
 
         <div className="mt-12 space-y-8">
           {fields.map((field) => (
