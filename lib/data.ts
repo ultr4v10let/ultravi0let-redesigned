@@ -94,7 +94,7 @@ export const projects = [
     name: "Zanobia Patisserie",
     type: "prototype" as const,
     category: "Operations · ERP",
-    year: "2024",
+    year: "2022",
     blurb:
       "End-to-end patisserie operations — factory production, inventory, retail shops, shop-to-factory ordering and back-office finance & HR in one system.",
     accent: "from-rose-300 to-amber-400",
@@ -124,7 +124,7 @@ export const projects = [
     name: "Haven Home",
     type: "prototype" as const,
     category: "E-commerce · Furniture",
-    year: "2025",
+    year: "2026",
     blurb:
       "Furniture storefront with search, filters, sorting and cart — built for high-SKU catalogues where discovery and checkout need to feel effortless.",
     accent: "from-stone-300 to-emerald-500",
