@@ -3,14 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --paper: #FAFAFA;
-  --paper-2: #F4F4F6;
+  --paper: #F0EBFA;
+  --paper-2: #E8DFF8;
   --ink: #0A0710;
   --ink-2: #15102A;
   --violet: #6D28D9;
   --violet-soft: #A78BFA;
   --violet-glow: #6D28D9;
   --warm: #9F6A2D;
+  --uv-surface: #E4DBF5;
+  --uv-surface-2: #DDD6FE;
+  --uv-band: #DDD0F0;
+  --uv-band-deep: #D4C4EC;
 }
 
 * {
@@ -28,7 +32,11 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -5%, rgba(109, 40, 217, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 100% 30%, rgba(167, 139, 250, 0.14), transparent 50%),
+    radial-gradient(ellipse 55% 40% at 0% 70%, rgba(124, 58, 237, 0.12), transparent 48%),
+    linear-gradient(180deg, #F0E9FA 0%, var(--paper) 35%, #F3EEFB 100%);
   color: var(--ink);
   font-feature-settings: "ss01", "cv11";
   overflow-x: hidden;
@@ -137,9 +145,9 @@ button {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(10, 7, 16, 0.7);
-  background: rgba(10, 7, 16, 0.025);
-  border: 1px solid rgba(10, 7, 16, 0.1);
+  color: rgba(76, 29, 149, 0.85);
+  background: rgba(109, 40, 217, 0.08);
+  border: 1px solid rgba(109, 40, 217, 0.16);
   backdrop-filter: blur(8px);
 }
 .eyebrow .dot {
@@ -148,4 +156,117 @@ button {
   border-radius: 999px;
   background: var(--violet);
   box-shadow: 0 0 12px rgba(109, 40, 217, 0.55);
+}
+
+/* Site-wide ultraviolet atmosphere */
+.uv-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+}
+.uv-orb-a {
+  top: 6%;
+  left: -6%;
+  width: min(58vw, 580px);
+  height: min(58vw, 580px);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.55) 0%, transparent 70%);
+}
+.uv-orb-b {
+  top: 38%;
+  right: -8%;
+  width: min(52vw, 520px);
+  height: min(52vw, 520px);
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.48) 0%, transparent 72%);
+}
+.uv-orb-c {
+  bottom: 4%;
+  left: 15%;
+  width: min(48vw, 480px);
+  height: min(48vw, 480px);
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.42) 0%, transparent 70%);
+}
+
+.uv-section-wash {
+  background: linear-gradient(
+    180deg,
+    var(--uv-surface) 0%,
+    #F0E9FA 50%,
+    var(--uv-surface-2) 100%
+  );
+}
+
+.uv-section-light {
+  background: linear-gradient(180deg, #F5F0FC 0%, #EDE8F8 100%);
+}
+
+/* Richer bands — visible purple, still soft */
+.uv-band {
+  background: linear-gradient(
+    90deg,
+    #D9CBF0 0%,
+    var(--uv-band) 35%,
+    #E2D6F6 65%,
+    #D9CBF0 100%
+  );
+}
+
+/* Contact — deepest band, fades to near-white at the bottom */
+.uv-band-contact {
+  background: linear-gradient(
+    180deg,
+    #CEC0E8 0%,
+    #D9CBF0 28%,
+    #E2D6F6 58%,
+    #F0EBFA 82%,
+    #FAFAFA 100%
+  );
+}
+
+.uv-band-deep {
+  background: linear-gradient(
+    180deg,
+    var(--uv-band-deep) 0%,
+    #E0D4F5 45%,
+    #EBE3F9 100%
+  );
+}
+
+/* Frosted cards on lavender sections */
+.uv-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(109, 40, 217, 0.14);
+  backdrop-filter: blur(10px);
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.uv-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(109, 40, 217, 0.28);
+  box-shadow: 0 12px 40px -16px rgba(109, 40, 217, 0.2);
+}
+
+.uv-footer-mark {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(109, 40, 217, 0.28);
+  text-shadow: 0 0 80px rgba(139, 92, 246, 0.15);
+}
+
+/* Footer — clean white landing after contact fade */
+.uv-footer {
+  background: linear-gradient(
+    180deg,
+    #FAFAFA 0%,
+    #FFFFFF 42%,
+    #FFFFFF 100%
+  );
+}
+
+.uv-footer-mark-light {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(10, 7, 16, 0.08);
+  text-shadow: none;
 }
