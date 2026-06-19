@@ -6,7 +6,7 @@ import { SectionHeader } from "./SectionHeader";
 
 export function Testimonials() {
   return (
-    <section className="relative uv-section-wash py-16 sm:py-20 md:py-28">
+    <section className="relative py-16 sm:py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <SectionHeader
           eyebrow="Testimonials"
@@ -31,7 +31,7 @@ export function Testimonials() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: (i % 3) * 0.08,
               }}
-              className="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl uv-card p-5 sm:gap-5 sm:p-6 md:p-7"
+              className="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/70 p-5 transition-colors duration-500 hover:border-ink-950/20 sm:gap-5 sm:p-6 md:p-7"
             >
               <blockquote className="font-display text-base leading-snug tracking-verytight text-ink-950 sm:text-lg md:text-xl">
                 &ldquo;{t.quote}&rdquo;

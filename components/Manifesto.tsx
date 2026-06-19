@@ -17,7 +17,7 @@ export function Manifesto() {
   return (
     <section
       ref={ref}
-      className="relative isolate overflow-hidden uv-band-deep border-y border-violet-700/12 py-14 sm:py-16 md:py-24"
+      className="relative isolate overflow-hidden border-y border-ink-950/10 py-14 sm:py-16 md:py-24"
     >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-10">
         <div className="mb-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-950/65 sm:mb-8 sm:text-[11px] sm:tracking-[0.22em]">
