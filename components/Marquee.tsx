@@ -7,13 +7,13 @@ export function Marquee() {
   return (
     <section
       aria-hidden
-      className="relative border-y border-ink-950/10 bg-paper-100/50 py-5 marquee-mask sm:py-8"
+      className="relative uv-band border-y border-violet-700/12 py-5 marquee-mask sm:py-8"
     >
       <div className="flex w-max animate-marquee gap-8 whitespace-nowrap sm:gap-12">
         {items.map((w, i) => (
           <span
             key={i}
-            className="flex items-center gap-8 font-display text-[clamp(1.75rem,5vw,5.5rem)] leading-none tracking-tightest text-ink-950/70 sm:gap-12"
+            className="flex items-center gap-8 font-display text-[clamp(1.75rem,5vw,5.5rem)] leading-none tracking-tightest text-violet-950/75 sm:gap-12"
           >
             {w}
             <Bullet />

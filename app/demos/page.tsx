@@ -35,14 +35,6 @@ const demos = [
     type: "Prototype",
   },
   {
-    name: "Haven Home",
-    blurb: "Furniture e-commerce — search, filters, sorting and cart.",
-    href: "/demos/haven",
-    sub: "haven.ultravi0let.com",
-    swatch: ["#F7F5F2", "#1C1917"],
-    type: "Prototype",
-  },
-  {
     name: "Facet",
     blurb: "Field-specific portfolio builder — CS, architecture and medical.",
     href: "/demos/facet",

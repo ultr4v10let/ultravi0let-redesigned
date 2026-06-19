@@ -12,7 +12,6 @@ const SUBDOMAINS: Record<string, string> = {
   merlin: "/demos/merlin",
   zanobia: "/demos/zanobia",
   maquette: "/demos/maquette",
-  haven: "/demos/haven",
   facet: "/demos/facet",
 };
 

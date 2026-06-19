@@ -7,10 +7,10 @@ const config: Config = {
       colors: {
         // Neutral light surfaces — no warm undertone
         paper: {
-          50: "#FAFAFA",  // page background (near-white, cool neutral)
-          100: "#F4F4F6", // raised card
-          200: "#E8E8EC", // deeper card
-          300: "#D4D4D9",
+          50: "#F0EBFA",  // page background — soft lavender
+          100: "#E8DFF8", // raised card
+          200: "#DDD6FE", // deeper card
+          300: "#C4B5FD",
           400: "#A8A8B0",
         },
         // Deep ink for text — slight violet undertone to match accent

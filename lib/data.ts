@@ -121,18 +121,18 @@ export const projects = [
     ],
   },
   {
-    name: "Haven Home",
+    name: "Shop.co",
     type: "prototype" as const,
-    category: "E-commerce · Furniture",
+    category: "E-commerce · Tech",
     year: "2026",
     blurb:
-      "Furniture storefront with search, filters, sorting and cart — built for high-SKU catalogues where discovery and checkout need to feel effortless.",
-    accent: "from-stone-300 to-emerald-500",
-    href: "/demos/haven",
-    subdomain: "haven.ultravi0let.com",
+      "Tech storefront for laptops, phones, audio and accessories — sale banners, newsletter signup and order tracking built for everyday electronics retail.",
+    accent: "from-slate-300 to-violet-500",
+    href: "https://shopco-ten-gray.vercel.app",
+    subdomain: "shopco-ten-gray.vercel.app",
     stats: [
-      { k: "SKUs", v: "240+" },
-      { k: "Checkout", v: "Cart + filters" },
+      { k: "Catalog", v: "Tech SKUs" },
+      { k: "Flow", v: "Cart + tracking" },
     ],
   },
   {

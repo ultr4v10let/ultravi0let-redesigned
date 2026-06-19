@@ -37,7 +37,7 @@ export function Nav() {
           className={cn(
             "mx-auto flex max-w-[1440px] items-center justify-between px-5 sm:px-6 md:px-10 transition-all duration-500",
             scrolled &&
-              "rounded-full max-w-[920px] border border-ink-950/10 bg-paper-100/70 backdrop-blur-xl px-5 py-2"
+              "rounded-full max-w-[920px] border border-violet-700/15 bg-paper-100/75 backdrop-blur-xl px-5 py-2 shadow-[0_8px_32px_-12px_rgba(109,40,217,0.18)]"
           )}
         >
           {/* Mark */}

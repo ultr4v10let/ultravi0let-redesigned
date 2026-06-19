@@ -1,7 +1,5 @@
 "use client";
 
-import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
-
 const cols = [
   {
     title: "Studio",
@@ -21,24 +19,23 @@ const cols = [
       { label: "AI", href: "#services" },
     ],
   },
-  {
-    title: "Elsewhere",
-    links: [
-      { label: "LinkedIn", href: "https://linkedin.com" },
-      { label: "Instagram", href: "https://instagram.com" },
-      { label: "GitHub", href: "https://github.com" },
-      { label: "Twitter", href: "https://twitter.com" },
-    ],
-  },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-ink-950/10 bg-paper-50 pt-16 pb-8 sm:pt-20 sm:pb-10">
-      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
+    <footer className="relative overflow-hidden border-t border-ink-950/[0.06] uv-footer pt-16 pb-8 sm:pt-20 sm:pb-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-violet-500/[0.04] blur-[100px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-16 bottom-32 h-64 w-64 rounded-full bg-ink-950/[0.02] blur-[90px]"
+      />
+
+      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-12 md:gap-10">
-          {/* Brand block */}
-          <div className="sm:col-span-2 md:col-span-5">
+          <div className="sm:col-span-2 md:col-span-7">
             <div className="flex items-center gap-3">
               <svg
                 width="32"
@@ -72,27 +69,10 @@ export function Footer() {
               Digital craft, engineered. We turn ideas into systems that ship,
               scale, and stay up.
             </p>
-
-            <div className="mt-8 flex items-center gap-2">
-              {[Linkedin, Instagram, Github, Twitter].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="social"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-950/10 text-ink-950/65 transition-colors hover:border-ink-950/25 hover:bg-ink-950/[0.04] hover:text-ink-950"
-                >
-                  <Icon size={15} strokeWidth={1.6} />
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* Link columns */}
           {cols.map((col) => (
-            <div
-              key={col.title}
-              className="col-span-1 md:col-span-2 md:col-start-auto"
-            >
+            <div key={col.title} className="col-span-1 md:col-span-2 md:col-start-auto">
               <div className="text-[11px] uppercase tracking-[0.18em] text-ink-950/60">
                 {col.title}
               </div>
@@ -103,7 +83,7 @@ export function Footer() {
                       href={l.href}
                       className="group inline-flex items-center gap-2 text-sm text-ink-950/75 transition-colors hover:text-ink-950"
                     >
-                      <span className="h-1 w-1 rounded-full bg-ink-950/25 transition-colors group-hover:bg-accent" />
+                      <span className="h-1 w-1 rounded-full bg-violet-500/35 transition-colors group-hover:bg-violet-600 group-hover:shadow-[0_0_8px_rgba(109,40,217,0.55)]" />
                       {l.label}
                     </a>
                   </li>
@@ -111,23 +91,21 @@ export function Footer() {
               </ul>
             </div>
           ))}
-
         </div>
 
-        {/* Oversized mark */}
         <div
           aria-hidden
           className="mt-16 select-none overflow-hidden sm:mt-20 md:mt-24"
         >
-          <div className="font-display text-[clamp(3.25rem,16vw,17rem)] leading-[0.85] tracking-tightest text-transparent [-webkit-text-stroke:1px_rgba(14,10,31,0.22)]">
+          <div className="uv-footer-mark-light font-display text-[clamp(3.25rem,16vw,17rem)] leading-[0.85] tracking-tightest">
             ULTRAVI<span className="serif-italic">0</span>LET
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-ink-950/10 pt-6 text-xs text-ink-950/65 md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-ink-950/[0.06] pt-6 text-xs text-ink-950/55 md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} Ultravi0let. All rights reserved.</div>
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-600/70 shadow-[0_0_8px_rgba(109,40,217,0.35)]" />
             All systems operational
           </div>
         </div>

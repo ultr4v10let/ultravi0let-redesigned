@@ -19,7 +19,7 @@ const layouts = [
 
 export function Projects() {
   return (
-    <section id="work" className="relative py-16 sm:py-20 md:py-28">
+    <section id="work" className="relative uv-section-wash py-16 sm:py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <SectionHeader
           eyebrow="Selected work"
@@ -67,9 +67,13 @@ function ProjectCard({
   layout,
   feature,
 }: Project) {
+  const external = href.startsWith("http");
+
   return (
     <motion.a
       href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -79,7 +83,7 @@ function ProjectCard({
         delay: (index % 3) * 0.08,
       }}
       className={cn(
-        "group relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100 p-5 transition-all duration-500 hover:border-ink-950/20 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
+        "group relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl uv-card p-5 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
         layout,
         feature && "md:p-8"
       )}
