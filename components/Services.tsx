@@ -15,7 +15,7 @@ export function Services() {
               <>
                 Eight disciplines.
                 <br />
-                <span className="serif-italic text-accent">One team.</span>
+                <span className="serif-italic text-spectrum">One team.</span>
               </>
             }
           />
@@ -26,7 +26,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink-950/10 bg-ink-950/10 sm:mt-12 sm:rounded-3xl md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <ServiceCard key={s.n} {...s} index={i} />
           ))}
@@ -49,19 +49,19 @@ function ServiceCard({ n, icon: Icon, title, blurb, keywords, index }: Service) 
         ease: [0.16, 1, 0.3, 1],
         delay: (index % 4) * 0.07,
       }}
-      className="group relative isolate flex flex-col gap-4 bg-paper-100/70 p-6 transition-colors duration-500 hover:bg-paper-200 sm:gap-5 sm:p-7 md:p-8"
+      className="group glass-card relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:-translate-y-0.5 sm:gap-5 sm:p-7 md:p-8"
     >
       {/* Hover glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-violet-600/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-violet-600/15 via-fuchsia-500/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       />
 
       <div className="flex items-center justify-between text-ink-950/60">
         <span className="font-mono text-[11px] tracking-widest">{n}</span>
         <Icon
           size={20}
-          className="transition-colors duration-500 group-hover:text-accent"
+          className="transition-colors duration-500 group-hover:text-violet-400"
           strokeWidth={1.4}
         />
       </div>
@@ -70,7 +70,7 @@ function ServiceCard({ n, icon: Icon, title, blurb, keywords, index }: Service) 
         {title}
       </h3>
 
-      <p className="text-sm leading-relaxed text-ink-950/55">{blurb}</p>
+      <p className="text-sm leading-relaxed text-ink-950/70">{blurb}</p>
 
       <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
         {keywords.map((k) => (

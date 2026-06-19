@@ -46,22 +46,14 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative isolate overflow-hidden py-16 sm:py-20 md:py-28">
-      {/* Aurora */}
+    <section id="contact" className="on-dark relative isolate overflow-hidden bg-ink-950 py-16 text-paper-50 sm:py-20 md:py-28">
+      {/* Fuchsia aurora — spectrum pop, top-left */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[820px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[130px] animate-drift-1"
+        className="pointer-events-none absolute -left-20 top-10 -z-10 h-[420px] w-[420px] rounded-full opacity-45 blur-[110px] animate-drift-2"
         style={{
           background:
-            "radial-gradient(closest-side, rgba(139,92,246,0.55) 0%, rgba(167,139,250,0.2) 35%, transparent 70%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-10 -z-10 h-[420px] w-[420px] rounded-full opacity-50 blur-[110px] animate-drift-3"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(140,180,255,0.45) 0%, transparent 70%)",
+            "radial-gradient(closest-side, rgba(192,38,211,0.4) 0%, transparent 70%)",
         }}
       />
 
@@ -79,14 +71,14 @@ export function Contact() {
               <span className="dot" />
               Let&apos;s build
             </span>
-            <h2 className="font-display text-[clamp(2.35rem,11vw,7rem)] leading-[0.95] tracking-tightest text-ink-950">
+            <h2 className="font-display text-[clamp(2.35rem,11vw,7rem)] leading-[0.95] tracking-tightest text-paper-50">
               Got an idea?
               <br />
-              <span className="serif-italic text-accent">Let&apos;s make</span>
+              <span className="serif-italic text-spectrum-soft">Let&apos;s make</span>
               <br />
               it fly.
             </h2>
-            <p className="max-w-md text-balance text-base text-ink-950/65 md:text-lg">
+            <p className="max-w-md text-balance text-base text-paper-50/70 md:text-lg">
               Tell us what you&apos;re building. We&apos;ll come back within 24
               hours with three honest sentences about whether we&apos;re the
               right team.
@@ -107,7 +99,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="relative isolate overflow-hidden rounded-3xl border border-ink-950/10 bg-paper-100/70 p-5 backdrop-blur-xl sm:p-7 md:p-9"
+            className="relative isolate overflow-hidden rounded-3xl border border-white/12 bg-white/[0.04] p-5 backdrop-blur-xl sm:p-7 md:p-9"
           >
             <AnimatePresence mode="wait" initial={false}>
               {status === "sent" ? (
@@ -119,14 +111,14 @@ export function Contact() {
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col items-start gap-5 py-6"
                 >
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-violet-700/15 text-violet-700">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-violet-500/20 text-accent-soft">
                     <Check size={22} strokeWidth={2} />
                   </span>
-                  <h3 className="font-display text-3xl leading-tight text-ink-950 md:text-4xl">
+                  <h3 className="font-display text-3xl leading-tight text-paper-50 md:text-4xl">
                     Got it.{" "}
-                    <span className="serif-italic text-accent">Talk soon.</span>
+                    <span className="serif-italic text-spectrum-soft">Talk soon.</span>
                   </h3>
-                  <p className="max-w-md text-base text-ink-950/65">
+                  <p className="max-w-md text-base text-paper-50/70">
                     Your message landed in our inbox. We&apos;ll come back
                     within 24 hours with three honest sentences about whether
                     we&apos;re the right team.
@@ -161,7 +153,7 @@ export function Contact() {
 
                     <button
                       type="submit"
-                      className="group mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-violet-700/30 bg-violet-700/10 px-6 py-3.5 text-sm font-medium text-ink-950 backdrop-blur-sm transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50 hover:violet-glow disabled:cursor-not-allowed sm:py-4"
+                      className="group mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 px-6 py-3.5 text-sm font-medium text-paper-50 violet-glow transition-all hover:from-violet-700 hover:to-fuchsia-700 disabled:cursor-not-allowed sm:py-4"
                     >
                       {status === "sending" ? "Sending…" : "Send to Ultravi0let"}
                       <ArrowUpRight
@@ -174,7 +166,7 @@ export function Contact() {
                   {status === "error" && errorMessage && (
                     <p
                       role="alert"
-                      className="text-sm text-red-700/90"
+                      className="text-sm text-red-300"
                     >
                       {errorMessage}. You can also email us at{" "}
                       <a
@@ -210,7 +202,7 @@ function Field({
   required?: boolean;
 }) {
   const base =
-    "peer w-full rounded-xl border border-ink-950/10 bg-paper-50/50 px-4 pb-3 pt-5 text-sm text-ink-950 placeholder-transparent transition-colors focus:border-accent focus:outline-none";
+    "peer w-full rounded-xl border border-white/12 bg-white/[0.04] px-4 pb-3 pt-5 text-sm text-paper-50 placeholder-transparent transition-colors focus:border-violet-400 focus:outline-none";
 
   return (
     <label className="group relative block">
@@ -231,7 +223,7 @@ function Field({
           className={base}
         />
       )}
-      <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-[0.18em] text-ink-950/65 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-ink-950/55 peer-focus:top-2 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-[0.18em] peer-focus:text-accent">
+      <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-[0.18em] text-paper-50/65 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-paper-50/60 peer-focus:top-2 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-[0.18em] peer-focus:text-accent-soft">
         {label}
       </span>
     </label>
@@ -249,19 +241,19 @@ function ContactRow({
 }) {
   const inner = (
     <>
-      <Icon size={14} strokeWidth={1.6} className="shrink-0 text-ink-950/50" />
+      <Icon size={14} strokeWidth={1.6} className="shrink-0 text-paper-50/50" />
       <span className="min-w-0 break-all sm:break-normal">{label}</span>
     </>
   );
   return href ? (
     <a
       href={href}
-      className="group inline-flex max-w-full items-center gap-3 rounded-full border border-ink-950/10 bg-ink-950/[0.02] px-4 py-2.5 text-sm transition-colors hover:border-ink-950/25 hover:text-ink-950"
+      className="group inline-flex max-w-full items-center gap-3 rounded-full border border-white/12 bg-white/5 px-4 py-2.5 text-sm text-paper-50/85 transition-colors hover:border-white/30 hover:text-paper-50"
     >
       {inner}
     </a>
   ) : (
-    <div className="inline-flex max-w-full items-center gap-3 rounded-full border border-ink-950/10 bg-ink-950/[0.02] px-4 py-2.5 text-sm">
+    <div className="inline-flex max-w-full items-center gap-3 rounded-full border border-white/12 bg-white/5 px-4 py-2.5 text-sm text-paper-50/85">
       {inner}
     </div>
   );

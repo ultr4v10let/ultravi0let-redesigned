@@ -58,7 +58,7 @@ export function Hero() {
         <h1 className="font-display text-[clamp(2.35rem,13.5vw,5.75rem)] leading-[0.95] tracking-tightest text-ink-950 md:text-[clamp(3.5rem,8.5vw,7rem)] lg:text-[8vw]">
           <Line delay={0.18}>We build the</Line>
           <Line delay={0.28}>
-            <span className="serif-italic font-normal text-accent">
+            <span className="serif-italic font-normal text-spectrum">
               quiet&nbsp;machinery
             </span>
           </Line>
@@ -75,7 +75,7 @@ export function Hero() {
           className="mt-6 flex w-full min-w-0 flex-col items-stretch gap-6 sm:mt-8 md:mt-10 md:flex-row md:items-end md:justify-between md:gap-8"
         >
           <div className="min-w-0 max-w-2xl space-y-3 sm:space-y-4">
-            <p className="text-pretty text-base leading-relaxed text-ink-900/75 sm:text-[17px] md:text-lg">
+            <p className="text-pretty text-base leading-relaxed text-ink-900/85 sm:text-[17px] md:text-lg">
               A founder-led product studio for design, engineering, cloud and AI.
               One senior team from first prototype to production — shipping
               full-stack work internationally, with founders on every engagement.
@@ -88,7 +88,7 @@ export function Hero() {
           <div className="flex w-full min-w-0 flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="#contact"
-              className="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-violet-700/30 bg-violet-700/10 px-6 py-3.5 text-sm font-medium text-ink-950 backdrop-blur-sm transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50 hover:violet-glow sm:w-auto sm:py-4"
+              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 px-6 py-3.5 text-sm font-medium text-paper-50 violet-glow transition-all hover:from-violet-700 hover:to-fuchsia-700 sm:w-auto sm:py-4"
             >
               Start a project
               <ArrowUpRight

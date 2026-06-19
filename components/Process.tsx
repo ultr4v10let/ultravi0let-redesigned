@@ -36,7 +36,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="studio" className="relative py-16 sm:py-20 md:py-28">
+    <section id="studio" className="relative isolate py-16 sm:py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <SectionHeader
           eyebrow="How we work"
@@ -44,7 +44,7 @@ export function Process() {
             <>
               Four phases.
               <br />
-              <span className="serif-italic text-accent">No surprises.</span>
+              <span className="serif-italic text-spectrum">No surprises.</span>
             </>
           }
           caption="Our engagements run lean. Small teams, short feedback loops, and demos every Friday. The process is the product."

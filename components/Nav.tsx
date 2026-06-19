@@ -42,12 +42,12 @@ export function Nav() {
         >
           {/* Mark */}
           <a href="#top" className="group flex items-center gap-2.5">
-            <Logomark />
-            <span className="font-display text-[19px] leading-none tracking-verytight text-ink-950">
-              ultravi
-              <span className="serif-italic text-accent">0</span>
-              let
-            </span>
+            <img
+              src="/Ultraviolet-logo.png"
+              alt=""
+              height={28}
+              className="h-7"
+            />
           </a>
 
           {/* Desktop links */}
@@ -68,10 +68,10 @@ export function Nav() {
           <div className="hidden md:block">
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-violet-700/30 bg-violet-700/10 px-4 py-2 text-[13px] font-medium text-ink-950 backdrop-blur transition-all hover:border-violet-700 hover:bg-violet-700 hover:text-paper-50"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 px-4 py-2 text-[13px] font-medium text-paper-50 backdrop-blur transition-all hover:from-violet-700 hover:to-fuchsia-700"
             >
               Start a project
-              <span className="h-1.5 w-1.5 rounded-full bg-violet-700 transition-all group-hover:bg-paper-50" />
+              <span className="h-1.5 w-1.5 rounded-full bg-paper-50/90" />
             </a>
           </div>
 
@@ -109,7 +109,7 @@ export function Nav() {
               <a
                 onClick={() => setOpen(false)}
                 href="#contact"
-                className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-violet-700/30 bg-violet-700/10 px-4 py-3 text-sm font-medium text-ink-950"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 px-4 py-3 text-sm font-medium text-paper-50"
               >
                 Start a project
               </a>
@@ -118,33 +118,5 @@ export function Nav() {
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-function Logomark() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 32 32"
-      fill="none"
-      className="text-ink-950"
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="lm" x1="0" y1="0" x2="32" y2="32">
-          <stop offset="0" stopColor="#7C3AED" />
-          <stop offset="1" stopColor="#4C1D95" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M6 4l10 24L26 4"
-        stroke="url(#lm)"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="16" cy="14" r="2.2" fill="url(#lm)" />
-    </svg>
   );
 }

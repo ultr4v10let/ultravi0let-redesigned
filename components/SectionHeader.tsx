@@ -8,11 +8,13 @@ export function SectionHeader({
   title,
   caption,
   align = "left",
+  tone = "light",
 }: {
   eyebrow: string;
   title: React.ReactNode;
   caption?: React.ReactNode;
   align?: "left" | "center";
+  tone?: "light" | "dark";
 }) {
   return (
     <div
@@ -37,7 +39,10 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-        className="font-display text-[clamp(2.25rem,10vw,6rem)] leading-[0.95] tracking-tightest text-ink-950"
+        className={cn(
+          "font-display text-[clamp(2.25rem,10vw,6rem)] leading-[0.95] tracking-tightest",
+          tone === "dark" ? "text-paper-50" : "text-ink-950"
+        )}
       >
         {title}
       </motion.h2>
@@ -49,7 +54,8 @@ export function SectionHeader({
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           className={cn(
-            "max-w-2xl text-balance text-base text-ink-950/60 md:text-lg",
+            "max-w-2xl text-balance text-base md:text-lg",
+            tone === "dark" ? "text-paper-50/70" : "text-ink-950/60",
             align === "center" && "mx-auto"
           )}
         >
