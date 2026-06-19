@@ -251,8 +251,8 @@ button {
 
 .uv-footer-mark {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(109, 40, 217, 0.28);
-  text-shadow: 0 0 80px rgba(139, 92, 246, 0.15);
+  -webkit-text-stroke: 1px rgba(10, 7, 16, 0.2);
+  text-shadow: none;
 }
 
 /* Footer — clean white landing after contact fade */

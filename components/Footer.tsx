@@ -23,15 +23,31 @@ const cols = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-ink-950/[0.06] uv-footer pt-16 pb-8 sm:pt-20 sm:pb-10">
+    <footer className="relative isolate overflow-hidden border-t border-ink-950/[0.06] uv-footer pt-16 pb-8 sm:pt-20 sm:pb-10">
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-violet-500/[0.04] blur-[100px]"
-      />
+        className="pointer-events-none absolute -top-20 right-0 -z-10 h-[min(68vw,500px)] w-[min(68vw,500px)] rounded-full opacity-70 blur-[85px] md:-right-24 md:-top-24 md:h-[580px] md:w-[580px] md:opacity-80 lg:-right-36 xl:-right-48"
+      >
+        <div
+          className="h-full w-full rounded-full"
+          style={{
+            background:
+              "radial-gradient(closest-side, rgba(109,40,217,0.72) 0%, rgba(124,58,237,0.42) 38%, rgba(167,139,250,0.2) 58%, transparent 78%)",
+          }}
+        />
+      </div>
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 bottom-32 h-64 w-64 rounded-full bg-ink-950/[0.02] blur-[90px]"
-      />
+        className="pointer-events-none absolute -left-32 bottom-0 -z-10 h-80 w-80 rounded-full opacity-45 blur-[95px] animate-drift-3 md:h-[28rem] md:w-[28rem] md:opacity-55"
+      >
+        <div
+          className="h-full w-full rounded-full"
+          style={{
+            background:
+              "radial-gradient(closest-side, rgba(109,40,217,0.5) 0%, rgba(139,92,246,0.22) 45%, transparent 72%)",
+          }}
+        />
+      </div>
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-12 md:gap-10">
@@ -97,7 +113,7 @@ export function Footer() {
           aria-hidden
           className="mt-16 select-none overflow-hidden sm:mt-20 md:mt-24"
         >
-          <div className="uv-footer-mark-light font-display text-[clamp(3.25rem,16vw,17rem)] leading-[0.85] tracking-tightest">
+          <div className="uv-footer-mark font-display text-[clamp(3.25rem,16vw,17rem)] leading-[0.85] tracking-tightest">
             ULTRAVI<span className="serif-italic">0</span>LET
           </div>
         </div>
