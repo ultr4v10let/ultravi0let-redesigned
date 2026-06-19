@@ -27,7 +27,7 @@ export function Projects() {
             <>
               A few things
               <br />
-              we&apos;ve <span className="serif-italic text-accent">shipped</span>.
+              we&apos;ve <span className="serif-italic text-spectrum">shipped</span>.
             </>
           }
         />
@@ -83,7 +83,7 @@ function ProjectCard({
         delay: (index % 3) * 0.08,
       }}
       className={cn(
-        "group relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100 p-5 transition-all duration-500 hover:border-ink-950/20 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
+        "group glass-card relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-0.5 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
         layout,
         feature && "md:p-8"
       )}
@@ -92,7 +92,7 @@ function ProjectCard({
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br opacity-[0.18] transition-opacity duration-700 group-hover:opacity-[0.35]",
+          "pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br opacity-[0.34] transition-opacity duration-700 group-hover:opacity-[0.5]",
           accent
         )}
       />

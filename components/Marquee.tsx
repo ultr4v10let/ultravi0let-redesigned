@@ -2,6 +2,9 @@
 
 import { marqueeWords } from "@/lib/data";
 
+// Spectrum bullet colours — indigo → violet → fuchsia → pink, cycled per word
+const spectrumDots = ["#3b82f6", "#6366f1", "#7c3aed", "#a855f7", "#c026d3", "#ec4899"];
+
 export function Marquee() {
   const items = [...marqueeWords, ...marqueeWords];
   return (
@@ -16,7 +19,7 @@ export function Marquee() {
             className="flex items-center gap-8 font-display text-[clamp(1.75rem,5vw,5.5rem)] leading-none tracking-tightest text-ink-950/70 sm:gap-12"
           >
             {w}
-            <Bullet />
+            <Bullet color={spectrumDots[i % spectrumDots.length]} />
           </span>
         ))}
       </div>
@@ -24,10 +27,10 @@ export function Marquee() {
   );
 }
 
-function Bullet() {
+function Bullet({ color }: { color: string }) {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-      <circle cx="7" cy="7" r="3" fill="#6D28D9" />
+      <circle cx="7" cy="7" r="3" fill={color} />
     </svg>
   );
 }

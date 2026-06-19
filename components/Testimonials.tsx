@@ -14,7 +14,7 @@ export function Testimonials() {
             <>
               What our clients
               <br />
-              <span className="serif-italic text-accent">say</span>.
+              <span className="serif-italic text-spectrum">say</span>.
             </>
           }
         />
@@ -31,7 +31,7 @@ export function Testimonials() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: (i % 3) * 0.08,
               }}
-              className="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/70 p-5 transition-colors duration-500 hover:border-ink-950/20 sm:gap-5 sm:p-6 md:p-7"
+              className="group glass-card relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-0.5 sm:gap-5 sm:p-6 md:p-7"
             >
               <blockquote className="font-display text-base leading-snug tracking-verytight text-ink-950 sm:text-lg md:text-xl">
                 &ldquo;{t.quote}&rdquo;

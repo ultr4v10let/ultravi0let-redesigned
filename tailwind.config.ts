@@ -30,7 +30,11 @@ const config: Config = {
           900: "#4C1D95",
         },
         accent: {
-          DEFAULT: "#C4A5FF",
+          // Deep brand violet — reads clearly on light surfaces.
+          // (Was #C4A5FF pale lavender, which washed out on near-white.)
+          DEFAULT: "#6D28D9",
+          // Light violet for accent words sitting on the dark anchor sections.
+          soft: "#C4A5FF",
           warm: "#9F6A2D",
         },
       },
