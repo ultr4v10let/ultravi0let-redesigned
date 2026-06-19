@@ -46,7 +46,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative isolate overflow-hidden uv-band-contact py-16 sm:py-20 md:py-28">
+    <section id="contact" className="relative isolate overflow-hidden py-16 sm:py-20 md:py-28">
       {/* Aurora */}
       <div
         aria-hidden
@@ -107,7 +107,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="relative isolate overflow-hidden rounded-3xl uv-card p-5 sm:p-7 md:p-9"
+            className="relative isolate overflow-hidden rounded-3xl border border-ink-950/10 bg-paper-100/70 p-5 backdrop-blur-xl sm:p-7 md:p-9"
           >
             <AnimatePresence mode="wait" initial={false}>
               {status === "sent" ? (
