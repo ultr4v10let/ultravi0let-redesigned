@@ -49,7 +49,8 @@ function ServiceCard({ n, icon: Icon, title, blurb, keywords, index }: Service) 
         ease: [0.16, 1, 0.3, 1],
         delay: (index % 4) * 0.07,
       }}
-      className="group glass-card relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:-translate-y-0.5 sm:gap-5 sm:p-7 md:p-8"
+      whileHover={{ y: -2, transition: { duration: 0.3, ease: "easeOut" } }}
+      className="group glass-card relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl p-6 transition-[box-shadow,border-color] duration-500 sm:gap-5 sm:p-7 md:p-8"
     >
       {/* Hover glow */}
       <div

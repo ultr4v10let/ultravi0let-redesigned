@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Laptop, Smartphone, Headphones, Search } from "lucide-react";
 import { projects } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
 import { cn } from "@/lib/cn";
@@ -82,8 +82,9 @@ function ProjectCard({
         ease: [0.16, 1, 0.3, 1],
         delay: (index % 3) * 0.08,
       }}
+      whileHover={{ y: -2, transition: { duration: 0.3, ease: "easeOut" } }}
       className={cn(
-        "group glass-card relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-0.5 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
+        "group glass-card relative isolate flex min-h-[min(88vw,380px)] flex-col justify-between overflow-hidden rounded-2xl p-5 transition-[box-shadow,border-color] duration-500 sm:min-h-[340px] sm:p-6 md:min-h-0 md:aspect-auto",
         layout,
         feature && "md:p-8"
       )}
@@ -118,7 +119,11 @@ function ProjectCard({
                 : "border border-ink-950/15 bg-paper-50/60 text-ink-950/70"
             )}
           >
-            {type === "project" ? "Delivered" : "Prototype"}
+            {type === "project"
+              ? "Delivered"
+              : type === "project-undeployed"
+                ? "Delivered - Undeployed"
+                : "Prototype"}
           </span>
           <span className="text-[10px] uppercase tracking-[0.18em] text-ink-950/75">
             {category}
@@ -134,6 +139,10 @@ function ProjectCard({
           />
         </div>
       </div>
+
+      {/* Product visual — storefront mock in the site's own design language
+          (feature card only). Fills the tall card between header and title. */}
+      {feature && <StorefrontMock accent={accent} />}
 
       {/* Title + blurb */}
       <div className={cn("mt-6 flex flex-col gap-3", feature && "md:mt-8")}>
@@ -170,5 +179,76 @@ function ProjectCard({
         </div>
       </div>
     </motion.a>
+  );
+}
+
+// A miniature storefront, rendered entirely in ultravi0let's design language
+// (paper surfaces, ink text, violet→fuchsia accent, mono labels, hairlines) so
+// it reads as "a shop" without looking like a foreign brand dropped in.
+const mockProducts = [
+  { icon: Laptop, name: "UltraBook 14", price: "$1,299", off: "−15%" },
+  { icon: Smartphone, name: "Nova Phone", price: "$899", off: null },
+  { icon: Headphones, name: "Aura Buds", price: "$179", off: "−20%" },
+];
+
+function StorefrontMock({ accent }: { accent: string }) {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none mt-5 hidden min-h-[160px] flex-1 flex-col overflow-hidden rounded-xl border border-ink-950/[0.06] bg-paper-50/30 p-3 sm:p-4 md:flex"
+    >
+      {/* Browser chrome + search */}
+      <div className="flex items-center gap-2">
+        <div className="flex gap-1">
+          <span className="h-2 w-2 rounded-full bg-ink-950/15" />
+          <span className="h-2 w-2 rounded-full bg-ink-950/15" />
+          <span className="h-2 w-2 rounded-full bg-ink-950/15" />
+        </div>
+        <div className="flex flex-1 items-center gap-1.5 rounded-full bg-ink-950/[0.04] px-2.5 py-1">
+          <Search size={10} className="text-ink-950/40" />
+          <span className="font-mono text-[10px] tracking-wide text-ink-950/45">
+            shop.co
+          </span>
+        </div>
+      </div>
+
+      {/* Sale banner */}
+      <div className="mt-3 flex items-center justify-between rounded-lg border border-violet-500/15 bg-gradient-to-r from-violet-500/15 to-fuchsia-500/10 px-3 py-2 text-violet-900/70">
+        <span className="font-display text-sm leading-none">Summer Sale</span>
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-violet-800/60">
+          Up to −20%
+        </span>
+      </div>
+
+      {/* Product row */}
+      <div className="mt-3 flex flex-1 gap-2.5">
+        {mockProducts.map((p) => (
+          <div
+            key={p.name}
+            className="flex flex-1 flex-col rounded-lg border border-ink-950/[0.05] bg-paper-50/40 p-2"
+          >
+            <div
+              className={cn(
+                "flex min-h-[52px] flex-1 items-center justify-center rounded-md bg-gradient-to-br opacity-50",
+                accent
+              )}
+            >
+              <p.icon size={22} className="text-ink-950/50" strokeWidth={1.5} />
+            </div>
+            <div className="mt-2 truncate text-[10px] font-medium leading-tight text-ink-950/75">
+              {p.name}
+            </div>
+            <div className="mt-0.5 flex items-center gap-1.5">
+              <span className="font-mono text-[11px] text-ink-950/75">{p.price}</span>
+              {p.off && (
+                <span className="font-mono text-[8px] font-medium text-violet-700/70">
+                  {p.off}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

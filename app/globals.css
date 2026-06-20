@@ -204,3 +204,17 @@ button {
   padding-right: 0.12em;
   margin-right: -0.12em;
 }
+
+/* ── Mobile scroll-flicker fix ─────────────────────────────────────────────
+   A live backdrop-filter blur forces the browser to re-sample and re-blur the
+   moving content behind every card on each scroll frame. With many large glass
+   cards over an animated aurora, mobile GPUs can't keep up → visible flicker.
+   Below md we drop the live blur and use a near-opaque fill that reads as the
+   same frosted card; the real glass effect stays on ≥ md where it performs fine. */
+@media (max-width: 767px) {
+  .glass-card {
+    background: rgba(250, 250, 253, 0.86);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
