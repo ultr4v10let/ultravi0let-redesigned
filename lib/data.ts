@@ -61,18 +61,19 @@ export const services = [
 
 export const projects = [
   {
-    name: "AG Law",
-    type: "project" as const,
-    category: "Legal Tech · Web",
-    year: "2024",
+    name: "Shop.co",
+    type: "prototype" as const,
+    category: "E-commerce · Tech",
+    year: "2026",
     blurb:
-      "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
-    accent: "from-amber-300 to-rose-400",
-    href: "/demos/ag-law",
-    subdomain: "aglaw.ultravi0let.com",
+      "Tech storefront for laptops, phones, audio and accessories — sale banners, newsletter signup and order tracking built for everyday electronics retail.",
+    accent: "from-slate-300 to-violet-500",
+    href: "https://shopco-ten-gray.vercel.app",
+    subdomain: "shopco-ten-gray.vercel.app",
     stats: [
-      { k: "Modules", v: "6" },
-      { k: "Uptime", v: "99.9%" },
+      { k: "Categories", v: "4" },
+      { k: "Catalog", v: "Tech SKUs" },
+      { k: "Flow", v: "Cart + tracking" },
     ],
   },
   {
@@ -92,7 +93,7 @@ export const projects = [
   },
   {
     name: "Zanobia Patisserie",
-    type: "prototype" as const,
+    type: "project" as const,
     category: "Operations · ERP",
     year: "2022",
     blurb:
@@ -106,8 +107,23 @@ export const projects = [
     ],
   },
   {
+    name: "AG Law",
+    type: "project-undeployed" as const,
+    category: "Legal Tech · Web",
+    year: "2024",
+    blurb:
+      "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
+    accent: "from-amber-300 to-rose-400",
+    href: "/demos/ag-law",
+    subdomain: "aglaw.ultravi0let.com",
+    stats: [
+      { k: "Modules", v: "6" },
+      { k: "Uptime", v: "99.9%" },
+    ],
+  },
+  {
     name: "Maquette",
-    type: "prototype" as const,
+    type: "project-undeployed" as const,
     category: "Print · Production",
     year: "2024",
     blurb:
@@ -118,21 +134,6 @@ export const projects = [
     stats: [
       { k: "Lines", v: "3" },
       { k: "Formats", v: "A0 — merch" },
-    ],
-  },
-  {
-    name: "Shop.co",
-    type: "prototype" as const,
-    category: "E-commerce · Tech",
-    year: "2026",
-    blurb:
-      "Tech storefront for laptops, phones, audio and accessories — sale banners, newsletter signup and order tracking built for everyday electronics retail.",
-    accent: "from-slate-300 to-violet-500",
-    href: "https://shopco-ten-gray.vercel.app",
-    subdomain: "shopco-ten-gray.vercel.app",
-    stats: [
-      { k: "Catalog", v: "Tech SKUs" },
-      { k: "Flow", v: "Cart + tracking" },
     ],
   },
   {
