@@ -29,10 +29,33 @@ export function Footer() {
           {/* Brand block */}
           <div className="sm:col-span-2 md:col-span-5">
             <div className="flex items-center gap-3">
-              <img
-                src="/Ultraviolet-logo.png"
-                alt=""
-              />
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                aria-hidden
+              >
+                <defs>
+                  <linearGradient id="fl" x1="0" y1="0" x2="32" y2="32">
+                    <stop offset="0" stopColor="#C4A5FF" />
+                    <stop offset="1" stopColor="#7C3AED" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M6 4l10 24L26 4"
+                  stroke="url(#fl)"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="16" cy="14" r="2.2" fill="url(#fl)" />
+              </svg>
+              <span className="font-display text-2xl tracking-verytight text-paper-50">
+                ultravi
+                <span className="serif-italic text-accent-soft">0</span>
+                let
+              </span>
             </div>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-paper-50/60">
               Digital craft, engineered. We turn ideas into systems that ship, scale, and stay up.

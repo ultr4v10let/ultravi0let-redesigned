@@ -42,12 +42,12 @@ export function Nav() {
         >
           {/* Mark */}
           <a href="#top" className="group flex items-center gap-2.5">
-            <img
-              src="/Ultraviolet-logo.png"
-              alt=""
-              height={28}
-              className="h-7"
-            />
+            <Logomark />
+            <span className="font-display text-[22px] leading-none tracking-verytight text-ink-950">
+              ultravi
+              <span className="serif-italic text-accent">0</span>
+              let
+            </span>
           </a>
 
           {/* Desktop links */}
@@ -118,5 +118,32 @@ export function Nav() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+function Logomark() {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="lm" x1="0" y1="0" x2="32" y2="32">
+          <stop offset="0" stopColor="#7C3AED" />
+          <stop offset="1" stopColor="#4C1D95" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M6 4l10 24L26 4"
+        stroke="url(#lm)"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="16" cy="14" r="2.2" fill="url(#lm)" />
+    </svg>
   );
 }
