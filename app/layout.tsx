@@ -1,37 +1,32 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const sans = Inter_Tight({
+// Body — Space Grotesk carries longer copy where mono would tire the eye.
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-geist",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
+// Display + mono — JetBrains Mono, the engineer's typeface. Wordmark is 800.
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-});
-
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
+  weight: ["400", "500", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "Ultravi0let · Digital craft for ambitious products",
+  title: "ULTRAVI0LET · Light just past what the eye can see",
   description:
-    "A founder-led product studio for design, engineering, cloud, and AI — one senior team from prototype to production.",
+    "A senior-only product studio that builds and owns the parts of software other people can't see — and won't touch. Design, engineering, cloud, and AI.",
   metadataBase: new URL("https://ultravi0let.com"),
   openGraph: {
-    title: "Ultravi0let",
+    title: "ULTRAVI0LET",
     description:
-      "Design, engineering, cloud, and AI for ambitious products.",
+      "The quiet machinery behind loud products. Design, engineering, cloud, and AI.",
     type: "website",
   },
 };
@@ -40,6 +35,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover" as const,
+  themeColor: "#08070B",
 };
 
 export default function RootLayout({
@@ -48,11 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${sans.variable} ${mono.variable} ${instrument.variable}`}
-    >
-      <body className="grain bg-paper-50 font-sans text-ink-950">{children}</body>
+    <html lang="en" className={`${grotesk.variable} ${mono.variable}`}>
+      <body className="grain bg-ground font-sans text-paper-50 antialiased">
+        {children}
+      </body>
     </html>
   );
 }

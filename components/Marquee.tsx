@@ -1,25 +1,23 @@
 "use client";
 
 import { marqueeWords } from "@/lib/data";
-
-// Spectrum bullet colours — indigo → violet → fuchsia → pink, cycled per word
-const spectrumDots = ["#3b82f6", "#6366f1", "#7c3aed", "#a855f7", "#c026d3", "#ec4899"];
+import { SPECTRUM } from "./Logo";
 
 export function Marquee() {
   const items = [...marqueeWords, ...marqueeWords];
   return (
     <section
       aria-hidden
-      className="relative border-y border-ink-950/10 bg-paper-100/50 py-5 marquee-mask sm:py-8"
+      className="marquee-mask relative border-y border-[var(--line)] bg-white/[0.015] py-5 sm:py-7"
     >
-      <div className="flex w-max animate-marquee gap-8 whitespace-nowrap sm:gap-12">
+      <div className="flex w-max animate-marquee items-center gap-8 whitespace-nowrap sm:gap-12">
         {items.map((w, i) => (
           <span
             key={i}
-            className="flex items-center gap-8 font-display text-[clamp(1.75rem,5vw,5.5rem)] leading-none tracking-tightest text-ink-950/70 sm:gap-12"
+            className="flex items-center gap-8 font-display text-[clamp(1.4rem,4vw,3.75rem)] font-extrabold uppercase leading-none tracking-tight text-paper-50/45 sm:gap-12"
           >
             {w}
-            <Bullet color={spectrumDots[i % spectrumDots.length]} />
+            <Tick shift={i % SPECTRUM.length} />
           </span>
         ))}
       </div>
@@ -27,10 +25,17 @@ export function Marquee() {
   );
 }
 
-function Bullet({ color }: { color: string }) {
+// A three-bar slice of the spectrum, cycling colour per word
+function Tick({ shift }: { shift: number }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-      <circle cx="7" cy="7" r="3" fill={color} />
-    </svg>
+    <span className="inline-flex items-end gap-[3px]" aria-hidden>
+      {[0, 1, 2].map((n) => (
+        <span
+          key={n}
+          className="block h-[0.7em] w-[3px] rounded-[1px]"
+          style={{ background: SPECTRUM[(shift + n) % SPECTRUM.length] }}
+        />
+      ))}
+    </span>
   );
 }

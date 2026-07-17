@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { testimonials } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
+import { SpectrumMark } from "./Logo";
 
 export function Testimonials() {
   return (
@@ -12,9 +13,9 @@ export function Testimonials() {
           eyebrow="Testimonials"
           title={
             <>
-              What our clients
+              What clients
               <br />
-              <span className="serif-italic text-spectrum">say</span>.
+              <span className="text-signal">say</span>
             </>
           }
         />
@@ -31,15 +32,19 @@ export function Testimonials() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: (i % 3) * 0.08,
               }}
-              whileHover={{ y: -2, transition: { duration: 0.3, ease: "easeOut" } }}
-              className="group glass-card relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl p-5 transition-[box-shadow,border-color] duration-500 sm:gap-5 sm:p-6 md:p-7"
+              className="panel group relative isolate flex flex-col gap-5 overflow-hidden rounded-2xl p-6 sm:p-7"
             >
-              <blockquote className="font-display text-base leading-snug tracking-verytight text-ink-950 sm:text-lg md:text-xl">
+              <SpectrumMark size={16} />
+              <blockquote className="text-[15px] leading-relaxed text-paper-50/85 sm:text-base">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-auto border-t border-ink-950/10 pt-5">
-                <div className="text-sm font-medium text-ink-950">{t.name}</div>
-                <div className="mt-0.5 text-xs text-ink-950/70">{t.title}</div>
+              <figcaption className="mt-auto border-t border-[var(--line)] pt-5">
+                <div className="font-display text-sm font-bold uppercase tracking-tight text-paper-50">
+                  {t.name}
+                </div>
+                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-paper-50/50">
+                  {t.title}
+                </div>
               </figcaption>
             </motion.figure>
           ))}

@@ -3,14 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --paper: #FAFAFA;
-  --paper-2: #F4F4F6;
-  --ink: #0A0710;
-  --ink-2: #15102A;
-  --violet: #6D28D9;
-  --violet-soft: #A78BFA;
-  --violet-glow: #6D28D9;
-  --warm: #9F6A2D;
+  --ground: #08070b;
+  --verge: #160b2e;
+  --edge: #38156f;
+  --deep: #5b21b6;
+  --core: #7c3aed;
+  --violet: #9e6dff;
+  --signal: #c4a5ff;
+  --paper: #f5f3f7;
+  --line: rgba(196, 165, 255, 0.1);
+  --line-strong: rgba(196, 165, 255, 0.22);
 }
 
 * {
@@ -20,17 +22,16 @@
 }
 
 html {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--ground);
+  color: var(--paper);
   scroll-behavior: smooth;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-feature-settings: "ss01", "cv11";
+  background: var(--ground);
+  color: var(--paper);
   overflow-x: hidden;
   min-width: 0;
   padding-left: env(safe-area-inset-left);
@@ -40,43 +41,23 @@ body {
 
 ::selection {
   background: var(--violet);
-  color: var(--paper);
+  color: var(--ground);
 }
 
-/* Very faint cool grain — adds tactile texture without warmth */
+/* Faint noise over the near-black ground — tactile, never warm */
 .grain::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.025;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 .tabnum {
   font-variant-numeric: tabular-nums;
-}
-
-.violet-glow {
-  box-shadow: 0 8px 40px -10px rgba(109, 40, 217, 0.4),
-    0 0 80px -20px rgba(167, 139, 250, 0.25);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--paper);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(10, 7, 16, 0.18);
-  border-radius: 100px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--violet);
 }
 
 a,
@@ -84,137 +65,86 @@ button {
   cursor: pointer;
 }
 
+/* ── Scrollbar — thin, violet on ground ─────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ground);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(196, 165, 255, 0.18);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--core);
+}
+
+/* ── Eyebrow — mono, technical, a single violet tick ────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(245, 243, 247, 0.62);
+}
+.eyebrow .dot {
+  width: 3px;
+  height: 12px;
+  border-radius: 1px;
+  background: var(--violet);
+  box-shadow: 0 0 10px rgba(158, 109, 255, 0.6);
+}
+
+/* ── Panel — a raised surface on the ground, hairline violet border ──────── */
+.panel {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--line);
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.panel:hover {
+  border-color: var(--line-strong);
+  background: rgba(158, 109, 255, 0.035);
+}
+
+/* ── Grid backdrop — faint technical lattice ────────────────────────────── */
+.grid-bg {
+  background-image: linear-gradient(
+      to right,
+      rgba(196, 165, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(196, 165, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ── Hairline divider utility ───────────────────────────────────────────── */
+.hairline {
+  border-color: var(--line);
+}
+
 .marquee-mask {
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent,
-    #000 12%,
-    #000 88%,
+    #000 10%,
+    #000 90%,
     transparent
   );
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 12%,
-    #000 88%,
-    transparent
-  );
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
 
-.serif-italic {
-  font-family: var(--font-instrument), Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-}
-
-.hairline {
-  position: relative;
-}
-.hairline::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 7, 16, 0.18),
-    rgba(10, 7, 16, 0.02) 40%,
-    rgba(109, 40, 217, 0.18)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-/* Frosted glass card — transparent enough for the aurora to bleed through,
-   saturate() boosts the colour so it reads as tinted glass, top sheen + lift. */
-.glass-card {
-  background: rgba(250, 250, 253, 0.24);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1px 0 0 rgba(255, 255, 255, 0.1),
-    0 10px 28px -16px rgba(10, 7, 16, 0.28);
-}
-.glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.72);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 0 rgba(255, 255, 255, 0.14),
-    0 16px 38px -18px rgba(10, 7, 16, 0.34);
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 999px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(10, 7, 16, 0.7);
-  background: rgba(10, 7, 16, 0.025);
-  border: 1px solid rgba(10, 7, 16, 0.1);
-  backdrop-filter: blur(8px);
-}
-.eyebrow .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--violet);
-  box-shadow: 0 0 12px rgba(109, 40, 217, 0.55);
-}
-
-/* Eyebrow on the dark anchor sections (Manifesto / Contact / Footer) */
-.on-dark .eyebrow {
-  color: rgba(250, 250, 250, 0.75);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.14);
-}
-.on-dark .eyebrow .dot {
-  background: #c4a5ff;
-  box-shadow: 0 0 12px rgba(196, 165, 255, 0.7);
-}
-
-/* Spectrum gradient text — accent words sweep indigo → violet → fuchsia */
-.text-spectrum {
-  background-image: linear-gradient(100deg, #4f46e5 0%, #7c3aed 48%, #c026d3 100%);
+/* Accent words — a restrained one-step gradient, signal → violet */
+.text-signal {
+  background-image: linear-gradient(100deg, #c4a5ff 0%, #9e6dff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  /* Italic glyphs overhang right; extend the gradient box so the last letter
-     keeps its fill, then cancel with negative margin so layout is unchanged. */
-  padding-right: 0.12em;
-  margin-right: -0.12em;
-}
-/* Brighter variant for accent words on the dark anchor sections */
-.text-spectrum-soft {
-  background-image: linear-gradient(100deg, #818cf8 0%, #c4a5ff 48%, #f0abfc 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  /* Same italic-overhang fix as .text-spectrum */
-  padding-right: 0.12em;
-  margin-right: -0.12em;
-}
-
-/* ── Mobile scroll-flicker fix ─────────────────────────────────────────────
-   A live backdrop-filter blur forces the browser to re-sample and re-blur the
-   moving content behind every card on each scroll frame. With many large glass
-   cards over an animated aurora, mobile GPUs can't keep up → visible flicker.
-   Below md we drop the live blur and use a near-opaque fill that reads as the
-   same frosted card; the real glass effect stays on ≥ md where it performs fine. */
-@media (max-width: 767px) {
-  .glass-card {
-    background: rgba(250, 250, 253, 0.86);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
 }

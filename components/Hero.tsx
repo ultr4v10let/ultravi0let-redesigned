@@ -1,17 +1,18 @@
 "use client";
 
-import {
-  motion,
-  type MotionValue,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { SpectrumMark, SPECTRUM } from "./Logo";
 
 const transition = { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const };
+
+const readout = [
+  ["EST.", "2022"],
+  ["BASE", "DUBAI"],
+  ["TEAM", "SENIOR-ONLY"],
+  ["MODE", "REMOTE-FIRST"],
+];
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,48 +23,59 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 160]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  // Mouse parallax for aurora
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const smx = useSpring(mx, { stiffness: 60, damping: 18 });
-  const smy = useSpring(my, { stiffness: 60, damping: 18 });
-  const auroraX = useTransform(smx, [-1, 1], [-30, 30]);
-  const auroraY = useTransform(smy, [-1, 1], [-20, 20]);
-  const auroraX2 = useTransform(smx, [-1, 1], [25, -25]);
-  const auroraY2 = useTransform(smy, [-1, 1], [16, -16]);
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mx.set((e.clientX / window.innerWidth) * 2 - 1);
-      my.set((e.clientY / window.innerHeight) * 2 - 1);
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [mx, my]);
-
   return (
     <section
       ref={ref}
       id="top"
-      className="relative isolate flex min-h-[100svh] min-h-[100dvh] items-end overflow-hidden pb-12 pt-[max(7rem,env(safe-area-inset-top)+5rem)] sm:pb-16 md:pb-20"
+      className="relative isolate flex min-h-[100svh] min-h-[100dvh] items-end overflow-hidden pb-10 pt-[max(7rem,env(safe-area-inset-top)+5rem)] sm:pb-14 md:pb-16"
     >
-      <Aurora x={auroraX} y={auroraY} x2={auroraX2} y2={auroraY2} />
-      <Grid />
+      {/* Ambient vanishing spectrum — oversized, bleeding off the right edge */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-[-6%] -z-10 flex items-stretch gap-[2.2vw] opacity-[0.14] animate-scan md:right-[2%] md:gap-[1.6vw]"
+      >
+        {SPECTRUM.map((c, i) => (
+          <span
+            key={i}
+            className="block w-[3.2vw] rounded-sm md:w-[2.1vw]"
+            style={{ background: c }}
+          />
+        ))}
+      </div>
+      {/* fade the column into the ground on the left */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-ground via-ground/85 to-transparent"
+      />
 
       <motion.div
         style={{ y, opacity }}
         className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] px-5 sm:px-6 md:px-10"
       >
+        {/* Technical eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...transition, delay: 0.1 }}
+          className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-paper-50/55 sm:mb-8"
+        >
+          <SpectrumMark size={14} animated />
+          <span className="h-3 w-px bg-[var(--line-strong)]" />
+          Product studio — the invisible layer
+        </motion.div>
+
         {/* Headline */}
-        <h1 className="font-display text-[clamp(2.35rem,13.5vw,5.75rem)] leading-[0.95] tracking-tightest text-ink-950 md:text-[clamp(3.5rem,8.5vw,7rem)] lg:text-[8vw]">
+        <h1 className="font-display text-[clamp(1.85rem,10vw,5.25rem)] font-extrabold uppercase leading-[0.98] tracking-[-0.04em] text-paper-50">
           <Line delay={0.18}>We build the</Line>
           <Line delay={0.28}>
-            <span className="serif-italic font-normal text-spectrum">
-              quiet&nbsp;machinery
-            </span>
+            <span className="text-signal">quiet&nbsp;machinery</span>
           </Line>
           <Line delay={0.38}>
-            behind <span className="text-ink-950/50">loud</span> products.
+            behind <span className="text-paper-50/35">loud</span>
+          </Line>
+          <Line delay={0.46}>
+            products
+            <span className="ml-1 inline-block h-[0.78em] w-[0.42em] translate-y-[0.04em] bg-violet-400 animate-blink align-baseline" />
           </Line>
         </h1>
 
@@ -72,15 +84,16 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: 0.7 }}
-          className="mt-6 flex w-full min-w-0 flex-col items-stretch gap-6 sm:mt-8 md:mt-10 md:flex-row md:items-end md:justify-between md:gap-8"
+          className="mt-7 flex w-full min-w-0 flex-col items-stretch gap-6 sm:mt-9 md:flex-row md:items-end md:justify-between md:gap-10"
         >
-          <div className="min-w-0 max-w-2xl space-y-3 sm:space-y-4">
-            <p className="text-pretty text-base leading-relaxed text-ink-900/85 sm:text-[17px] md:text-lg">
-              A founder-led product studio for design, engineering, cloud and AI.
-              One senior team from first prototype to production — shipping
-              full-stack work internationally, with founders on every engagement.
+          <div className="min-w-0 max-w-xl space-y-4">
+            <p className="text-pretty text-[15px] leading-relaxed text-paper-50/70 sm:text-base">
+              A senior-only product studio that builds and owns the parts of
+              software other people can&apos;t see — and won&apos;t touch.
+              Design, engineering, cloud and AI, from first prototype to
+              production.
             </p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-900/50 sm:text-[11px] sm:tracking-[0.2em]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-paper-50/45 sm:text-[11px]">
               Design · Engineering · Cloud · AI
             </p>
           </div>
@@ -88,7 +101,7 @@ export function Hero() {
           <div className="flex w-full min-w-0 flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="#contact"
-              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 px-6 py-3.5 text-sm font-medium text-paper-50 violet-glow transition-all hover:from-violet-700 hover:to-fuchsia-700 sm:w-auto sm:py-4"
+              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-violet-600 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.16em] text-paper-50 transition-colors hover:bg-violet-700 sm:w-auto sm:py-4"
             >
               Start a project
               <ArrowUpRight
@@ -98,29 +111,45 @@ export function Hero() {
             </a>
             <a
               href="#work"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-ink-950/20 px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:border-ink-950/60 hover:bg-ink-950/[0.03] sm:w-auto sm:py-4"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--line-strong)] px-6 py-3.5 font-mono text-xs uppercase tracking-[0.16em] text-paper-50/80 transition-colors hover:border-violet-400/50 hover:text-paper-50 sm:w-auto sm:py-4"
             >
-              See our work
-              <span className="text-ink-950/55 transition-transform group-hover:translate-x-0.5">
+              Selected work
+              <span className="transition-transform group-hover:translate-y-0.5">
                 ↓
               </span>
             </a>
           </div>
         </motion.div>
+
+        {/* Technical readout strip */}
+        <motion.dl
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...transition, delay: 0.85 }}
+          className="mt-10 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-[var(--line)] sm:mt-12 sm:grid-cols-4"
+        >
+          {readout.map(([k, v]) => (
+            <div
+              key={k}
+              className="flex flex-col gap-1 bg-white/[0.015] px-4 py-3"
+            >
+              <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-paper-50/40">
+                {k}
+              </dt>
+              <dd className="font-mono text-[12px] uppercase tracking-[0.08em] text-paper-50/85">
+                {v}
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
       </motion.div>
     </section>
   );
 }
 
-function Line({
-  children,
-  delay,
-}: {
-  children: React.ReactNode;
-  delay: number;
-}) {
+function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
   return (
-    <span className="block overflow-hidden pb-[0.18em] -mb-[0.12em]">
+    <span className="block overflow-hidden pb-[0.12em] -mb-[0.08em]">
       <motion.span
         initial={{ y: "110%" }}
         animate={{ y: "0%" }}
@@ -130,102 +159,5 @@ function Line({
         {children}
       </motion.span>
     </span>
-  );
-}
-
-function Aurora({
-  x,
-  y,
-  x2,
-  y2,
-}: {
-  x: MotionValue<number>;
-  y: MotionValue<number>;
-  x2: MotionValue<number>;
-  y2: MotionValue<number>;
-}) {
-  return (
-    <>
-      {/* Big violet aurora — three nested layers: position + parallax / breathe / gradient */}
-      <motion.div
-        aria-hidden
-        style={{ x, y }}
-        className="pointer-events-none absolute -top-32 left-1/2 -z-10 -translate-x-1/2 max-md:scale-[0.65] max-md:opacity-80"
-      >
-        <div className="h-[520px] w-[700px] origin-center animate-breathe md:h-[820px] md:w-[1100px]">
-          <div
-            className="h-full w-full rounded-full opacity-70 blur-[80px] animate-pulse-soft md:blur-[120px]"
-            style={{
-              background:
-                "radial-gradient(closest-side, rgba(139,92,246,0.65) 0%, rgba(167,139,250,0.28) 38%, transparent 72%)",
-            }}
-          />
-        </div>
-      </motion.div>
-
-      {/* Cool sky aurora — bottom left */}
-      <motion.div
-        aria-hidden
-        style={{ x: x2, y: y2 }}
-        className="pointer-events-none absolute -left-32 top-[35%] -z-10 h-[320px] w-[320px] rounded-full opacity-45 blur-[70px] animate-drift-2 md:h-[520px] md:w-[520px] md:opacity-55 md:blur-[110px]"
-      >
-        <div
-          className="h-full w-full rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(140,180,255,0.5) 0%, transparent 70%)",
-          }}
-        />
-      </motion.div>
-
-      {/* Magenta aurora — right */}
-      <motion.div
-        aria-hidden
-        style={{ x, y: y2 }}
-        className="pointer-events-none absolute -right-32 top-24 -z-10 h-[280px] w-[280px] rounded-full opacity-40 blur-[60px] animate-drift-3 md:h-[460px] md:w-[460px] md:opacity-50 md:blur-[100px]"
-      >
-        <div
-          className="h-full w-full rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(220,120,200,0.4) 0%, transparent 70%)",
-          }}
-        />
-      </motion.div>
-    </>
-  );
-}
-
-function Grid() {
-  return (
-    <svg
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-[0.08]"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <pattern
-          id="grid"
-          width="56"
-          height="56"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M 56 0 L 0 0 0 56"
-            fill="none"
-            stroke="#0E0A1F"
-            strokeWidth="0.5"
-          />
-        </pattern>
-        <radialGradient id="fade" cx="50%" cy="0%" r="60%">
-          <stop offset="0%" stopColor="black" stopOpacity="1" />
-          <stop offset="100%" stopColor="black" stopOpacity="0" />
-        </radialGradient>
-        <mask id="mask">
-          <rect width="100%" height="100%" fill="url(#fade)" />
-        </mask>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" mask="url(#mask)" />
-    </svg>
   );
 }

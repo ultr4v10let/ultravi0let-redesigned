@@ -13,20 +13,20 @@ export function Services() {
             eyebrow="What we do"
             title={
               <>
-                Eight disciplines.
+                Eight disciplines
                 <br />
-                <span className="serif-italic text-spectrum">One team.</span>
+                <span className="text-signal">one team</span>
               </>
             }
           />
-          <p className="max-w-md text-pretty text-base text-ink-950/60 md:text-right">
-            We bring the full surface area of a modern product company, from
-            the first sketch to the on-call rotation that keeps it alive at
-            3am.
+          <p className="max-w-md text-pretty text-[15px] leading-relaxed text-paper-50/60 md:text-right">
+            The full surface area of a modern product company — from the first
+            sketch to the on-call rotation that keeps it alive at 3am.
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* Hairline lattice: the grid gap is the line colour, each cell sits on ground */}
+        <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <ServiceCard key={s.n} {...s} index={i} />
           ))}
@@ -41,43 +41,38 @@ type Service = (typeof services)[number] & { index: number };
 function ServiceCard({ n, icon: Icon, title, blurb, keywords, index }: Service) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{
         duration: 0.7,
         ease: [0.16, 1, 0.3, 1],
-        delay: (index % 4) * 0.07,
+        delay: (index % 4) * 0.06,
       }}
-      whileHover={{ y: -2, transition: { duration: 0.3, ease: "easeOut" } }}
-      className="group glass-card relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl p-6 transition-[box-shadow,border-color] duration-500 sm:gap-5 sm:p-7 md:p-8"
+      className="group relative isolate flex min-h-[230px] flex-col gap-4 bg-ground p-6 transition-colors duration-500 hover:bg-white/[0.02] sm:p-7 md:p-8"
     >
-      {/* Hover glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-violet-600/15 via-fuchsia-500/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      />
-
-      <div className="flex items-center justify-between text-ink-950/60">
-        <span className="font-mono text-[11px] tracking-widest">{n}</span>
+      <div className="flex items-center justify-between text-paper-50/55">
+        <span className="font-mono text-[11px] tracking-widest text-violet-400/80">
+          {n}
+        </span>
         <Icon
-          size={20}
-          className="transition-colors duration-500 group-hover:text-violet-400"
+          size={19}
           strokeWidth={1.4}
+          className="transition-colors duration-500 group-hover:text-violet-300"
         />
       </div>
 
-      <h3 className="font-display text-2xl leading-tight tracking-verytight text-ink-950 sm:text-3xl">
+      <h3 className="font-display text-lg font-bold uppercase leading-tight tracking-tight text-paper-50 sm:text-xl">
         {title}
       </h3>
 
-      <p className="text-sm leading-relaxed text-ink-950/70">{blurb}</p>
+      <p className="text-[13px] leading-relaxed text-paper-50/60">{blurb}</p>
 
       <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
         {keywords.map((k) => (
           <span
             key={k}
-            className="rounded-full border border-ink-950/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-ink-950/65"
+            className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-paper-50/55"
           >
             {k}
           </span>

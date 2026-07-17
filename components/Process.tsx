@@ -42,9 +42,9 @@ export function Process() {
           eyebrow="How we work"
           title={
             <>
-              Four phases.
+              Four phases
               <br />
-              <span className="serif-italic text-spectrum">No surprises.</span>
+              <span className="text-signal">no surprises</span>
             </>
           }
           caption="Our engagements run lean. Small teams, short feedback loops, and demos every Friday. The process is the product."
@@ -65,19 +65,19 @@ export function Process() {
               className="relative flex gap-4 sm:gap-6 md:gap-8"
             >
               <div className="flex shrink-0 flex-col items-center">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-950/15 bg-paper-100 font-mono text-[10px] tracking-widest text-ink-950/70 sm:h-12 sm:w-12 sm:text-[11px]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line-strong)] font-mono text-[10px] tracking-widest text-violet-400/90 sm:h-12 sm:w-12 sm:text-[11px]">
                   {s.n}
                 </div>
-                <div className="mt-3 h-full w-px bg-gradient-to-b from-ink-950/15 to-transparent" />
+                <div className="mt-3 h-full w-px bg-gradient-to-b from-[var(--line-strong)] to-transparent" />
               </div>
               <div className="flex min-w-0 flex-1 flex-col gap-2 pb-4 sm:gap-3 sm:pb-6">
-                <h3 className="font-display text-2xl tracking-verytight text-ink-950 sm:text-3xl md:text-4xl">
+                <h3 className="font-display text-xl font-bold uppercase tracking-tight text-paper-50 sm:text-2xl md:text-3xl">
                   {s.title}
                 </h3>
-                <p className="text-[15px] leading-relaxed text-ink-950/65">
+                <p className="text-[14px] leading-relaxed text-paper-50/60">
                   {s.body}
                 </p>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-950/55">
+                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-paper-50/45">
                   {s.detail}
                 </p>
               </div>

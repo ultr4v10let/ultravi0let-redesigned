@@ -82,8 +82,14 @@ export const metadata = { title: "Demos · Ultravi0let" };
 export default function DemoIndex() {
   return (
     <main className="mx-auto min-w-0 max-w-[1100px] overflow-x-hidden px-5 py-16 sm:px-6 sm:py-20 md:py-28">
-      <h1 className="font-display text-[clamp(2.25rem,9vw,5rem)] leading-[0.95] tracking-tightest text-ink-950">Client demos.</h1>
-      <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-ink-900/75 sm:text-[17px]">
+      <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-paper-50/50">
+        <span className="h-3 w-px bg-[var(--line-strong)]" />
+        Client demos
+      </div>
+      <h1 className="font-display text-[clamp(2rem,9vw,4.5rem)] font-extrabold uppercase leading-[0.98] tracking-[-0.04em] text-paper-50">
+        Client <span className="text-signal">demos</span>
+      </h1>
+      <p className="mt-4 max-w-xl text-pretty text-[15px] leading-relaxed text-paper-50/65 sm:text-base">
         Interactive prototypes that mirror what we delivered. Each includes an NDA disclaimer — locally via the paths below; in production
         on dedicated subdomains.
       </p>
@@ -93,7 +99,7 @@ export default function DemoIndex() {
           <li key={d.name}>
             <Link
               href={d.href}
-              className="group flex min-h-[44px] items-stretch gap-4 overflow-hidden rounded-2xl border border-ink-950/10 bg-paper-100/60 p-4 transition-colors hover:border-ink-950/25 hover:bg-paper-100 sm:p-5"
+              className="panel group flex min-h-[44px] items-stretch gap-4 overflow-hidden rounded-2xl p-4 sm:p-5"
             >
               <div
                 aria-hidden
@@ -106,19 +112,19 @@ export default function DemoIndex() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <div className="font-display text-xl tracking-verytight text-ink-950 sm:text-2xl">{d.name}</div>
-                      <span className="rounded-full bg-ink-950/8 px-2 py-0.5 text-[9px] uppercase tracking-[0.14em] text-ink-950/65">
+                      <div className="font-display text-lg font-bold uppercase tracking-tight text-paper-50 sm:text-xl">{d.name}</div>
+                      <span className="rounded-full border border-[var(--line)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-paper-50/55">
                         {d.type}
                       </span>
                     </div>
-                    <div className="mt-1 text-sm leading-relaxed text-ink-900/70">{d.blurb}</div>
+                    <div className="mt-1 text-[13px] leading-relaxed text-paper-50/60">{d.blurb}</div>
                   </div>
                   <ArrowUpRight
                     size={18}
-                    className="mt-1 shrink-0 text-ink-950/55 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink-950"
+                    className="mt-1 shrink-0 text-paper-50/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-paper-50"
                   />
                 </div>
-                <div className="mt-3 truncate font-mono text-[10px] uppercase tracking-[0.16em] text-ink-950/55 sm:tracking-[0.18em]">
+                <div className="mt-3 truncate font-mono text-[10px] uppercase tracking-[0.16em] text-paper-50/45 sm:tracking-[0.18em]">
                   {d.sub}
                 </div>
               </div>
