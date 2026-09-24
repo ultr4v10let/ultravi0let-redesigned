@@ -1,7 +1,7 @@
 /* How we work: one day, four phases (BEHAVIOUR §6). The sun crosses the sky above a horizon; the page below it is
    the ground where the phase texts sit. */
 import { paper, processFilm as data } from '../content/content'
-import { S, clamp, ease, hex, lerp, mix3, mixPal, sstep, toPal } from './env'
+import { S, clamp, ease, hex, lerp, mix3, mixPal, skyCss, sstep, toPal, rgb as rgba } from './env'
 import type { Film, Pal } from './env'
 import type { Sky } from './sky/renderer'
 
@@ -54,7 +54,7 @@ export function processFilm(section: HTMLElement): Film {
     budget: () => (Math.min(screen.width, screen.height) < 600 ? 0.9e6 : 2.0e6),
     canvas,
     target: section,
-    /* no WebGL: the stage's CSS gradient (.no-gl .pstage) takes over */
+    /* no WebGL: write() paints a stand-in gradient in the sky's palette; .no-gl .pstage is the stylesheet's first guess */
     attach(s) { if (s) { sky = s; s.size(W, H); self.need = true } else self.fallback(true) },
     fallback(on) { section.classList.toggle('no-gl', on) },
     measure() {
@@ -110,8 +110,12 @@ export function processFilm(section: HTMLElement): Film {
       const pt = arc.getPointAtLength(clamp(u, 0, 1) * total)
       const pal = mixPal(palAt(DAYPAL.light, u), palAt(DAYPAL.dark, u), night)
       const ringLin = clamp((p - 0.03) / 0.34, 0, 1)
-      if (sky) {
-        const pp = mix3(PAPER[0], PAPER[1], night)
+      const pp = mix3(PAPER[0], PAPER[1], night)
+      if (!sky || sky.lost) {
+        /* no live sky: the stand-in follows the palette down to the horizon, then the page (no glow: it would spill
+           onto the ground, where the phase texts sit) */
+        stage.style.background = skyCss(pal, { x: pt.x, y: pt.y, r: 0 }, `${HZ}px`, `,${rgba(pp)} ${HZ}px`)
+      } else {
         sky.draw({
           time: S.reduce ? 4 : now / 1000, sx: pt.x, sy: pt.y, R, sunR: Math.max(R * (0.045 + 0.012 * night), 2.4),
           top: pal.top, mid: pal.mid, low: pal.low, haze: pal.haze, glare: pal.glare, midPos: pal.midPos, hazeAmt: pal.hazeAmt, glareAmt: pal.glareAmt,

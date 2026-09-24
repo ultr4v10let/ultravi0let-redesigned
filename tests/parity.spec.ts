@@ -81,7 +81,8 @@ for (const mode of MODES) {
       const ctx = await browser.newContext({ viewport: mode.viewport, colorScheme: mode.colorScheme, reducedMotion: 'reduce', deviceScaleFactor: 1 })
       const page = await ctx.newPage()
       await serveFonts(page)
-      if (isBuild) await page.addInitScript(() => { window.__uvFixedQuality = true })
+      /* headless Chromium has no GPU: allow software WebGL, and keep every canvas at its full pixel budget */
+      if (isBuild) await page.addInitScript(() => { window.__uvAllowSoftwareGL = true; window.__uvFixedQuality = true })
       await page.goto(url, { waitUntil: 'networkidle' })
       await page.evaluate(() => document.fonts.ready)
       /* intended difference 1: the --faint contrast fix (BRIEF §5), applied to the reference so it isn't reported */

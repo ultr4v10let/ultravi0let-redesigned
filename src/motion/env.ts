@@ -54,6 +54,13 @@ export interface Pal { top: RGB; mid: RGB; low: RGB; haze: RGB; glare: RGB; midP
 export const toPal = (p: { top: string; mid: string; low: string; haze: string; glare: string; midPos: number; hazeAmt: number; glareAmt: number }): Pal => ({
   top: hex(p.top), mid: hex(p.mid), low: hex(p.low), haze: hex(p.haze), glare: hex(p.glare), midPos: p.midPos, hazeAmt: p.hazeAmt, glareAmt: p.glareAmt,
 })
+/* Without (hardware) WebGL a canvas's stand-in is a CSS gradient in the same palette: the sky's colours and the sun's
+   glow, no halo. It keeps text over the sky readable exactly as the WebGL sky would. */
+export const rgb = (c: RGB, a = 1) => `rgba(${Math.round(c[0] * 255)},${Math.round(c[1] * 255)},${Math.round(c[2] * 255)},${a.toFixed(3)})`
+export const skyCss = (p: Pal, sun: { x: number; y: number; r: number }, height: string, below = '') =>
+  `radial-gradient(circle at ${sun.x.toFixed(0)}px ${sun.y.toFixed(0)}px,${rgb(p.glare, Math.min(1, 0.9 * p.glareAmt))} 0,${rgb(p.glare, 0)} ${(sun.r * 1.6).toFixed(0)}px),` +
+  `linear-gradient(180deg,${rgb(p.top)} 0,${rgb(p.mid)} calc(${height} * ${p.midPos}),${rgb(mix3(p.low, p.haze, p.hazeAmt * 0.6))} ${height}${below})`
+
 export const mixPal = (a: Pal, b: Pal, t: number): Pal => ({
   top: mix3(a.top, b.top, t), mid: mix3(a.mid, b.mid, t), low: mix3(a.low, b.low, t), haze: mix3(a.haze, b.haze, t), glare: mix3(a.glare, b.glare, t),
   midPos: lerp(a.midPos, b.midPos, t), hazeAmt: lerp(a.hazeAmt, b.hazeAmt, t), glareAmt: lerp(a.glareAmt, b.glareAmt, t),

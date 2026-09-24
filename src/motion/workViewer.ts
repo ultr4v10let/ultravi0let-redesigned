@@ -1,7 +1,7 @@
 /* Work: a day of halos (BEHAVIOUR §5). One sky per project; choosing a project animates the sky to it. React owns
    the rows and text; this module owns the sky. */
-import { noWebGLFallback, paper, workSkies } from '../content/content'
-import { S, clamp, ease, hex, lerp, mix3, sstep } from './env'
+import { paper, workSkies } from '../content/content'
+import { S, clamp, ease, hex, lerp, mix3, skyCss, sstep } from './env'
 import type { Film, RGB } from './env'
 import type { Sky } from './sky/renderer'
 
@@ -39,7 +39,7 @@ export function selectSky(i: number) {
 export function workViewer(section: HTMLElement): Film {
   const art = section.querySelector('.v-art') as HTMLElement
   const canvas = art.querySelector('canvas') as HTMLCanvasElement
-  let sky: Sky | null = null
+  let sky: Sky | null = null, W = 1, H = 1
   cur = 0
   from = state = SKIES[0]
   t0 = -1e9
@@ -54,27 +54,33 @@ export function workViewer(section: HTMLElement): Film {
     canvas,
     target: art,
     attach(s) { if (s) { sky = s; self.measure() } else self.fallback(true) },
-    fallback(on) { art.style.background = on ? noWebGLFallback.workViewer : '' },
+    /* the stand-in itself is painted in write(), in the chosen sky's palette */
+    fallback() { self.need = true },
     measure() {
-      if (!sky) return
       const r = art.getBoundingClientRect()
-      sky.size(r.width, r.height)
+      W = r.width
+      H = r.height
+      sky?.size(W, H)
       self.need = true
     },
     wants(now) {
-      return self.inView && (self.need || now - t0 < 1500 || (!S.reduce && now - self.last > 50))
+      /* the stand-in has no drift to draw: only transitions */
+      return self.inView && (self.need || now - t0 < 1500 || (!S.reduce && !!sky && now - self.last > 50))
     },
     write(now) {
       self.need = false
       self.last = now
-      if (!sky) return
-      const W = sky.cssW, H = sky.cssH, reduce = S.reduce
+      const reduce = S.reduce
       const k = (now - t0) / 1000
       state = lerpSky(from, SKIES[cur], ease(clamp(k / 0.9, 0, 1)))
       const s = state
+      const R = s.R * H
+      if (!sky || sky.lost) {
+        art.style.background = skyCss(s, { x: s.sx * W, y: s.sy * H, r: R }, '100%')
+        return
+      }
       const ring = reduce ? 1 : clamp((k - 0.12) / 0.8, 0, 1)
       const kk = reduce ? 2 : k
-      const R = s.R * H
       sky.draw({
         time: reduce ? 4 : now / 1000, sx: s.sx * W, sy: s.sy * H, R, sunR: Math.max(R * (0.035 + 0.01 * s.night), 2),
         top: s.top, mid: s.mid, low: s.low, haze: s.haze, glare: s.glare, midPos: s.midPos, hazeAmt: s.hazeAmt, glareAmt: s.glareAmt,

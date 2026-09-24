@@ -1,6 +1,6 @@
 /* The opening film (BEHAVIOUR §3): a dawn sky grows a 22° halo, which then becomes the zero of the wordmark. */
 import { hero as copy, heroFilm as data, paper } from '../content/content'
-import { S, clamp, ease, hex, lerp, mix3, mixPal, sstep, toPal } from './env'
+import { S, clamp, ease, hex, lerp, mix3, mixPal, skyCss, sstep, toPal } from './env'
 import type { Film } from './env'
 import type { Sky } from './sky/renderer'
 
@@ -71,8 +71,14 @@ export function heroFilm(film: HTMLElement): Film {
       pNow = p
       veil = sstep(0.1, 0.32, p)
       const paperMix = sstep(0.73, 0.86, p)
-      if (sky && p < 0.965) {
-        const pal = mixPal(mixPal(PAL.dawn, PAL.clear, skyT), mixPal(PAL.ndawn, PAL.nclear, skyT), night)
+      const pal = mixPal(mixPal(PAL.dawn, PAL.clear, skyT), mixPal(PAL.ndawn, PAL.nclear, skyT), night)
+      if (!sky || sky.lost) {
+        /* no live sky (not loaded yet, no GPU, or lost): the stand-in follows the palette, fading into the page as the
+           sky does; right at the top, the stylesheet's first-frame gradient stays */
+        const pp = mix3(PAPER[0], PAPER[1], night)
+        const fp = mixPal(pal, { ...pal, top: pp, mid: pp, low: pp, haze: pp }, paperMix)
+        canvas.style.background = p > 0.004 ? skyCss(fp, { x: sx, y: sy, r: R }, '100%') : ''
+      } else if (p < 0.965) {
         sky.draw({
           time: S.reduce ? 4 : now / 1000, sx, sy, R, sunR: Math.max(R * (0.035 + 0.01 * night), 2.2),
           top: pal.top, mid: pal.mid, low: pal.low, haze: pal.haze, glare: pal.glare, midPos: pal.midPos, hazeAmt: pal.hazeAmt, glareAmt: pal.glareAmt * (1 - 0.35 * m),

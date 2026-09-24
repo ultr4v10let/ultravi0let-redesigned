@@ -85,7 +85,9 @@ export class Sky {
   static create(canvas: HTMLCanvasElement, maxPx: number): Sky | null {
     let gl: WebGLRenderingContext | null = null
     try {
-      gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: false, powerPreference: 'high-performance' })
+      /* failIfMajorPerformanceCaveat: no context when the only WebGL is software-rendered (no GPU, or a blocklisted
+         one); there every frame would block the page for ~200ms, so the CSS stand-in shows instead */
+      gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: false, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: !window.__uvAllowSoftwareGL })
     } catch { gl = null }
     if (!gl) return null
     const U = setup(gl)

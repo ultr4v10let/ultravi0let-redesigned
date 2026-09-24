@@ -27,6 +27,17 @@ for (const mode of MODES) {
   })
 }
 
+/* motion on, nothing scrolled: what Lighthouse sees (content below the fold mid-reveal, the typing under way) */
+test('axe: first load with motion on', async ({ browser }) => {
+  const page = await (await browser.newContext({ viewport: { width: 412, height: 823 } })).newPage()
+  await page.goto('/')
+  await page.waitForSelector('#sky[data-gl]')
+  /* the real headline is faint only while it types over itself (BRIEF §7.2) */
+  await page.waitForSelector('h1.typed')
+  const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice']).analyze()
+  expect(r.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 4).join(' | ')}`)).toEqual([])
+})
+
 test('axe: phone menu open', async ({ browser }) => {
   const page = await (await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' })).newPage()
   await page.goto('/')

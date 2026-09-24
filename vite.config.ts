@@ -21,6 +21,8 @@ export default defineConfig({
     tanstackStart({
       /* every page is rendered to static HTML at build time; "#section" links are not crawled */
       prerender: { enabled: true, crawlLinks: true, failOnError: true },
+      /* the whole stylesheet (~8.5 KB gzipped) goes into the HTML: no render-blocking round trip before first paint */
+      server: { build: { inlineCss: true } },
     }),
     nitro({
       /* react-router's "use client" directives mean nothing in the server bundle and flood the log */

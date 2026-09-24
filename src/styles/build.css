@@ -21,6 +21,10 @@ h3{margin:0}
 /* the progress bar's chapter number over the light paper: .55 opacity is 3.9:1, .62 is 4.9:1 (like the --faint fix) */
 :root[data-theme="light"] .film-ui .chapter i{opacity:.62}
 
+/* section reveals: hold the faded start state only from the moment a block starts entering the screen, not while it
+   waits below the fold (same look; content below the fold keeps its full contrast) */
+@supports (animation-timeline:view()){.reveal{animation-fill-mode:forwards}}
+
 /* ---------------- the headline paints at once, faintly, and the typing writes over it (§7.2) ---------------- */
 h1 .ghost{visibility:visible}
 .js h1 .ghost{opacity:.14}
@@ -55,8 +59,8 @@ h1 .type{position:relative}
   linear-gradient(180deg,#0B0921 0%,#0D0A25 15%,#110E2E 30%,#151136 45%,#161238 55%,#1B163E 65%,#2B2150 80%,#322658 90%,#34285A 100%)}
 /* portrait stages put the sun at 80% (BEHAVIOUR §3: portrait = H > 1.05 W) */
 @media (max-aspect-ratio:20/21){#sky{--sy:80%}}
-/* without WebGL the stage's own gradient shows through */
-:root.no-gl #sky{background:none}
+/* Without (hardware) WebGL this first-frame gradient simply stays, rather than switching to the prototype's no-WebGL
+   stage gradient a second after load: we only learn there's no GPU once the renderer tries, and a swap would jump. */
 
 /* the opening film's progress bar keeps one length (owner's request; the prototype's bar shifted as the chapter
    label and the counter changed width): each side is as wide as the widest text it will ever show */

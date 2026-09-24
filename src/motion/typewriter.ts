@@ -1,21 +1,60 @@
 /* The headline types itself over its own faint copy (BEHAVIOUR §4, BRIEF §7.2).
-   The overlay always holds the whole sentence, split only where the typing has got to, with the rest invisible.
-   Same text, same fonts: text-wrap:balance breaks it exactly where it breaks the faint copy, so every typed letter
-   lands on its faint twin. The caret is outside the text flow (absolutely placed after the last typed letter), so it
-   can never move a line break either. */
+   The overlay always holds the whole sentence, laid out on the faint copy's own lines (one unbreakable span each),
+   split only where the typing has got to, with the rest invisible: every typed letter lands on its faint twin.
+   The caret sits outside the text flow, after the last typed letter, so it can't move a line break either.
+   Geometry (the faint copy's lines and letter boxes) is measured once and again only after a resize or a font load,
+   so a keystroke only writes to the page. */
 import { hero } from '../content/content'
 
 const FULL = hero.headlinePlain
 const [A, B] = hero.headline.split(/\[light\]|\[\/light\]/)
 const isLight = (i: number) => i >= A.length && i < A.length + B.length
 
+type Geo = { lines: [number, number][]; boxes: { left: number; right: number; top: number }[]; ascent: number; fs: number; space: number }
+
 export function typewriter(h1: HTMLElement, reduce: boolean) {
+  const ghost = h1.querySelector('.ghost') as HTMLElement
   const overlay = h1.querySelector('.type') as HTMLElement
   const caret = h1.querySelector('.caret') as HTMLElement
   /* once typed, the real text takes over and the overlay steps aside */
   const done = () => { caret.classList.add('done'); h1.classList.add('typed') }
   if (reduce) { done(); return () => {} }
   h1.classList.add('typing')
+
+  /* the faint copy's lines as [start, end) ranges, and each letter's box relative to it (the overlay shares its box) */
+  let geo: Geo | null = null
+  const measure = (): Geo => {
+    const g = ghost.getBoundingClientRect()
+    const boxes: Geo['boxes'] = [], starts = [0]
+    let top = -Infinity, i = 0
+    const walk = document.createTreeWalker(ghost, NodeFilter.SHOW_TEXT)
+    for (let t = walk.nextNode(); t; t = walk.nextNode()) {
+      for (let k = 0; k < (t.textContent?.length ?? 0); k++, i++) {
+        const r = document.createRange()
+        r.setStart(t, k)
+        r.setEnd(t, k + 1)
+        const b = r.getBoundingClientRect()
+        boxes[i] = { left: b.left - g.left, right: b.right - g.left, top: b.top - g.top }
+        if (FULL[i] === ' ') continue
+        if (top > -Infinity && b.top > top + 2) starts.push(i)
+        top = b.top
+      }
+    }
+    const cs = getComputedStyle(ghost), fs = parseFloat(cs.fontSize)
+    /* the font's ascent puts the caret on the baseline, as it stood inline (height .8em, .03em below the baseline) */
+    const ctx = document.createElement('canvas').getContext('2d')
+    let ascent = fs * 1.005
+    if (ctx) {
+      ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
+      ascent = ctx.measureText('W').fontBoundingBoxAscent || ascent
+    }
+    const sp = boxes[FULL.indexOf(' ')]
+    return { lines: starts.map((s, j) => [s, j + 1 < starts.length ? starts[j + 1] : FULL.length]), boxes, ascent, fs, space: sp.right - sp.left }
+  }
+  const forget = () => { geo = null }
+  const ro = new ResizeObserver(forget)
+  ro.observe(ghost)
+  document.fonts.addEventListener('loadingdone', forget)
 
   /* spans for FULL[from..to), one per weight, like the faint copy's own spans */
   const run = (from: number, to: number, rest: boolean) => {
@@ -32,53 +71,10 @@ export function typewriter(h1: HTMLElement, reduce: boolean) {
     }
     return out
   }
-  const charBox = (n: number, root: Element = overlay) => {
-    const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
-    for (let t = walk.nextNode(); t; t = walk.nextNode()) {
-      const len = t.textContent?.length ?? 0
-      if (n < len) {
-        const r = document.createRange()
-        r.setStart(t, n)
-        r.setEnd(t, n + 1)
-        return r.getBoundingClientRect()
-      }
-      n -= len
-    }
-    return null
-  }
-  /* the font's ascent: the caret stands on the baseline, as it did inline (height .8em, .03em below it) */
-  const ascent = (fs: number) => {
-    const cs = getComputedStyle(overlay)
-    const ctx = document.createElement('canvas').getContext('2d')
-    if (!ctx) return fs * 1.005
-    ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
-    return ctx.measureText('W').fontBoundingBoxAscent || fs * 1.005
-  }
-
-  /* where the faint copy breaks its lines, as [start, end) character ranges (read afresh each time: fonts may swap
-     and the window may resize while typing) */
-  const ghost = h1.querySelector('.ghost') as HTMLElement
-  const ghostLines = () => {
-    const starts = [0]
-    let top = -Infinity, i = 0
-    const walk = document.createTreeWalker(ghost, NodeFilter.SHOW_TEXT)
-    for (let t = walk.nextNode(); t; t = walk.nextNode()) {
-      for (let k = 0; k < (t.textContent?.length ?? 0); k++, i++) {
-        if (FULL[i] === ' ') continue
-        const r = document.createRange()
-        r.setStart(t, k)
-        r.setEnd(t, k + 1)
-        const y = r.getBoundingClientRect().top
-        if (top > -Infinity && y > top + 2) starts.push(i)
-        top = y
-      }
-    }
-    return starts.map((s, j) => [s, j + 1 < starts.length ? starts[j + 1] : FULL.length] as const)
-  }
 
   const show = (n: number) => {
-    /* the overlay gets the faint copy's exact lines, one unbreakable span each, so it never balances on its own */
-    const lines = ghostLines().flatMap(([s, e], j) => {
+    geo ??= measure()
+    const lines = geo.lines.flatMap(([s, e], j) => {
       const line = document.createElement('span')
       line.style.whiteSpace = 'nowrap'
       const m = Math.min(e, Math.max(s, n))
@@ -86,16 +82,13 @@ export function typewriter(h1: HTMLElement, reduce: boolean) {
       return j ? [document.createElement('br'), line] : [line]
     })
     overlay.replaceChildren(...lines, caret)
-    const o = overlay.getBoundingClientRect(), fs = parseFloat(getComputedStyle(overlay).fontSize)
-    /* after the last typed letter (a space typed at a line end has no usable box, so step back to the letter and
-       add a space's width); before anything is typed, at the start of the first line */
+    /* after the last typed letter (a space typed at a line end has no usable box, so step back to the letter and add
+       a space's width); before anything is typed, at the start of the first line */
     let ref = Math.max(0, n - 1)
     while (ref > 0 && FULL[ref] === ' ') ref--
-    const box = charBox(ref)
-    if (!box) return
-    const spaces = n - 1 - ref
-    const x = (n > 0 ? box.right : box.left) - o.left + (spaces > 0 ? spaces * (charBox(FULL.indexOf(' '), ghost)?.width ?? 0) : 0)
-    caret.style.transform = `translate(${x.toFixed(2)}px,${(box.top - o.top + ascent(fs) - 0.77 * fs).toFixed(2)}px)`
+    const box = geo.boxes[ref]
+    const x = (n > 0 ? box.right : box.left) + Math.max(0, n - 1 - ref) * geo.space
+    caret.style.transform = `translate(${x.toFixed(2)}px,${(box.top + geo.ascent - 0.77 * geo.fs).toFixed(2)}px)`
   }
 
   let i = 0, t = 0
@@ -103,8 +96,10 @@ export function typewriter(h1: HTMLElement, reduce: boolean) {
   const tick = () => {
     i += 1
     show(i)
-    t = window.setTimeout(i < FULL.length ? tick : done, i < FULL.length ? (FULL.charAt(i - 1) === ' ' ? 60 : 32) : 1200)
+    t = window.setTimeout(i < FULL.length ? tick : finish, i < FULL.length ? (FULL.charAt(i - 1) === ' ' ? 60 : 32) : 1200)
   }
+  const stop = () => { ro.disconnect(); document.fonts.removeEventListener('loadingdone', forget) }
+  const finish = () => { stop(); done() }
   t = window.setTimeout(tick, 450)
-  return () => clearTimeout(t)
+  return () => { clearTimeout(t); stop() }
 }

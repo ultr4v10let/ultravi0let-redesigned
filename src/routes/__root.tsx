@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { HeadContent, ScriptOnce, Scripts, createRootRoute } from '@tanstack/react-router'
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url'
@@ -37,6 +38,23 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
 })
 
+/* Vercel Web Analytics and Speed Insights (cookieless, so no consent banner): loaded once the page is idle, and only
+   where Vercel serves their endpoints (the production domain and previews). Enable both in the Vercel project. */
+function Insights() {
+  useEffect(() => {
+    const host = location.hostname
+    if (!import.meta.env.PROD || !(host.endsWith('ultravi0let.com') || host.endsWith('.vercel.app'))) return
+    const load = () => {
+      void import('@vercel/analytics').then((m) => m.inject())
+      void import('@vercel/speed-insights').then((m) => m.injectSpeedInsights())
+    }
+    const ric = window.requestIdleCallback as typeof requestIdleCallback | undefined
+    if (ric) ric(load, { timeout: 4000 })
+    else setTimeout(load, 1500)
+  }, [])
+  return null
+}
+
 function RootDocument({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -52,6 +70,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body>
         <a className="skip" href="#main">{ui.skipToContent}</a>
         {children}
+        <Insights />
         <Scripts />
       </body>
     </html>

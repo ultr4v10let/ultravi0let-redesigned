@@ -13,6 +13,8 @@ import { workViewer } from './workViewer'
 
 declare global {
   interface Window {
+    /* tests: allow software WebGL (headless Chromium has no GPU) */
+    __uvAllowSoftwareGL?: boolean
     /* tests: keep every canvas at its full pixel budget */
     __uvFixedQuality?: boolean
   }
