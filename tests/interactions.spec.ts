@@ -241,12 +241,17 @@ test.describe('work viewer', () => {
   })
 })
 
-test('copy button copies the address and says so for 1.6s', async ({ page, context }) => {
-  await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+test('copy button copies the address and says so for 1.6s (or selects it if the clipboard is refused)', async ({ page, context, browserName }) => {
+  /* Playwright can grant clipboard access only in Chromium */
+  if (browserName === 'chromium') await context.grantPermissions(['clipboard-read', 'clipboard-write'])
   await page.setViewportSize(DESKTOP)
   await go(page)
   await page.click('#copy-email')
-  await expect(page.locator('#copy-email')).toHaveText('Copied')
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('hello@ultravi0let.com')
+  const outcome = () => page.evaluate(() => (document.getElementById('copy-email')!.textContent === 'Copied' ? 'copied' : getSelection()?.toString() === 'hello@ultravi0let.com' ? 'selected' : ''))
+  await expect.poll(outcome).not.toBe('')
+  if (browserName === 'chromium') {
+    expect(await outcome()).toBe('copied')
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('hello@ultravi0let.com')
+  }
   await expect(page.locator('#copy-email')).toHaveText('Copy', { timeout: 3000 })
 })

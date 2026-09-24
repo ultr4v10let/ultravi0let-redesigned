@@ -15,7 +15,11 @@ headings or routes.
 - `npm run typecheck`, `npm run lint`
 - `npm test`: the prerendered HTML contains every string in content.json (run after a build)
 - `npm run test:e2e`: Playwright against the production build (run after a build); `npx playwright test tests/parity.spec.ts`
-  alone is the visual-parity check against the reference (diff images in `test-results/parity/`)
+  alone is the visual-parity check against the reference (diff images in `test-results/parity/`). Interactions and
+  the form also run in WebKit and Firefox (`--project=webkit`, `--project=firefox`)
+- Lighthouse (after a build): `npx serve .output/public -l 4181`, then
+  `npx lighthouse http://localhost:4181/ --throttling-method=devtools`. Headless Chrome has no GPU, so it measures
+  the no-WebGL path (the site refuses software WebGL); the final word is PageSpeed Insights on the deployed URL
 
 ## Rules
 

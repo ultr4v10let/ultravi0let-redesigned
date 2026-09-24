@@ -9,11 +9,15 @@ export default defineConfig({
   timeout: 120_000,
   workers: 2,
   reporter: [['list']],
-  use: {
-    baseURL: `http://localhost:${PORT}`,
+  use: { baseURL: `http://localhost:${PORT}` },
+  projects: [
     /* WebGL headless (BRIEF §13.2) */
-    launchOptions: { args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] },
-  },
+    { name: 'chromium', use: { browserName: 'chromium', launchOptions: { args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] } } },
+    /* Safari's and Firefox's engines: the interactions (BRIEF §8 asks for Safari, where View Transitions and
+       scroll-driven animations differ or are missing); parity stays in Chromium, where the reference was approved */
+    { name: 'webkit', use: { browserName: 'webkit' }, testMatch: ['interactions.spec.ts', 'contact.spec.ts'] },
+    { name: 'firefox', use: { browserName: 'firefox' }, testMatch: ['interactions.spec.ts', 'contact.spec.ts'] },
+  ],
   webServer: {
     command: 'node .output/server/index.mjs',
     url: `http://localhost:${PORT}`,
