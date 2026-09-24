@@ -100,7 +100,11 @@ export function Work({ ref }: { ref?: Ref<HTMLElement> }) {
           <div className={fading ? 'v-read fade' : 'v-read'}>
             {P.map((p, i) => (
               <div key={p.n} role="tabpanel" id={`work-panel-${p.n}`} aria-labelledby={`work-tab-${p.n}`} hidden={i !== shown}>
-                <div className="v-head"><h3 className="v-name">{p.name}</h3><a className="v-link" href="#contact">{work.viewer.link}</a></div>
+                <div className="v-head">
+                  <h3 className="v-name">{p.name}</h3>
+                  {/* a client's own site opens in a new tab; our demo pages open here */}
+                  <a className="v-link" href={p.url} {...(p.url.startsWith('/') ? {} : { target: '_blank', rel: 'noopener' })}>{work.viewer.link}</a>
+                </div>
                 <p className="v-desc">{p.description}</p>
                 <div className="stats">
                   {p.stats.map((st) => <span key={st.label}><b>{st.value}</b>{` ${st.label}`}</span>)}

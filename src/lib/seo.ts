@@ -6,8 +6,8 @@ import { hero, services, site } from '../content/content'
 export const SITE_URL = 'https://www.ultravi0let.com'
 
 export const SEO = {
-  title: 'Ultravi0let — Product design & engineering studio in Dubai',
-  description: 'We build the quiet machinery behind loud products. A senior-only studio in Dubai for design, engineering, cloud and AI, from first prototype to production.',
+  title: 'Ultravi0let — Product design & engineering studio in Cairo',
+  description: 'We build the quiet machinery behind loud products. A senior-only studio in Cairo for design, engineering, cloud and AI, from first prototype to production.',
   image: { path: '/og-image.png', width: 1200, height: 630, alt: 'ULTRAVI0LET — the quiet machinery behind loud products.' },
   themeColor: { light: '#F2EDFE', dark: '#110E2A' },
   alternateNames: ['ULTRAVI0LET', 'Ultraviolet', 'Ultraviolet Studio'],
@@ -62,7 +62,7 @@ export function jsonLd(path = '/', { title = SEO.title, description = SEO.descri
         slogan: hero.endcard.tagline,
         email: site.email,
         foundingDate: site.founded,
-        address: { '@type': 'PostalAddress', addressLocality: site.base, addressCountry: 'AE' },
+        address: { '@type': 'PostalAddress', addressLocality: site.base, addressCountry: 'EG' },
         areaServed: 'Worldwide',
         knowsAbout: services.items.map((s) => s.name),
         contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: site.email, availableLanguage: ['English'] }],

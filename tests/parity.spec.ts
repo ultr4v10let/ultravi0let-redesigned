@@ -8,6 +8,7 @@ import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
 import pixelmatch from 'pixelmatch'
 import { PNG } from 'pngjs'
+import content from '../src/content/content.json' with { type: 'json' }
 
 const REFERENCE = pathToFileURL(resolve('handoff/design/reference/ultravi0let-final.html')).href
 const OUT = resolve('test-results/parity')
@@ -30,6 +31,36 @@ async function serveFonts(page: Page) {
     return r.fulfill({ contentType: 'font/woff2', body: readFileSync(FONTS[i][1]), headers: { 'access-control-allow-origin': '*' } })
   })
   await page.route('https://fonts.gstatic.com/**', (r) => r.abort())
+}
+
+/* The approved reference predates some deliberate changes. They are applied to the reference page before comparing,
+   so every other pixel is still held to an exact match:
+   - the --faint contrast fix (BRIEF §5)
+   - the owner's copy changes (content.json: Cairo, reFind Outlet, Zanobia in progress, the form button, two
+     testimonials) and style changes (no hairline above the footer, two testimonial columns) */
+async function applyIntendedChanges(page: Page) {
+  await page.addStyleTag({ content: ':root:not([data-theme="dark"]){--faint:#7262AC}.site-foot{border-top:0}.quotes{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:880px){.quotes{grid-template-columns:1fr}}' })
+  await page.evaluate((c) => {
+    const text = (sel: string, t: string) => document.querySelectorAll(sel).forEach((el) => { el.textContent = t })
+    const p = c.work.projects
+    text('.stats-strip > div:nth-child(2) .v', c.site.base)
+    text('.work-hint .eyebrow:first-of-type', c.work.hint[0])
+    p.forEach((pr, i) => {
+      text(`#work-index .row:nth-child(${i + 1}) .row-name`, pr.name)
+      text(`#work-index .row:nth-child(${i + 1}) .tags`, `${pr.status} · ${pr.tags}`)
+      text(`#work-index .row:nth-child(${i + 1}) .year`, pr.year)
+    })
+    text('#v-status', p[0].status)
+    text('#v-tags', p[0].tags)
+    text('#v-year', p[0].year)
+    text('#v-name', p[0].name)
+    text('#v-desc', p[0].description)
+    document.getElementById('v-stats')!.innerHTML = p[0].stats.map((s) => `<span><b>${s.value}</b> ${s.label}</span>`).join('')
+    text('.form .btn', c.contact.form.submit)
+    text('.foot-bottom .copyr', c.footer.copyright)
+    text('.mn-loc', c.menu.location)
+    document.querySelectorAll('.quote').forEach((q, i) => { if (i >= c.testimonials.items.length) q.remove() })
+  }, content)
 }
 
 type Shot = { name: string; scroll: (p: Page) => Promise<number>; canvas?: string }
@@ -85,8 +116,7 @@ for (const mode of MODES) {
       if (isBuild) await page.addInitScript(() => { window.__uvAllowSoftwareGL = true; window.__uvFixedQuality = true })
       await page.goto(url, { waitUntil: 'networkidle' })
       await page.evaluate(() => document.fonts.ready)
-      /* intended difference 1: the --faint contrast fix (BRIEF §5), applied to the reference so it isn't reported */
-      if (!isBuild) await page.addStyleTag({ content: ':root:not([data-theme="dark"]){--faint:#7262AC}' })
+      if (!isBuild) await applyIntendedChanges(page)
       expect(await page.evaluate(() => !!document.createElement('canvas').getContext('webgl')), 'WebGL must be available').toBe(true)
       if (isBuild) await page.waitForSelector('#sky[data-gl="1"]')
       return page

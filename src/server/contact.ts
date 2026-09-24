@@ -30,8 +30,9 @@ export const sendContact = createServerFn({ method: 'POST' })
 
     const key = process.env.RESEND_API_KEY
     if (!key) { console.error('[contact] RESEND_API_KEY is not set'); return { ok: false, reason: 'unavailable' } }
-    const to = process.env.CONTACT_TO || 'hello@ultravi0let.com'
-    const from = process.env.CONTACT_FROM || 'Ultravi0let website <site@ultravi0let.com>'
+    /* read per request, inside the handler (never at module scope, which the browser build also sees) */
+    const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Ultravi0let <onboarding@resend.dev>'
+    const TO = process.env.CONTACT_TO_EMAIL ?? 'hello@ultravi0let.com'
 
     const rows: [string, string][] = [['Name', data.name], ['Company', data.company], ['Email', data.email], ['Project', data.project]]
     const filled = rows.filter(([, v]) => v)
@@ -40,8 +41,8 @@ export const sendContact = createServerFn({ method: 'POST' })
 
     try {
       const { error } = await new Resend(key).emails.send({
-        from,
-        to,
+        from: FROM,
+        to: TO,
         replyTo: data.email,
         subject: `New enquiry: ${data.name}${data.company ? ` — ${data.company}` : ''}`,
         text,

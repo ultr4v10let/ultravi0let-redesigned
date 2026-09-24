@@ -56,7 +56,7 @@ test('sends the enquiry through Resend, then thanks the visitor and clears the f
   const { auth, body } = sent[0]
   expect(auth).toBe('Bearer re_test')
   expect(body).toMatchObject({
-    from: 'Ultravi0let website <site@ultravi0let.com>',
+    from: 'Ultravi0let <onboarding@resend.dev>',
     to: 'hello@ultravi0let.com',
     reply_to: 'ada@example.com',
     subject: 'New enquiry: Ada Lovelace — Analytical Engines',

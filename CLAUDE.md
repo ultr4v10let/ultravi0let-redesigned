@@ -1,6 +1,6 @@
 # ULTRAVI0LET website
 
-Marketing site for Ultravi0let, a senior-only product studio in Dubai. React 19 + TanStack Start + TypeScript,
+Marketing site for Ultravi0let, a senior-only product studio in Cairo. React 19 + TanStack Start + TypeScript,
 prerendered to static HTML, deployed on Vercel (Nitro), contact form via Resend.
 
 The approved design and the full spec live in `handoff/`. Read `handoff/docs/BRIEF.md` before starting any task;

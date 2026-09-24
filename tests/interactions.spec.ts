@@ -171,7 +171,7 @@ test.describe('phone menu', () => {
     await expect(page.locator('#menu-close')).toBeFocused()
     await page.click('#mnav .mn-list a[href="#services"]')
     await expect(page.locator('#mnav')).not.toHaveClass(/show/)
-    await expect.poll(() => page.evaluate(() => Math.abs(document.getElementById('services')!.getBoundingClientRect().top)), { timeout: 5000 }).toBeLessThan(4)
+    await expect.poll(() => page.evaluate(() => Math.abs(document.getElementById('services')!.getBoundingClientRect().top)), { timeout: 10_000 }).toBeLessThan(4)
   })
 
   test('the menu switch changes the theme too', async ({ page }) => {

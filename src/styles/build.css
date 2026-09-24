@@ -86,6 +86,13 @@ h1 .type{position:relative}
   .v-art{aspect-ratio:auto;height:max(120px,100svh - 254px)}
 }
 
+/* ---------------- owner's changes to the approved page ---------------- */
+/* no hairline between the contact section and the footer */
+.site-foot{border-top:0}
+/* two testimonials now: two columns, not three with one empty */
+.quotes{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:880px){.quotes{grid-template-columns:1fr}}
+
 /* ---------------- contact form (§10) ---------------- */
 .hp{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 /* sending: the button's own sheen sweeps on a loop */

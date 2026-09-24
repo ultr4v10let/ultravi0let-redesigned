@@ -16,7 +16,7 @@
     "name": "Ultravi0let",
     "wordmark": "ULTRAVI0LET",
     "email": "hello@ultravi0let.com",
-    "base": "Dubai",
+    "base": "Cairo",
     "mode": "Remote-first",
     "founded": "2022",
     "url": "https://www.ultravi0let.com"
@@ -78,7 +78,7 @@
       }
     ],
     "email": "hello@ultravi0let.com",
-    "location": "Dubai · Remote-first",
+    "location": "Cairo · Remote-first",
     "appearance": "Appearance"
   },
   "hero": {
@@ -117,7 +117,7 @@
         },
         {
           "k": "Base",
-          "v": "Dubai"
+          "v": "Cairo"
         },
         {
           "k": "Team",
@@ -158,29 +158,26 @@
     "eyebrow": "01 — Selected work",
     "heading": "Things we’ve [light]shipped[/light]",
     "hint": [
-      "Six products · 2022 — 2026",
+      "Six products · 2024 — 2026",
       "Hover a project"
     ],
     "projects": [
       {
         "n": "01",
-        "name": "shop.co",
-        "status": "Prototype",
-        "tags": "E-commerce · Tech",
+        "name": "reFind Outlet",
+        "status": "Delivered",
+        "tags": "E-commerce · Marketplace",
         "year": "2026",
-        "description": "Tech storefront for laptops, phones, audio and accessories — sale banners, newsletter signup and order tracking built for everyday electronics retail.",
+        "url": "https://www.refindoutlet.com/",
+        "description": "Egypt’s first premium furniture outlet — graded, verified listings from brand partners, fixed outlet prices, and payment held until the buyer confirms delivery.",
         "stats": [
           {
-            "value": "4",
-            "label": "Categories"
+            "value": "2-day",
+            "label": "Buyer protection"
           },
           {
-            "value": "Tech SKUs",
-            "label": "Catalog"
-          },
-          {
-            "value": "Cart + tracking",
-            "label": "Flow"
+            "value": "EN · AR",
+            "label": "Languages"
           }
         ]
       },
@@ -190,6 +187,7 @@
         "status": "Delivered",
         "tags": "SaaS · Website builder",
         "year": "2025",
+        "url": "https://www.ultravi0let.com/demos/merlin",
         "description": "Dynamic company-site builder — themes, colours, logos and modular tabs for team, testimonials and services. Clients ship a polished presence in hours, not weeks.",
         "stats": [
           {
@@ -205,9 +203,10 @@
       {
         "n": "03",
         "name": "Zanobia Patisserie",
-        "status": "Delivered",
+        "status": "In progress",
         "tags": "Operations · ERP",
-        "year": "2022",
+        "year": "2026",
+        "url": "https://www.ultravi0let.com/demos/zanobia",
         "description": "End-to-end patisserie operations — factory production, inventory, retail shops, shop-to-factory ordering and back-office finance & HR in one system.",
         "stats": [
           {
@@ -226,6 +225,7 @@
         "status": "Delivered · Undeployed",
         "tags": "Legal tech · Web",
         "year": "2024",
+        "url": "https://www.ultravi0let.com/demos/ag-law",
         "description": "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
         "stats": [
           {
@@ -244,6 +244,7 @@
         "status": "Delivered · Undeployed",
         "tags": "Print · Production",
         "year": "2024",
+        "url": "https://www.ultravi0let.com/demos/maquette",
         "description": "Print-service platform for architectural drawings, bulk apparel runs and merchandise — mugs, keychains and small-format jobs on a unified production queue.",
         "stats": [
           {
@@ -262,6 +263,7 @@
         "status": "Prototype",
         "tags": "Portfolio · Builder",
         "year": "2025",
+        "url": "https://www.ultravi0let.com/demos/facet",
         "description": "Field-aware portfolio builder — CS, architecture and medical templates with tailored prompts, two themes per discipline, sign-in and live preview.",
         "stats": [
           {
@@ -410,11 +412,6 @@
         "quote": "“Architectural runs, apparel batches and merch jobs on one queue — they understood our floor before we finished explaining it. Production finally feels coordinated, not chaotic.”",
         "name": "Abdelrahman Tarek",
         "role": "Founder, Maquette"
-      },
-      {
-        "quote": "“Factory, shops and back office in one system changed how we operate. Shop requisitions hit production automatically — we stopped losing orders between the counter and the kitchen.”",
-        "name": "Karim Badr",
-        "role": "Co-founder, Zanobia Patisserie"
       }
     ]
   },
@@ -457,7 +454,7 @@
           "required": false
         }
       ],
-      "submit": "Send to Ultravi0let",
+      "submit": "Beam it over",
       "sent": "Thanks — it’s with us. We’ll come back within 24 hours.",
       "error": "That didn’t go through. Write to hello@ultravi0let.com and we’ll pick it up there."
     }
@@ -509,7 +506,7 @@
         ]
       }
     ],
-    "copyright": "© 2026 Ultravi0let — Dubai",
+    "copyright": "© 2026 Ultravi0let — Cairo",
     "status": "All systems operational"
   },
   "ui": {

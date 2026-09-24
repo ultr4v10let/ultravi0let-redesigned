@@ -13,8 +13,8 @@ const attr = (re: RegExp) => head.match(re)?.[1]
 test('build output exists', () => assert.ok(DIR, 'run the build first'))
 
 test('title, description and canonical', () => {
-  assert.equal(attr(/<title>([^<]*)<\/title>/), 'Ultravi0let — Product design &amp; engineering studio in Dubai')
-  assert.equal(attr(/<meta name="description" content="([^"]*)"/), 'We build the quiet machinery behind loud products. A senior-only studio in Dubai for design, engineering, cloud and AI, from first prototype to production.')
+  assert.equal(attr(/<title>([^<]*)<\/title>/), 'Ultravi0let — Product design &amp; engineering studio in Cairo')
+  assert.equal(attr(/<meta name="description" content="([^"]*)"/), 'We build the quiet machinery behind loud products. A senior-only studio in Cairo for design, engineering, cloud and AI, from first prototype to production.')
   assert.equal((head.match(/rel="canonical"/g) ?? []).length, 1)
   assert.equal(attr(/<link rel="canonical" href="([^"]*)"/), `${SITE}/`)
   assert.equal((head.match(/<title>/g) ?? []).length, 1)
@@ -43,7 +43,7 @@ test('one JSON-LD graph: Organization, WebSite, WebPage; no Review or FAQ', () =
   assert.ok(!/Review|AggregateRating|FAQPage/.test(blocks[0][1]))
   const org = g['@graph'][0]
   assert.deepEqual(org.alternateName, ['ULTRAVI0LET', 'Ultraviolet', 'Ultraviolet Studio'])
-  assert.equal(org.address.addressCountry, 'AE')
+  assert.equal(org.address.addressCountry, 'EG')
   assert.equal(org.knowsAbout.length, 8)
 })
 
