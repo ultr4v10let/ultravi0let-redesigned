@@ -1,0 +1,525 @@
+{
+  "_about": "Every word on the approved page. Copy marked in _designCopy was written for the design and is not on the live site; everything else is the live site's wording and should stay verbatim. Words wrapped in [light]...[/light] are set in the light weight (font-weight 200) inside their heading.",
+  "_designCopy": [
+    "hero.film.chapters",
+    "hero.film.scrollHint",
+    "work.hint",
+    "work.viewer.figure",
+    "work.viewer.skyLabels",
+    "studio.title",
+    "process.phases[].timeOfDay",
+    "ui.*",
+    "contact.form.sent",
+    "contact.form.error"
+  ],
+  "site": {
+    "name": "Ultravi0let",
+    "wordmark": "ULTRAVI0LET",
+    "email": "hello@ultravi0let.com",
+    "base": "Dubai",
+    "mode": "Remote-first",
+    "founded": "2022",
+    "url": "https://www.ultravi0let.com"
+  },
+  "nav": {
+    "items": [
+      {
+        "n": "01",
+        "label": "Work",
+        "href": "#work"
+      },
+      {
+        "n": "02",
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "n": "03",
+        "label": "Studio",
+        "href": "#studio"
+      },
+      {
+        "n": "04",
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "cta": {
+      "label": "Start a project",
+      "href": "#contact"
+    }
+  },
+  "menu": {
+    "items": [
+      {
+        "n": "01",
+        "label": "Work",
+        "href": "#work"
+      },
+      {
+        "n": "02",
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "n": "03",
+        "label": "Studio",
+        "href": "#studio"
+      },
+      {
+        "n": "04",
+        "label": "Contact",
+        "href": "#contact"
+      },
+      {
+        "n": "→",
+        "label": "Start a project",
+        "href": "#contact"
+      }
+    ],
+    "email": "hello@ultravi0let.com",
+    "location": "Dubai · Remote-first",
+    "appearance": "Appearance"
+  },
+  "hero": {
+    "eyebrows": [
+      "Product studio — the invisible layer",
+      "Design · Engineering · Cloud · AI"
+    ],
+    "headline": "We build the [light]quiet[/light] machinery behind loud products",
+    "headlinePlain": "We build the quiet machinery behind loud products",
+    "sub": "A senior-only product studio that builds and owns the parts of software other people can’t see — and won’t touch. Design, engineering, cloud and AI, from first prototype to production.",
+    "actions": [
+      {
+        "label": "Start a project",
+        "href": "#contact",
+        "kind": "button"
+      },
+      {
+        "label": "Selected work",
+        "href": "#work",
+        "kind": "textlink"
+      }
+    ],
+    "ringLabels": [
+      "Design",
+      "Engineering",
+      "Cloud",
+      "AI"
+    ],
+    "endcard": {
+      "wordmark": "ULTRAVI0LET",
+      "tagline": "The quiet machinery behind loud products.",
+      "stats": [
+        {
+          "k": "Est.",
+          "v": "2022"
+        },
+        {
+          "k": "Base",
+          "v": "Dubai"
+        },
+        {
+          "k": "Team",
+          "v": "Senior-only"
+        },
+        {
+          "k": "Mode",
+          "v": "Remote-first"
+        }
+      ]
+    },
+    "film": {
+      "chapters": [
+        "The invisible layer",
+        "Quiet machinery",
+        "Loud products",
+        "Ultravi0let"
+      ],
+      "scrollHint": "Scroll",
+      "progressFormat": "NNN / 100"
+    }
+  },
+  "marquee": [
+    "Design",
+    "Engineering",
+    "Cloud",
+    "Security",
+    "AI",
+    "Integrations",
+    "Mobile",
+    "Web",
+    "Brand",
+    "Motion",
+    "Systems",
+    "Strategy"
+  ],
+  "work": {
+    "eyebrow": "01 — Selected work",
+    "heading": "Things we’ve [light]shipped[/light]",
+    "hint": [
+      "Six products · 2022 — 2026",
+      "Hover a project"
+    ],
+    "projects": [
+      {
+        "n": "01",
+        "name": "shop.co",
+        "status": "Prototype",
+        "tags": "E-commerce · Tech",
+        "year": "2026",
+        "description": "Tech storefront for laptops, phones, audio and accessories — sale banners, newsletter signup and order tracking built for everyday electronics retail.",
+        "stats": [
+          {
+            "value": "4",
+            "label": "Categories"
+          },
+          {
+            "value": "Tech SKUs",
+            "label": "Catalog"
+          },
+          {
+            "value": "Cart + tracking",
+            "label": "Flow"
+          }
+        ]
+      },
+      {
+        "n": "02",
+        "name": "Merlin",
+        "status": "Delivered",
+        "tags": "SaaS · Website builder",
+        "year": "2025",
+        "description": "Dynamic company-site builder — themes, colours, logos and modular tabs for team, testimonials and services. Clients ship a polished presence in hours, not weeks.",
+        "stats": [
+          {
+            "value": "12+",
+            "label": "Themes"
+          },
+          {
+            "value": "< 1 day",
+            "label": "Time to ship"
+          }
+        ]
+      },
+      {
+        "n": "03",
+        "name": "Zanobia Patisserie",
+        "status": "Delivered",
+        "tags": "Operations · ERP",
+        "year": "2022",
+        "description": "End-to-end patisserie operations — factory production, inventory, retail shops, shop-to-factory ordering and back-office finance & HR in one system.",
+        "stats": [
+          {
+            "value": "Factory + 4 shops",
+            "label": "Sites"
+          },
+          {
+            "value": "8",
+            "label": "Modules"
+          }
+        ]
+      },
+      {
+        "n": "04",
+        "name": "AG Law",
+        "status": "Delivered · Undeployed",
+        "tags": "Legal tech · Web",
+        "year": "2024",
+        "description": "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
+        "stats": [
+          {
+            "value": "6",
+            "label": "Modules"
+          },
+          {
+            "value": "99.9%",
+            "label": "Uptime"
+          }
+        ]
+      },
+      {
+        "n": "05",
+        "name": "Maquette",
+        "status": "Delivered · Undeployed",
+        "tags": "Print · Production",
+        "year": "2024",
+        "description": "Print-service platform for architectural drawings, bulk apparel runs and merchandise — mugs, keychains and small-format jobs on a unified production queue.",
+        "stats": [
+          {
+            "value": "3",
+            "label": "Lines"
+          },
+          {
+            "value": "A0 — merch",
+            "label": "Formats"
+          }
+        ]
+      },
+      {
+        "n": "06",
+        "name": "Facet",
+        "status": "Prototype",
+        "tags": "Portfolio · Builder",
+        "year": "2025",
+        "description": "Field-aware portfolio builder — CS, architecture and medical templates with tailored prompts, two themes per discipline, sign-in and live preview.",
+        "stats": [
+          {
+            "value": "3",
+            "label": "Fields"
+          },
+          {
+            "value": "6",
+            "label": "Templates"
+          }
+        ]
+      }
+    ],
+    "viewer": {
+      "figure": "Fig. {n}",
+      "link": "View project",
+      "skyLabels": [
+        "Dawn",
+        "Morning",
+        "Noon",
+        "Dusk",
+        "Twilight",
+        "Night"
+      ]
+    }
+  },
+  "services": {
+    "eyebrow": "02 — Services",
+    "heading": "Eight disciplines, [light]one team[/light]",
+    "lead": "The full surface area of a modern product company — from the first sketch to the on-call rotation that keeps it alive at 3am.",
+    "items": [
+      {
+        "n": "01",
+        "name": "Interface Design",
+        "tags": "Brand · Product · Motion",
+        "description": "UI and brand systems that feel inevitable. Visual identity, product surfaces, and design tokens built to scale across teams."
+      },
+      {
+        "n": "02",
+        "name": "Engineering",
+        "tags": "Web · Mobile · API",
+        "description": "Web and mobile applications written by senior engineers. Type-safe, observable, and built to be maintained, not rewritten."
+      },
+      {
+        "n": "03",
+        "name": "Cloud & Infra",
+        "tags": "AWS · GCP · DevOps",
+        "description": "AWS and GCP architectures, CI/CD, and infrastructure-as-code. Predictable cost, predictable uptime."
+      },
+      {
+        "n": "04",
+        "name": "Architecture",
+        "tags": "Systems · DDD · Scale",
+        "description": "Systems design for products that need to last. We choose the boring technology so you can take the exciting risks."
+      },
+      {
+        "n": "05",
+        "name": "Security",
+        "tags": "Audit · Pen-test · SOC-2",
+        "description": "Threat modelling, code audits, and compliance readiness. Built-in, not bolted-on."
+      },
+      {
+        "n": "06",
+        "name": "Integrations",
+        "tags": "Stripe · AI · ERP",
+        "description": "Payment rails, messaging, identity, AI providers, and legacy systems. We make foreign services feel native."
+      },
+      {
+        "n": "07",
+        "name": "AI Engineering",
+        "tags": "LLM · RAG · Eval",
+        "description": "Production LLM pipelines with retrieval, evaluation, and guardrails. AI that ships, not AI that demos."
+      },
+      {
+        "n": "08",
+        "name": "Care & Support",
+        "tags": "SLA · On-call · Care",
+        "description": "Ongoing partnership after launch. Monitoring, on-call rotation, and a real human at the other end of the line."
+      }
+    ]
+  },
+  "studio": {
+    "eyebrow": "03 — Studio",
+    "title": "A short note",
+    "note": "We are a senior-only studio. We build the quiet layer that carries the most value — precise, restrained, and a little rare. If it feels quiet, exact, and uncommon, it is right.",
+    "signature": "Founders, Ultravi0let"
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "heading": "Four phases, [light]no surprises[/light]",
+    "lead": "Our engagements run lean. Small teams, short feedback loops, and demos every Friday. The process is the product.",
+    "label": "How we work · Four phases, no surprises",
+    "phases": [
+      {
+        "phase": "Phase 01",
+        "name": "Discovery",
+        "description": "Two weeks of deep listening. We map users, constraints, and the gap between where you are and where you want to be.",
+        "tags": "Stakeholder interviews · Competitive audit · Technical scoping",
+        "timeOfDay": {
+          "light": "Dawn",
+          "dark": "Moonrise"
+        }
+      },
+      {
+        "phase": "Phase 02",
+        "name": "Architecture",
+        "description": "Information architecture, systems design, and a north-star prototype. Decisions get cheap before code gets expensive.",
+        "tags": "IA · Wireframes · Tech RFC · Roadmap",
+        "timeOfDay": {
+          "light": "Morning",
+          "dark": "Night"
+        }
+      },
+      {
+        "phase": "Phase 03",
+        "name": "Build",
+        "description": "Two-week sprints. Demo every Friday. You watch the product grow in your hands, not in a status doc.",
+        "tags": "Design · Engineering · QA · Weekly demos",
+        "timeOfDay": {
+          "light": "Afternoon",
+          "dark": "Small hours"
+        }
+      },
+      {
+        "phase": "Phase 04",
+        "name": "Launch & Care",
+        "description": "We don’t disappear at v1. SLOs, monitoring, growth experiments, and a team that picks up the phone.",
+        "tags": "Observability · On-call · Iteration",
+        "timeOfDay": {
+          "light": "Dusk",
+          "dark": "Moonset"
+        }
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "heading": "What clients [light]say[/light]",
+    "items": [
+      {
+        "quote": "“They write code the way good lawyers write contracts. Every line is there for a reason. We’ve worked with three vendors before them. None compared.”",
+        "name": "Ahmed AbdelGawad",
+        "role": "Managing Partner, AG Law"
+      },
+      {
+        "quote": "“Architectural runs, apparel batches and merch jobs on one queue — they understood our floor before we finished explaining it. Production finally feels coordinated, not chaotic.”",
+        "name": "Abdelrahman Tarek",
+        "role": "Founder, Maquette"
+      },
+      {
+        "quote": "“Factory, shops and back office in one system changed how we operate. Shop requisitions hit production automatically — we stopped losing orders between the counter and the kitchen.”",
+        "name": "Karim Badr",
+        "role": "Co-founder, Zanobia Patisserie"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "04 — Let’s build",
+    "heading": "Got an idea? [light]Let’s make it fly[/light]",
+    "lead": "Tell us what you’re building. We’ll come back within 24 hours with three honest sentences about whether we’re the right team.",
+    "email": "hello@ultravi0let.com",
+    "copy": {
+      "idle": "Copy",
+      "done": "Copied"
+    },
+    "form": {
+      "fields": [
+        {
+          "id": "name",
+          "label": "Your name",
+          "type": "text",
+          "autocomplete": "name",
+          "required": true
+        },
+        {
+          "id": "company",
+          "label": "Company",
+          "type": "text",
+          "autocomplete": "organization",
+          "required": false
+        },
+        {
+          "id": "email",
+          "label": "Email",
+          "type": "email",
+          "autocomplete": "email",
+          "required": true
+        },
+        {
+          "id": "project",
+          "label": "Tell us about the project",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "submit": "Send to Ultravi0let",
+      "sent": "Thanks — it’s with us. We’ll come back within 24 hours.",
+      "error": "That didn’t go through. Write to hello@ultravi0let.com and we’ll pick it up there."
+    }
+  },
+  "footer": {
+    "wordmark": "ULTRAVI0LET",
+    "about": "The quiet machinery behind loud products. We build and own the parts of software other people can’t see — and won’t touch.",
+    "columns": [
+      {
+        "title": "Studio",
+        "links": [
+          [
+            "Work",
+            "#work"
+          ],
+          [
+            "Services",
+            "#services"
+          ],
+          [
+            "Process",
+            "#process"
+          ],
+          [
+            "Contact",
+            "#contact"
+          ]
+        ]
+      },
+      {
+        "title": "Disciplines",
+        "links": [
+          [
+            "Design",
+            "#services"
+          ],
+          [
+            "Engineering",
+            "#services"
+          ],
+          [
+            "Cloud & Infra",
+            "#services"
+          ],
+          [
+            "AI",
+            "#services"
+          ]
+        ]
+      }
+    ],
+    "copyright": "© 2026 Ultravi0let — Dubai",
+    "status": "All systems operational"
+  },
+  "ui": {
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "primaryNav": "Primary",
+    "menuNav": "Menu",
+    "home": "Ultravi0let — home",
+    "skipToContent": "Skip to content"
+  }
+}

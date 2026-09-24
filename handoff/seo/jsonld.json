@@ -1,0 +1,88 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.ultravi0let.com/#organization",
+      "name": "Ultravi0let",
+      "alternateName": [
+        "ULTRAVI0LET",
+        "Ultraviolet",
+        "Ultraviolet Studio"
+      ],
+      "url": "https://www.ultravi0let.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.ultravi0let.com/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://www.ultravi0let.com/og-image.png",
+      "description": "A senior-only product studio that builds and owns the parts of software other people can’t see — and won’t touch. Design, engineering, cloud and AI, from first prototype to production.",
+      "slogan": "The quiet machinery behind loud products.",
+      "email": "hello@ultravi0let.com",
+      "foundingDate": "2022",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dubai",
+        "addressCountry": "AE"
+      },
+      "areaServed": "Worldwide",
+      "knowsAbout": [
+        "Interface Design",
+        "Engineering",
+        "Cloud & Infra",
+        "Architecture",
+        "Security",
+        "Integrations",
+        "AI Engineering",
+        "Care & Support"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@ultravi0let.com",
+          "availableLanguage": [
+            "English"
+          ]
+        }
+      ],
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.ultravi0let.com/#website",
+      "name": "Ultravi0let",
+      "alternateName": [
+        "ULTRAVI0LET",
+        "Ultraviolet"
+      ],
+      "url": "https://www.ultravi0let.com/",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://www.ultravi0let.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ultravi0let.com/#webpage",
+      "url": "https://www.ultravi0let.com/",
+      "name": "Ultravi0let — Product design & engineering studio in Dubai",
+      "description": "We build the quiet machinery behind loud products. A senior-only studio in Dubai for design, engineering, cloud and AI, from first prototype to production.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.ultravi0let.com/#website"
+      },
+      "about": {
+        "@id": "https://www.ultravi0let.com/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.ultravi0let.com/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    }
+  ]
+}

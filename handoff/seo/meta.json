@@ -1,0 +1,48 @@
+{
+  "_about": "Proposed tags for the home page. Title is 58 characters and the description 155, both inside what Google shows. Wording comes from the site's own copy.",
+  "canonical": "https://www.ultravi0let.com/",
+  "title": "Ultravi0let — Product design & engineering studio in Dubai",
+  "description": "We build the quiet machinery behind loud products. A senior-only studio in Dubai for design, engineering, cloud and AI, from first prototype to production.",
+  "openGraph": {
+    "og:type": "website",
+    "og:site_name": "Ultravi0let",
+    "og:title": "Ultravi0let — Product design & engineering studio in Dubai",
+    "og:description": "We build the quiet machinery behind loud products. A senior-only studio in Dubai for design, engineering, cloud and AI, from first prototype to production.",
+    "og:url": "https://www.ultravi0let.com/",
+    "og:image": "https://www.ultravi0let.com/og-image.png",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:alt": "ULTRAVI0LET — the quiet machinery behind loud products.",
+    "og:locale": "en_US"
+  },
+  "twitter": {
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Ultravi0let — Product design & engineering studio in Dubai",
+    "twitter:description": "We build the quiet machinery behind loud products. A senior-only studio in Dubai for design, engineering, cloud and AI, from first prototype to production.",
+    "twitter:image": "https://www.ultravi0let.com/og-image.png"
+  },
+  "themeColor": {
+    "light": "#F2EDFE",
+    "dark": "#110E2A"
+  },
+  "icons": [
+    {
+      "rel": "icon",
+      "href": "/favicon.ico",
+      "sizes": "48x48"
+    },
+    {
+      "rel": "icon",
+      "href": "/favicon.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "rel": "apple-touch-icon",
+      "href": "/apple-touch-icon.png"
+    },
+    {
+      "rel": "manifest",
+      "href": "/site.webmanifest"
+    }
+  ]
+}

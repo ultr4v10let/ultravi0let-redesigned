@@ -1,0 +1,49 @@
+{
+  "name": "ultravi0let",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint",
+    "format": "prettier --write . && eslint --fix",
+    "check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/content.test.ts",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/hanken-grotesk": "5.3.0",
+    "@tanstack/react-router": "1.170.39",
+    "@tanstack/react-start": "1.168.58",
+    "nitro": "3.0.260903-beta",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "resend": "6.28.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@tanstack/eslint-config": "0.4.0",
+    "@types/node": "^22.10.2",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.20.0",
+    "pixelmatch": "7.2.0",
+    "pngjs": "7.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

@@ -1,0 +1,28 @@
+/* ULTRAVI0LET design tokens. Light is the default; dark follows the system until the visitor picks one
+   (data-theme on <html> wins over the system either way). */
+:root{
+  /* page */
+  --paper:#F2EDFE;--ink:#1A0B3B;--body:#3D2F66;--muted:#6A5C99;--faint:#8A7DBA;--hair:#DCD2F6;
+  --accent:#6A2EF5;--panel:#FCFAFF;--status:#22A06B;
+  /* buttons */
+  --btn-bg:#121016;--btn-fg:#F5F4F9;
+  /* text laid over a sky */
+  --sky-ink:#F5F4F9;
+  /* the four-phases trail, dawn to dusk */
+  --dawn:#FF9F6E;--noon:#8F72FF;--dusk:#FF6F9A;
+  /* menu icon split, the menu words' chromatic split (rgb triplets), the typing caret, the chosen project's number */
+  --uv1:#7A3CFF;--uv2:#FF3FA4;--cs1:122 60 255;--cs2:255 63 164;
+  --caret:#6A2EF5;--caret-glow:0 0 14px rgba(106,46,245,.22);--rownum:#6A2EF5;
+  /* the phone menu: a sky that opens from a halo */
+  --mn-sky:linear-gradient(180deg,#BBA7F6 0%,#DDD0FB 52%,#F7CDEF 100%);--mn-sun:rgba(255,255,255,.95);--mn-sun2:rgba(250,240,255,.55);--mn-ring:rgba(255,255,255,.85);--mn-red:rgba(230,60,160,.32);--mn-blue:rgba(180,235,255,.3);--mn-core:#FFFFFF;--mn-hair:rgba(26,11,59,.14);
+  /* layout and type */
+  --headh:88px;
+  --display:'Geist',"Helvetica Neue",Arial,sans-serif;
+  --text:'Hanken Grotesk',"Helvetica Neue",Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#110E2A;--ink:#F5F4F9;--body:#D0CCE4;--muted:#A39DC7;--faint:#837CAE;--hair:#2B2552;--accent:#C4B5FF;--panel:#16123A;--status:#4BD98F;--btn-bg:#F5F4F9;--btn-fg:#110E2A;--dawn:#8FA5FF;--noon:#C4B5FF;--dusk:#A08CFF;--uv1:#8F72FF;--uv2:#FF9A3D;--cs1:143 114 255;--cs2:255 154 61;--caret:#8F72FF;--caret-glow:none;--rownum:var(--ink);--mn-sky:linear-gradient(180deg,#07061A 0%,#141033 55%,#2A2152 100%);--mn-sun:rgba(236,240,255,.9);--mn-sun2:rgba(200,210,255,.35);--mn-ring:rgba(230,234,255,.6);--mn-red:rgba(255,150,140,.26);--mn-blue:rgba(160,175,255,.18);--mn-core:#E6EAFF;--mn-hair:rgba(255,255,255,.14);color-scheme:dark}
+}
+:root[data-theme="dark"]{--paper:#110E2A;--ink:#F5F4F9;--body:#D0CCE4;--muted:#A39DC7;--faint:#837CAE;--hair:#2B2552;--accent:#C4B5FF;--panel:#16123A;--status:#4BD98F;--btn-bg:#F5F4F9;--btn-fg:#110E2A;--dawn:#8FA5FF;--noon:#C4B5FF;--dusk:#A08CFF;--uv1:#8F72FF;--uv2:#FF9A3D;--cs1:143 114 255;--cs2:255 154 61;--caret:#8F72FF;--caret-glow:none;--rownum:var(--ink);--mn-sky:linear-gradient(180deg,#07061A 0%,#141033 55%,#2A2152 100%);--mn-sun:rgba(236,240,255,.9);--mn-sun2:rgba(200,210,255,.35);--mn-ring:rgba(230,234,255,.6);--mn-red:rgba(255,150,140,.26);--mn-blue:rgba(160,175,255,.18);--mn-core:#E6EAFF;--mn-hair:rgba(255,255,255,.14);color-scheme:dark}
