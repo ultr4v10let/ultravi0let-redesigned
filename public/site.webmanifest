@@ -1,0 +1,26 @@
+{
+  "name": "Ultravi0let",
+  "short_name": "Ultravi0let",
+  "description": "We build the quiet machinery behind loud products. A senior-only studio in Cairo for design, engineering, cloud and AI, from first prototype to production.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F2EDFE",
+  "theme_color": "#F2EDFE",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "_about": "Every number the three sky films need, as used by the approved page. Colours are sRGB hex; the renderer converts them to 0..1 floats. Positions (sx, sy, R) in the work skies are fractions of the canvas height/width as noted.",
+  "paper": {
+    "light": "#F2EDFE",
+    "dark": "#110E2A",
+    "_note": "The page background. The opening film fades into it and the four-phases film uses it as the ground below the horizon."
+  },
+  "heroFilm": {
+    "_note": "Opening film. Sky palette = mix(mix(dawn, clear, skyT), mix(nightDawn, nightClear, skyT), night), where skyT = smoothstep(0.04, 0.30, progress) and night is 0 in light mode, 1 in dark (eased on theme change).",
+    "dawn": {
+      "top": "#D6D0EE",
+      "mid": "#ECE3F2",
+      "low": "#FFE1D0",
+      "midPos": 0.55,
+      "haze": "#FFD0B6",
+      "hazeAmt": 0.6,
+      "glare": "#FFE8D4",
+      "glareAmt": 0.9
+    },
+    "clear": {
+      "top": "#433BA6",
+      "mid": "#7770CF",
+      "low": "#C3BBEA",
+      "midPos": 0.6,
+      "haze": "#F0DDEE",
+      "hazeAmt": 0.28,
+      "glare": "#FFFFFF",
+      "glareAmt": 1
+    },
+    "nightDawn": {
+      "top": "#0B0922",
+      "mid": "#161238",
+      "low": "#2E2456",
+      "midPos": 0.55,
+      "haze": "#3F2F66",
+      "hazeAmt": 0.45,
+      "glare": "#C8D0FF",
+      "glareAmt": 0.55
+    },
+    "nightClear": {
+      "top": "#07061A",
+      "mid": "#100D2A",
+      "low": "#211B4A",
+      "midPos": 0.6,
+      "haze": "#2B2256",
+      "hazeAmt": 0.3,
+      "glare": "#D6DEFF",
+      "glareAmt": 0.65
+    },
+    "chapters": {
+      "_note": "Progress-bar checkpoints: [scroll progress, label in light mode, label in dark mode]. Ticks are drawn at every start except the first.",
+      "list": [
+        [
+          0,
+          "The invisible layer",
+          "The invisible layer"
+        ],
+        [
+          0.3,
+          "Quiet machinery",
+          "Quiet machinery"
+        ],
+        [
+          0.5,
+          "Loud products",
+          "Loud products"
+        ],
+        [
+          0.72,
+          "Ultravi0let",
+          "Ultravi0let"
+        ]
+      ]
+    },
+    "ringLabels": {
+      "_note": "The four disciplines placed around the ring as it draws; angle = at * 360deg clockwise from the top.",
+      "list": [
+        [
+          "01",
+          "Design",
+          0.125
+        ],
+        [
+          "02",
+          "Engineering",
+          0.375
+        ],
+        [
+          "03",
+          "Cloud",
+          0.625
+        ],
+        [
+          "04",
+          "AI",
+          0.875
+        ]
+      ]
+    }
+  },
+  "workSkies": {
+    "_note": "A day of halos: one sky per project, in project order. sx/sy = sun position as a fraction of the canvas width/height; R = ring radius as a fraction of the canvas height; veil, dogs, line, arc, ghost = strengths 0..1; night = 0 day .. 1 night (stars, moon colours). The caption text turns dark on the Dawn sky only.",
+    "list": [
+      {
+        "label": "Dawn",
+        "top": "#CFC8EC",
+        "mid": "#EADFF0",
+        "low": "#FFD9C6",
+        "midPos": 0.55,
+        "haze": "#FFC9A8",
+        "hazeAmt": 0.6,
+        "glare": "#FFE6CF",
+        "glareAmt": 1.0,
+        "sx": 0.5,
+        "sy": 0.62,
+        "R": 0.3,
+        "veil": 0.75,
+        "dogs": 0.95,
+        "line": 1.0,
+        "arc": 0.35,
+        "night": 0,
+        "ghost": 0.6
+      },
+      {
+        "label": "Morning",
+        "top": "#3F37A3",
+        "mid": "#6E67C9",
+        "low": "#B9B1E8",
+        "midPos": 0.6,
+        "haze": "#EBD9F2",
+        "hazeAmt": 0.25,
+        "glare": "#FFFFFF",
+        "glareAmt": 1.0,
+        "sx": 0.5,
+        "sy": 0.52,
+        "R": 0.3,
+        "veil": 0.85,
+        "dogs": 1.0,
+        "line": 1.0,
+        "arc": 1.0,
+        "night": 0,
+        "ghost": 0.8
+      },
+      {
+        "label": "Noon",
+        "top": "#2D3AA6",
+        "mid": "#5A69D4",
+        "low": "#A7B2EE",
+        "midPos": 0.6,
+        "haze": "#E4EAFF",
+        "hazeAmt": 0.2,
+        "glare": "#FFFFFF",
+        "glareAmt": 1.1,
+        "sx": 0.5,
+        "sy": 0.44,
+        "R": 0.31,
+        "veil": 0.65,
+        "dogs": 0.5,
+        "line": 0.65,
+        "arc": 0.8,
+        "night": 0,
+        "ghost": 0.7
+      },
+      {
+        "label": "Dusk",
+        "top": "#553B9A",
+        "mid": "#AE6EA6",
+        "low": "#FFAE88",
+        "midPos": 0.55,
+        "haze": "#FF9C78",
+        "hazeAmt": 0.55,
+        "glare": "#FFD4AE",
+        "glareAmt": 1.0,
+        "sx": 0.5,
+        "sy": 0.6,
+        "R": 0.3,
+        "veil": 0.8,
+        "dogs": 1.1,
+        "line": 1.0,
+        "arc": 0.5,
+        "night": 0,
+        "ghost": 0.6
+      },
+      {
+        "label": "Twilight",
+        "top": "#211858",
+        "mid": "#4A398C",
+        "low": "#C07A9E",
+        "midPos": 0.56,
+        "haze": "#DC88A6",
+        "hazeAmt": 0.45,
+        "glare": "#F0CFE6",
+        "glareAmt": 0.75,
+        "sx": 0.5,
+        "sy": 0.64,
+        "R": 0.3,
+        "veil": 0.6,
+        "dogs": 0.75,
+        "line": 0.8,
+        "arc": 0.3,
+        "night": 0.35,
+        "ghost": 0.4
+      },
+      {
+        "label": "Night",
+        "top": "#07061A",
+        "mid": "#110E2A",
+        "low": "#231C4E",
+        "midPos": 0.6,
+        "haze": "#2E2458",
+        "hazeAmt": 0.3,
+        "glare": "#D6DEFF",
+        "glareAmt": 0.65,
+        "sx": 0.5,
+        "sy": 0.5,
+        "R": 0.3,
+        "veil": 0.6,
+        "dogs": 0.65,
+        "line": 0.7,
+        "arc": 0.4,
+        "night": 1.0,
+        "ghost": 0.3
+      }
+    ]
+  },
+  "processFilm": {
+    "_note": "The four phases as one day. Scroll progress p maps to the sun's place u on its arc through the keyframes (eased between them); the sky palette at u interpolates the six light (or dark) palettes evenly over u in 0..1. Each palette is [top, mid, low, midPos, haze, hazeAmt, glare, glareAmt].",
+    "keyframes": {
+      "scroll": [
+        0,
+        0.15,
+        0.37,
+        0.59,
+        0.81,
+        1
+      ],
+      "sun": [
+        0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1
+      ]
+    },
+    "clockMinutes": {
+      "light": [
+        350,
+        400,
+        600,
+        800,
+        1060,
+        1130
+      ],
+      "dark": [
+        1170,
+        1220,
+        1380,
+        1540,
+        1710,
+        1760
+      ],
+      "_note": "Minutes after midnight shown beside the sun at each sun keyframe, wrapped at 24h (dark mode runs through the night)."
+    },
+    "palettes": {
+      "light": [
+        [
+          "#B7AEE2",
+          "#E0D2EC",
+          "#FFC4A6",
+          0.55,
+          "#FFB48E",
+          0.75,
+          "#FFE0C8",
+          0.8
+        ],
+        [
+          "#CBC3EB",
+          "#EADFF0",
+          "#FFD6C2",
+          0.55,
+          "#FFC6A4",
+          0.6,
+          "#FFE6CF",
+          1
+        ],
+        [
+          "#4038A4",
+          "#6F68CA",
+          "#BAB2E8",
+          0.6,
+          "#EBD9F2",
+          0.25,
+          "#FFFFFF",
+          1
+        ],
+        [
+          "#2F3BA8",
+          "#5C6AD5",
+          "#A9B3EE",
+          0.6,
+          "#E4EAFF",
+          0.2,
+          "#FFFFFF",
+          1.1
+        ],
+        [
+          "#553B9A",
+          "#AE6EA6",
+          "#FFAE88",
+          0.55,
+          "#FF9C78",
+          0.55,
+          "#FFD4AE",
+          1
+        ],
+        [
+          "#2E2466",
+          "#76519A",
+          "#F29A86",
+          0.55,
+          "#FF907A",
+          0.6,
+          "#FFC6AE",
+          0.75
+        ]
+      ],
+      "dark": [
+        [
+          "#0F0C2C",
+          "#1D1745",
+          "#3F2F66",
+          0.55,
+          "#4A3872",
+          0.45,
+          "#C8D0FF",
+          0.5
+        ],
+        [
+          "#0B0922",
+          "#161238",
+          "#2E2456",
+          0.55,
+          "#3F2F66",
+          0.4,
+          "#C8D0FF",
+          0.55
+        ],
+        [
+          "#07061A",
+          "#100D2A",
+          "#211B4A",
+          0.6,
+          "#2B2256",
+          0.3,
+          "#D6DEFF",
+          0.65
+        ],
+        [
+          "#07061A",
+          "#0F0C28",
+          "#1E1846",
+          0.6,
+          "#28204F",
+          0.3,
+          "#D6DEFF",
+          0.65
+        ],
+        [
+          "#0B0922",
+          "#19143F",
+          "#33285E",
+          0.55,
+          "#45356E",
+          0.4,
+          "#C8D0FF",
+          0.55
+        ],
+        [
+          "#100C2E",
+          "#231B4F",
+          "#4B3672",
+          0.55,
+          "#5C417C",
+          0.5,
+          "#C8D0FF",
+          0.45
+        ]
+      ]
+    },
+    "markInk": "#121016",
+    "markInkLuminance": [
+      0.58,
+      0.72
+    ],
+    "markShade": "rgba(20,14,60,.45)",
+    "_markNote": "Marks drawn over the sky (the dotted arc, waypoints, clock, section label) switch from white to markInk as the sky's top colour gets light: k = smoothstep(markInkLuminance[0], markInkLuminance[1], 0.2126 r + 0.7152 g + 0.0722 b) of the top colour."
+  },
+  "noWebGLFallback": {
+    "heroLight": "linear-gradient(180deg,#8E86D6,#C9C1EC 55%,#FFE1D0)",
+    "heroDark": "linear-gradient(180deg,#07061A,#171238 60%,#2A2152)",
+    "workViewer": "linear-gradient(180deg,#3F37A3,#B9B1E8)",
+    "process": "linear-gradient(180deg,#6F68CA 0,#BAB2E8 var(--hz),var(--paper) var(--hz))"
+  }
+}

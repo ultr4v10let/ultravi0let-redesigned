@@ -1,0 +1,21 @@
+# Ultravi0let
+
+> A senior-only product studio in Cairo, remote-first, founded in 2022. We build and own the parts of software other people can’t see — and won’t touch: design, engineering, cloud and AI, from first prototype to production.
+
+Contact: hello@ultravi0let.com
+
+## Services
+- Interface Design: UI and brand systems, visual identity, product surfaces and design tokens.
+- Engineering: web and mobile applications written by senior engineers.
+- Cloud & Infra: AWS and GCP architectures, CI/CD and infrastructure-as-code.
+- Architecture: systems design for products that need to last.
+- Security: threat modelling, code audits and compliance readiness.
+- Integrations: payment rails, messaging, identity, AI providers and legacy systems.
+- AI Engineering: production LLM pipelines with retrieval, evaluation and guardrails.
+- Care & Support: monitoring, on-call rotation and ongoing partnership after launch.
+
+## How we work
+Four phases: Discovery, Architecture, Build (two-week sprints, a demo every Friday), Launch & Care.
+
+## Pages
+- [Home](https://www.ultravi0let.com/): who we are, selected work, services, process, testimonials and contact.
