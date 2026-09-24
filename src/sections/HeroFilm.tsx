@@ -59,12 +59,19 @@ export function HeroFilm({ ref }: { ref?: Ref<HTMLElement> }) {
 
         <div className="film-ui" aria-hidden="true">
           <div className="wrap">
-            <span className="chapter" id="chapter"><i>01</i>{hero.film.chapters[0]}</span>
+            {/* each side holds invisible copies of its widest text, so the bar between them never changes length */}
+            <span className="chapter" id="chapter">
+              <span className="now"><i>01</i>{hero.film.chapters[0]}</span>
+              {hero.film.chapters.map((c, i) => <span key={c} className="size"><i>{`0${i + 1}`}</i>{c}</span>)}
+            </span>
             <span className="bar">
               <b id="bar-fill" />
               {heroFilm.chapters.list.slice(1).map(([at]) => <s key={at} style={{ left: `${Math.round(Number(at) * 100)}%` }} />)}
             </span>
-            <span className="pct" id="pct">{hero.film.scrollHint}</span>
+            <span className="pct" id="pct">
+              <span className="now">{hero.film.scrollHint}</span>
+              <span className="size">{hero.film.progressFormat.replace('NNN', '100')}</span>
+            </span>
           </div>
         </div>
       </div>

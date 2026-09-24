@@ -55,7 +55,8 @@ export function processFilm(section: HTMLElement): Film {
     canvas,
     target: section,
     /* no WebGL: the stage's CSS gradient (.no-gl .pstage) takes over */
-    attach(s) { if (s) { sky = s; s.size(W, H); self.need = true } else section.classList.add('no-gl') },
+    attach(s) { if (s) { sky = s; s.size(W, H); self.need = true } else self.fallback(true) },
+    fallback(on) { section.classList.toggle('no-gl', on) },
     measure() {
       W = stage.clientWidth
       H = stage.clientHeight
@@ -86,6 +87,8 @@ export function processFilm(section: HTMLElement): Film {
         s.style.setProperty('--tick', `${(wp[i].x - x).toFixed(1)}px`)
       })
       stage.style.setProperty('--hz', `${HZ}px`)
+      /* the marks have places now (build.css keeps them hidden until then) */
+      section.classList.add('measured')
       sky?.size(W, H)
       self.need = true
     },
@@ -100,7 +103,6 @@ export function processFilm(section: HTMLElement): Film {
     write(now) {
       self.need = false
       self.last = now
-      if (sky?.lost) { sky = null; section.classList.add('no-gl') }
       const night = S.night, dark = S.theme === 'dark'
       const tot = height - H
       const p = tot > 0 ? clamp(-top / tot, 0, 1) : 0

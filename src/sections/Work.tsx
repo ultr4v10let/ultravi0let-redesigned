@@ -48,8 +48,11 @@ export function Work({ ref }: { ref?: Ref<HTMLElement> }) {
   }, [select])
 
   const onKey = (e: KeyboardEvent) => {
+    /* step from the tab that has focus: hovering can select a different row than the one being navigated */
+    const at = tabs.current.indexOf(e.target as HTMLButtonElement)
+    const from = at >= 0 ? at : sel
     let next = -1
-    if (e.key in STEP) next = (sel + STEP[e.key] + P.length) % P.length
+    if (e.key in STEP) next = (from + STEP[e.key] + P.length) % P.length
     else if (e.key === 'Home') next = 0
     else if (e.key === 'End') next = P.length - 1
     if (next < 0) return

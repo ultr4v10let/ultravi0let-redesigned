@@ -17,15 +17,13 @@ export function heroFilm(film: HTMLElement): Film {
   const halves = [...film.querySelectorAll<HTMLElement>('.bigword .half')]
   const zeros = [...slot.querySelectorAll('svg')]
   const labels = [...film.querySelectorAll<HTMLElement>('.ring-label')]
-  const chapterEl = q<HTMLElement>('.chapter'), barEl = q<HTMLElement>('.bar b'), pctEl = q<HTMLElement>('.pct')
+  const chapterEl = q<HTMLElement>('.chapter .now'), barEl = q<HTMLElement>('.bar b'), pctEl = q<HTMLElement>('.pct .now')
 
   let sky: Sky | null = null
   let failed = false
   let zero = { x: 0, y: 0, r: 20 }, W = 1, H = 1, labelW: number[] = []
   let top = 0, height = 1
   let veil = 0, pNow = 0, lastChapter = '', lastPct = ''
-
-  const fail = () => { failed = true; sky = null; document.documentElement.classList.add('no-gl') }
 
   const self: Film = {
     name: 'hero',
@@ -35,7 +33,8 @@ export function heroFilm(film: HTMLElement): Film {
     get sky() { return sky },
     budget: () => (Math.min(screen.width, screen.height) < 600 ? 0.9e6 : 2.0e6),
     canvas,
-    attach(s) { if (s) { sky = s; s.size(W, H); self.need = true } else fail() },
+    attach(s) { if (s) { sky = s; s.size(W, H); self.need = true } else { failed = true; self.fallback(true) } },
+    fallback(on) { document.documentElement.classList.toggle('no-gl', on) },
     measure() {
       W = stage.clientWidth
       H = stage.clientHeight
@@ -59,7 +58,6 @@ export function heroFilm(film: HTMLElement): Film {
     write(now) {
       self.need = false
       self.last = now
-      if (sky?.lost) fail()
       const total = height - H
       const p = total > 0 ? clamp(-top / total, 0, 1) : 0
       const portrait = H > W * 1.05, night = S.night

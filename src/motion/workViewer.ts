@@ -53,10 +53,8 @@ export function workViewer(section: HTMLElement): Film {
     budget: () => 1.2e6,
     canvas,
     target: art,
-    attach(s) {
-      if (s) { sky = s; self.measure(); return }
-      art.style.background = noWebGLFallback.workViewer
-    },
+    attach(s) { if (s) { sky = s; self.measure() } else self.fallback(true) },
+    fallback(on) { art.style.background = on ? noWebGLFallback.workViewer : '' },
     measure() {
       if (!sky) return
       const r = art.getBoundingClientRect()
@@ -70,7 +68,6 @@ export function workViewer(section: HTMLElement): Film {
       self.need = false
       self.last = now
       if (!sky) return
-      if (sky.lost) { sky = null; art.style.background = noWebGLFallback.workViewer; return }
       const W = sky.cssW, H = sky.cssH, reduce = S.reduce
       const k = (now - t0) / 1000
       state = lerpSky(from, SKIES[cur], ease(clamp(k / 0.9, 0, 1)))

@@ -72,12 +72,13 @@ export function menu(mnav: HTMLElement) {
     markHere()
     mopen.setAttribute('aria-expanded', 'true')
     document.body.style.overflow = 'hidden'
-    setInert(true)
     if (S.reduce) {
       mnav.classList.add('show', 'in')
       mnav.style.clipPath = 'none'
       state = 'open'
       S.menuOpen = true
+      /* the rest of the page goes inert once the menu is open, as the prototype's Tab trap did */
+      setInert(true)
       mclose.focus({ preventScroll: true })
       return
     }
@@ -93,6 +94,8 @@ export function menu(mnav: HTMLElement) {
         edge.classList.remove('show')
         state = 'open'
         S.menuOpen = true
+        /* the rest of the page goes inert once the menu is open, as the prototype's Tab trap did */
+        setInert(true)
         mclose.focus({ preventScroll: true })
       })
     }, 230)

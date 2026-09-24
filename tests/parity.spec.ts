@@ -38,23 +38,23 @@ type Shot = { name: string; scroll: (p: Page) => Promise<number>; canvas?: strin
 const film = (p: number): Shot => ({
   name: `film-${p}`,
   canvas: p < 0.965 ? '#sky' : undefined,
-  scroll: (page) => page.evaluate((p) => {
+  scroll: (page) => page.evaluate((at) => {
     const s = document.getElementById('top')!, st = document.getElementById('stage')!
-    return (s.offsetHeight - st.clientHeight) * p
+    return (s.offsetHeight - st.clientHeight) * at
   }, p),
 })
 const proc = (p: number, label: string): Shot => ({
   name: `process-${label}`,
   canvas: '#psky',
-  scroll: (page) => page.evaluate((p) => {
+  scroll: (page) => page.evaluate((at) => {
     const s = document.getElementById('process')!, st = document.getElementById('pstage')!
-    return s.offsetTop + (s.offsetHeight - st.clientHeight) * p
+    return s.offsetTop + (s.offsetHeight - st.clientHeight) * at
   }, p),
 })
 const at = (id: string, canvas?: string): Shot => ({
   name: id,
   canvas,
-  scroll: (page) => page.evaluate((id) => document.getElementById(id)!.getBoundingClientRect().top + scrollY, id),
+  scroll: (page) => page.evaluate((el) => document.getElementById(el)!.getBoundingClientRect().top + scrollY, id),
 })
 
 const SHOTS: Shot[] = [
@@ -84,6 +84,8 @@ for (const mode of MODES) {
       if (isBuild) await page.addInitScript(() => { window.__uvFixedQuality = true })
       await page.goto(url, { waitUntil: 'networkidle' })
       await page.evaluate(() => document.fonts.ready)
+      /* intended difference 1: the --faint contrast fix (BRIEF §5), applied to the reference so it isn't reported */
+      if (!isBuild) await page.addStyleTag({ content: ':root:not([data-theme="dark"]){--faint:#7262AC}' })
       expect(await page.evaluate(() => !!document.createElement('canvas').getContext('webgl')), 'WebGL must be available').toBe(true)
       if (isBuild) await page.waitForSelector('#sky[data-gl="1"]')
       return page
@@ -96,12 +98,17 @@ for (const mode of MODES) {
     for (const shot of SHOTS) {
       for (const [page, isBuild] of [[ref, false], [build, true]] as const) {
         const y = await shot.scroll(page)
-        await page.evaluate((y) => window.scrollTo(0, y), y)
+        await page.evaluate((top) => window.scrollTo(0, top), y)
         await settle(page)
         if (isBuild && shot.canvas) await page.waitForSelector(`${shot.canvas}[data-gl="1"]`)
         await settle(page)
       }
       const [a, b] = [PNG.sync.read(await ref.screenshot()), PNG.sync.read(await build.screenshot())]
+      /* intended difference 2 (owner's request): the film's progress bar keeps one length, so its row is masked */
+      if (shot.name.startsWith('film')) {
+        const r = await build.evaluate(() => { const ui = document.querySelector('.film-ui')!.getBoundingClientRect(); return [ui.top, ui.bottom].map(Math.round) })
+        for (const png of [a, b]) for (let y = Math.max(0, r[0]); y < Math.min(png.height, r[1]); y++) png.data.fill(0, y * png.width * 4, (y + 1) * png.width * 4)
+      }
       const diff = new PNG({ width: a.width, height: a.height })
       const n = pixelmatch(a.data, b.data, diff.data, a.width, a.height, { threshold: 0.1 })
       const ratio = n / (a.width * a.height)

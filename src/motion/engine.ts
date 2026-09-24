@@ -21,7 +21,11 @@ declare global {
 export interface MotionRefs { header: HTMLElement; menu: HTMLElement; film: HTMLElement; work: HTMLElement; process: HTMLElement }
 
 export function startMotion(r: MotionRefs) {
+  let alive = true
   S.reduce = reducedMotion()
+  document.documentElement.classList.remove('no-gl')
+  /* the typewriter goes first, so nothing that throws later can leave the headline faint */
+  const stopTyping = typewriter(r.film.querySelector('h1') as HTMLElement, S.reduce)
   const hero = heroFilm(r.film), work = workViewer(r.work), proc = processFilm(r.process)
   const films: Film[] = [hero, work, proc]
   const hdr = header(r.header, r.film, r.process)
@@ -35,7 +39,7 @@ export function startMotion(r: MotionRefs) {
     if (proc.inView) proc.write(now)
     hdr.write()
   }
-  const cleanups = [theme(redrawNow), menu(r.menu), typewriter(r.film.querySelector('h1') as HTMLElement, S.reduce)]
+  const cleanups = [stopTyping, theme(redrawNow), menu(r.menu)]
 
   const measure = () => { films.forEach((f) => f.measure()); hdr.measure(); needHead = true }
   measure()
@@ -51,6 +55,7 @@ export function startMotion(r: MotionRefs) {
     /* says whether this canvas got a context: handy when debugging, and the parity tests wait for it */
     f.canvas.dataset.gl = s ? '1' : '0'
     if (!s) return
+    s.onLost = (lost) => { f.fallback(lost); if (!lost) { f.need = true; needHead = true } }
     born.set(f, performance.now())
     /* draw the first frame in the same task, so the canvas is never blank */
     f.read?.()
@@ -68,20 +73,25 @@ export function startMotion(r: MotionRefs) {
   films.forEach((f) => { nearIO.observe(f.target ?? r.film); viewIO.observe(f.target ?? r.film) })
 
   const load = () => import('./sky/renderer')
-    .then((m) => { mod = m; films.forEach(tryAttach) })
-    .catch(() => films.forEach((f) => { if (!tried.has(f)) { tried.add(f); f.attach(null) } }))
+    .then((m) => { if (alive) { mod = m; films.forEach(tryAttach) } })
+    .catch(() => { if (alive) films.forEach((f) => { if (!tried.has(f)) { tried.add(f); f.attach(null) } }) })
   /* Safari has no requestIdleCallback */
   const ric = window.requestIdleCallback as typeof requestIdleCallback | undefined
   const idleId = ric ? ric(load, { timeout: 2000 }) : window.setTimeout(load, 200)
 
-  /* ---- adaptive quality: three slow frames in a row after a canvas drew → 30% fewer pixels, down to half ---- */
-  const slow = new Map<Film, number>()
+  /* ---- adaptive quality: three slow frames in a row after a canvas drew → 30% fewer pixels, down to half ----
+     "Slow" is measured against the display's own pace (the shortest recent frame), so a 30 fps screen (iOS Low Power
+     Mode, energy savers) isn't taken for a struggling GPU. Frames during the theme's view transition don't count. */
+  const slow = new Map<Film, number>(), recent: number[] = []
   let drew: Film[] = []
   const adapt = (dt: number, now: number) => {
-    if (window.__uvFixedQuality) return
+    recent.push(dt)
+    if (recent.length > 60) recent.shift()
+    if (window.__uvFixedQuality || document.documentElement.classList.contains('vt')) return
+    const slowAt = Math.max(24, 1.5 * Math.min(...recent))
     for (const f of drew) {
       if (!f.sky || now - (born.get(f) ?? now) < 1000) continue
-      const c = dt > 24 ? (slow.get(f) ?? 0) + 1 : 0
+      const c = dt > slowAt ? (slow.get(f) ?? 0) + 1 : 0
       if (c >= 3) { if (f.sky.degrade()) f.need = true; slow.set(f, 0) } else slow.set(f, c)
     }
   }
@@ -112,7 +122,6 @@ export function startMotion(r: MotionRefs) {
   const onResize = () => { clearTimeout(rt); rt = window.setTimeout(measure, 120) }
   addEventListener('scroll', onScroll, { passive: true })
   addEventListener('resize', onResize)
-  let alive = true
   document.fonts.ready.then(() => { if (alive) { hero.measure(); proc.measure() } })
 
   return () => {

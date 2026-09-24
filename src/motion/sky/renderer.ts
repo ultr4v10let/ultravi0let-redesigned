@@ -18,6 +18,36 @@ export interface SkyState {
   skyH?: number; groundOn?: boolean; ground?: RGB
 }
 
+type Uniforms = Record<(typeof UNIFORMS)[number], WebGLUniformLocation | null>
+
+/* Compile, link and bind the one program and its triangle; null if this GPU can't run the shader. */
+function setup(g: WebGLRenderingContext): Uniforms | null {
+  const sh = (type: number, src: string) => {
+    const s = g.createShader(type)
+    if (!s) return null
+    g.shaderSource(s, src)
+    g.compileShader(s)
+    if (!g.getShaderParameter(s, g.COMPILE_STATUS)) { console.warn(g.getShaderInfoLog(s)); return null }
+    return s
+  }
+  const vs = sh(g.VERTEX_SHADER, VS), fs = sh(g.FRAGMENT_SHADER, FS)
+  const pr = g.createProgram()
+  if (!vs || !fs) return null
+  g.attachShader(pr, vs)
+  g.attachShader(pr, fs)
+  g.linkProgram(pr)
+  if (!g.getProgramParameter(pr, g.LINK_STATUS)) { console.warn(g.getProgramInfoLog(pr)); return null }
+  g.useProgram(pr)
+  g.bindBuffer(g.ARRAY_BUFFER, g.createBuffer())
+  g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), g.STATIC_DRAW)
+  const loc = g.getAttribLocation(pr, 'a')
+  g.enableVertexAttribArray(loc)
+  g.vertexAttribPointer(loc, 2, g.FLOAT, false, 0, 0)
+  const U = {} as Uniforms
+  for (const n of UNIFORMS) U[n] = g.getUniformLocation(pr, n)
+  return U
+}
+
 export class Sky {
   w = 0
   h = 0
@@ -25,18 +55,30 @@ export class Sky {
   cssH = 1
   scale = 1
   lost = false
+  /* told when the context is lost (true) and when it comes back and has been set up again (false) */
+  onLost: (lost: boolean) => void = () => {}
   readonly canvas: HTMLCanvasElement
   private readonly gl: WebGLRenderingContext
-  private readonly U: Record<(typeof UNIFORMS)[number], WebGLUniformLocation | null>
+  private U: Uniforms
   private maxPx: number
   private readonly minPx: number
-  private constructor(canvas: HTMLCanvasElement, gl: WebGLRenderingContext, U: Record<(typeof UNIFORMS)[number], WebGLUniformLocation | null>, maxPx: number) {
+  private constructor(canvas: HTMLCanvasElement, gl: WebGLRenderingContext, U: Uniforms, maxPx: number) {
     this.canvas = canvas
     this.gl = gl
     this.U = U
     this.maxPx = maxPx
     this.minPx = maxPx / 2
-    canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); this.lost = true })
+    /* after a GPU reset or a backgrounded tab the browser gives the context back empty: set it up again */
+    canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); this.lost = true; this.onLost(true) })
+    canvas.addEventListener('webglcontextrestored', () => {
+      const u = setup(this.gl)
+      if (!u) return
+      this.U = u
+      this.lost = false
+      this.w = this.h = 0
+      this.size(this.cssW, this.cssH)
+      this.onLost(false)
+    })
   }
 
   /* null when WebGL (or the shader) isn't available: the caller shows that canvas's CSS fallback. */
@@ -46,31 +88,10 @@ export class Sky {
       gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: false, powerPreference: 'high-performance' })
     } catch { gl = null }
     if (!gl) return null
-    const g = gl
-    const sh = (type: number, src: string) => {
-      const s = g.createShader(type)
-      if (!s) return null
-      g.shaderSource(s, src)
-      g.compileShader(s)
-      if (!g.getShaderParameter(s, g.COMPILE_STATUS)) { console.warn(g.getShaderInfoLog(s)); return null }
-      return s
-    }
-    const vs = sh(g.VERTEX_SHADER, VS), fs = sh(g.FRAGMENT_SHADER, FS)
-    const pr = g.createProgram()
-    if (!vs || !fs) return null
-    g.attachShader(pr, vs)
-    g.attachShader(pr, fs)
-    g.linkProgram(pr)
-    if (!g.getProgramParameter(pr, g.LINK_STATUS)) { console.warn(g.getProgramInfoLog(pr)); return null }
-    g.useProgram(pr)
-    g.bindBuffer(g.ARRAY_BUFFER, g.createBuffer())
-    g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), g.STATIC_DRAW)
-    const loc = g.getAttribLocation(pr, 'a')
-    g.enableVertexAttribArray(loc)
-    g.vertexAttribPointer(loc, 2, g.FLOAT, false, 0, 0)
-    const U = {} as Record<(typeof UNIFORMS)[number], WebGLUniformLocation | null>
-    for (const n of UNIFORMS) U[n] = g.getUniformLocation(pr, n)
-    return new Sky(canvas, g, U, maxPx)
+    const U = setup(gl)
+    /* a live opaque context would paint black over the fallback, so give it up */
+    if (!U) { gl.getExtension('WEBGL_lose_context')?.loseContext(); return null }
+    return new Sky(canvas, gl, U, maxPx)
   }
 
   /* Device pixel ratio capped at 2, then capped again by the pixel budget. */
@@ -141,6 +162,7 @@ export class Sky {
 
   /* Free the GPU context when the page is left. */
   release() {
+    this.onLost = () => {}
     this.lost = true
     this.gl.getExtension('WEBGL_lose_context')?.loseContext()
   }

@@ -1,8 +1,8 @@
 /* ULTRAVI0LET design tokens. Light is the default; dark follows the system until the visitor picks one
    (data-theme on <html> wins over the system either way). */
 :root{
-  /* page */
-  --paper:#F2EDFE;--ink:#1A0B3B;--body:#3D2F66;--muted:#6A5C99;--faint:#8A7DBA;--hair:#DCD2F6;
+  /* page (--faint is #7262AC here, not the approved #8A7DBA, for 4.5:1 contrast on the paper: BRIEF §5) */
+  --paper:#F2EDFE;--ink:#1A0B3B;--body:#3D2F66;--muted:#6A5C99;--faint:#7262AC;--hair:#DCD2F6;
   --accent:#6A2EF5;--panel:#FCFAFF;--status:#22A06B;
   /* buttons */
   --btn-bg:#121016;--btn-fg:#F5F4F9;

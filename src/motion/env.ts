@@ -27,6 +27,8 @@ export interface Film {
   /* the element whose visibility gates drawing (defaults to the section) */
   target?: Element
   attach: (s: Sky | null) => void
+  /* show (or remove) the CSS stand-in for this canvas: no WebGL at all, or the context is lost for now */
+  fallback: (on: boolean) => void
   measure: () => void
   wants: (now: number) => boolean
   read?: () => void

@@ -14,10 +14,8 @@ const stored = (): Theme | null => {
 
 export function theme(redrawNow: () => void) {
   const switches = [...document.querySelectorAll<HTMLButtonElement>('.switch')]
-  const metas = [...document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')]
-  const metaDefaults = metas.map((m) => m.content)
   const sys = matchMedia('(prefers-color-scheme: dark)')
-  let busy = false
+  let busy = false, timer = 0
 
   const paint = (t: Theme) => {
     S.theme = t
@@ -26,9 +24,18 @@ export function theme(redrawNow: () => void) {
       s.setAttribute('aria-checked', String(t === 'dark'))
       s.setAttribute('aria-label', t === 'dark' ? ui.switchToLight : ui.switchToDark)
     })
-    /* the media queries on theme-color only follow the system; a chosen theme overrides both */
+    /* the media-query theme-color metas only follow the system; a chosen theme gets its own meta, first in the head
+       (the browser uses the first match), and React's metas are never touched */
     const own = stored()
-    metas.forEach((m, i) => { m.content = own ? paper[own] : metaDefaults[i] })
+    let choice = document.getElementById('theme-choice') as HTMLMetaElement | null
+    if (own && !choice) {
+      choice = document.createElement('meta')
+      choice.name = 'theme-color'
+      choice.id = 'theme-choice'
+      document.head.prepend(choice)
+    }
+    if (own && choice) choice.content = paper[own]
+    else choice?.remove()
   }
   const ease = (t: Theme) => { S.nightTarget = t === 'dark' ? 1 : 0; S.needAll() }
 
@@ -54,7 +61,7 @@ export function theme(redrawNow: () => void) {
     })
     if (S.reduce || !('startViewTransition' in document)) { paint(next); ease(next); return }
     busy = true
-    setTimeout(() => {
+    timer = window.setTimeout(() => {
       const r = sw.getBoundingClientRect()
       const x = r.left + r.width / 2, y = r.top + r.height / 2
       const R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
@@ -81,6 +88,7 @@ export function theme(redrawNow: () => void) {
   switches.forEach((s) => s.addEventListener('click', onClick))
 
   return () => {
+    clearTimeout(timer)
     sys.removeEventListener('change', onSys)
     switches.forEach((s) => s.removeEventListener('click', onClick))
   }

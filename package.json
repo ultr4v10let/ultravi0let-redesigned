@@ -13,7 +13,7 @@
     "format": "prettier --write . && eslint --fix",
     "check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/content.test.ts",
+    "test": "node --test tests/content.test.ts tests/seo.test.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "zod": "4.6.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
     "@tanstack/eslint-config": "0.4.0",
     "@types/node": "^22.10.2",

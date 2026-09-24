@@ -69,7 +69,7 @@ export function Contact() {
           </div>
         ))}
         {/* Honeypot: people never see or reach it; bots that fill every field do. */}
-        <div className="hp" inert><label htmlFor="f-extra">Leave this empty</label><input id="f-extra" name="extra" type="text" tabIndex={-1} autoComplete="off" /></div>
+        <div className="hp" inert aria-hidden="true"><label htmlFor="f-extra">Leave this empty</label><input id="f-extra" name="extra" type="text" tabIndex={-1} autoComplete="off" /></div>
         {state === 'sent'
           ? <p className="form-note" role="status" tabIndex={-1} ref={sent}>{contact.form.sent}</p>
           : <button type="submit" className="btn" aria-disabled={state === 'sending' || undefined}>{contact.form.submit}</button>}
