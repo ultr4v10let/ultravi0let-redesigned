@@ -4,6 +4,9 @@ import { createServer } from 'node:http'
 import type { Server } from 'node:http'
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
+import content from '../src/content/content.json' with { type: 'json' }
+
+const SENT = content.contact.form.sent
 
 type Sent = { auth?: string; body: Record<string, unknown> }
 const sent: Sent[] = []
@@ -43,15 +46,21 @@ async function fill(page: Page, { name = 'Ada Lovelace', company = 'Analytical E
   await page.fill('#f-project', project)
 }
 
-test('sends the enquiry through Resend, then thanks the visitor and clears the form', async ({ page }) => {
+test('sends the enquiry through Resend, then confirms it in place of the form and clears the form', async ({ page }) => {
   await go(page)
   await page.locator('#contact').scrollIntoViewIfNeeded()
   await fill(page)
   await page.waitForTimeout(3100)
   await page.click('#contact-form button[type="submit"]')
-  await expect(page.locator('#contact-form [role="status"]')).toHaveText('Thanks — it’s with us. We’ll come back within 24 hours.', { timeout: 15_000 })
-  await expect(page.locator('#contact-form [role="status"]')).toBeFocused()
+  const status = page.locator('#contact-form [role="status"]')
+  await expect(status).toContainText(SENT.title, { timeout: 15_000 })
+  await expect(status).toContainText(SENT.eyebrow)
+  await expect(status).toContainText(SENT.body)
+  await expect(status).toBeFocused()
   await expect(page.locator('#f-name')).toHaveValue('')
+  /* the stepped-aside fields and button are out of reach until the form comes back */
+  await expect(page.locator('#contact-form .field').first()).toHaveAttribute('inert', '')
+  await expect(page.locator('#contact-form button[type="submit"]')).toHaveAttribute('inert', '')
   expect(sent).toHaveLength(1)
   const { auth, body } = sent[0]
   expect(auth).toBe('Bearer re_test')
@@ -63,6 +72,19 @@ test('sends the enquiry through Resend, then thanks the visitor and clears the f
   })
   expect(body.text).toContain('Project: A machine\nthat weaves.')
   expect(body.html).toContain('A machine<br>that weaves.')
+})
+
+test('“Beam another” brings back the empty form, focused on the first field', async ({ page }) => {
+  await go(page)
+  await page.locator('#contact').scrollIntoViewIfNeeded()
+  await fill(page)
+  await page.waitForTimeout(3100)
+  await page.click('#contact-form button[type="submit"]')
+  await page.getByRole('button', { name: SENT.again }).click()
+  await expect(page.locator('#contact-form [role="status"]')).toHaveCount(0)
+  await expect(page.locator('#f-name')).toBeFocused()
+  await expect(page.locator('#contact-form .field').first()).not.toHaveAttribute('inert')
+  await expect(page.locator('#contact-form button[type="submit"]')).toBeVisible()
 })
 
 test('a provider error shows the fallback message, never the provider detail', async ({ page }) => {

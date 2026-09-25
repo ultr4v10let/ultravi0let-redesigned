@@ -455,7 +455,12 @@
         }
       ],
       "submit": "Beam it over",
-      "sent": "Thanks — it’s with us. We’ll come back within 24 hours.",
+      "sent": {
+        "eyebrow": "Transmission received",
+        "title": "Loud and clear.",
+        "body": "Your idea made it across the sky in one piece. A senior human — no bots, no interns — will write back within 24 hours with three honest sentences, as promised.",
+        "again": "Beam another"
+      },
       "error": "That didn’t go through. Write to hello@ultravi0let.com and we’ll pick it up there."
     }
   },
