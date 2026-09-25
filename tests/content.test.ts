@@ -15,7 +15,7 @@ const SKIP_PATHS = [
   /^work\.viewer\.skyLabels\.[1-5]$/, // the viewer caption shows the first sky until a project is chosen
   /^contact\.copy\.done$/, // "Copied"
   /^ui\.switchToLight$/, // the switch label that isn't showing
-  /^contact\.form\.(sent|error)$/, // shown after sending
+  /^contact\.form\.(sent\.\w+|error)$/, // shown after sending
   /^footer\.columns\.\d+\.links\.\d+\.1$/, // hrefs
 ]
 

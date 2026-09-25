@@ -187,7 +187,7 @@
         "status": "Delivered",
         "tags": "SaaS · Website builder",
         "year": "2025",
-        "url": "https://www.ultravi0let.com/demos/merlin",
+        "url": "/demos/merlin",
         "description": "Dynamic company-site builder — themes, colours, logos and modular tabs for team, testimonials and services. Clients ship a polished presence in hours, not weeks.",
         "stats": [
           {
@@ -206,7 +206,7 @@
         "status": "In progress",
         "tags": "Operations · ERP",
         "year": "2026",
-        "url": "https://www.ultravi0let.com/demos/zanobia",
+        "url": "/demos/zanobia",
         "description": "End-to-end patisserie operations — factory production, inventory, retail shops, shop-to-factory ordering and back-office finance & HR in one system.",
         "stats": [
           {
@@ -225,7 +225,7 @@
         "status": "Delivered · Undeployed",
         "tags": "Legal tech · Web",
         "year": "2024",
-        "url": "https://www.ultravi0let.com/demos/ag-law",
+        "url": "/demos/ag-law",
         "description": "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
         "stats": [
           {
@@ -244,7 +244,7 @@
         "status": "Delivered · Undeployed",
         "tags": "Print · Production",
         "year": "2024",
-        "url": "https://www.ultravi0let.com/demos/maquette",
+        "url": "/demos/maquette",
         "description": "Print-service platform for architectural drawings, bulk apparel runs and merchandise — mugs, keychains and small-format jobs on a unified production queue.",
         "stats": [
           {
@@ -263,7 +263,7 @@
         "status": "Prototype",
         "tags": "Portfolio · Builder",
         "year": "2025",
-        "url": "https://www.ultravi0let.com/demos/facet",
+        "url": "/demos/facet",
         "description": "Field-aware portfolio builder — CS, architecture and medical templates with tailored prompts, two themes per discipline, sign-in and live preview.",
         "stats": [
           {
@@ -455,7 +455,12 @@
         }
       ],
       "submit": "Beam it over",
-      "sent": "Thanks — it’s with us. We’ll come back within 24 hours.",
+      "sent": {
+        "eyebrow": "Transmission received",
+        "title": "Loud and clear.",
+        "body": "Your idea made it across the sky in one piece. A senior human — no bots, no interns — will write back within 24 hours with three honest sentences, as promised.",
+        "again": "Beam another"
+      },
       "error": "That didn’t go through. Write to hello@ultravi0let.com and we’ll pick it up there."
     }
   },

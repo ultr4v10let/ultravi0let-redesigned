@@ -1,0 +1,173 @@
+/* Zanobia Patisserie demo: the original's Tailwind v3 utilities, translated one to one into plain CSS.
+   Breakpoints as Tailwind's: sm 640, md 768, lg 1024, xl 1280. */
+
+/* next/font's metric-matched fallbacks from the original (same overrides), so glyphs outside the Latin subset
+   (the → in two headings) and the pre-swap text render as they do there */
+@font-face{font-family:'Zanobia Display fallback';src:local('Times New Roman');ascent-override:95.27%;descent-override:29.59%;line-gap-override:0%;size-adjust:96.98%}
+@font-face{font-family:'Zanobia Mono fallback';src:local('Arial');ascent-override:75.79%;descent-override:22.29%;line-gap-override:0%;size-adjust:134.59%}
+/* JetBrains Mono (Google's Latin file): the original's font-mono came from the old site's root layout, not this demo */
+@font-face{font-family:'Zanobia JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;src:url('./jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Zanobia Sans fallback';src:local('Arial');ascent-override:109.21%;descent-override:42.66%;line-gap-override:0%;size-adjust:93.76%}
+
+/* the original never followed the OS theme: keep native bits (the browser focus ring, form controls) light when the
+   main site is dark, or the default ring turns near-white on the cream ground */
+.zanobia-root{
+  color-scheme:light;
+  --zan-display:'Cormorant Garamond Variable','Zanobia Display fallback',Georgia,serif;
+  --zan-sans:'Source Sans 3 Variable','Zanobia Sans fallback',Arial,sans-serif;
+  --zan-mono:'Zanobia JetBrains Mono','Zanobia Mono fallback',ui-monospace,monospace;
+}
+/* the original site's globals.css applied these to every element */
+.zanobia-root,.zanobia-root *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+/* the browser's own focus ring, as on the original (the main site's accent ring is for the main site) */
+.zanobia-root :focus-visible{outline:revert;outline-offset:revert}
+html:root .zanobia-root ::selection{background:#9e6dff;color:#08070b}
+/* the old site's body.grain noise lay over the demo too (visible on the brown buttons and panel) */
+.zanobia-root::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.05;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ── layout chrome ─────────────────────────────────────────────────────── */
+.zanobia-shell{display:flex;min-height:calc(100svh - 40px)}
+.zanobia-side{display:none;width:14rem;flex-shrink:0;flex-direction:column;border-right:1px solid rgba(61,42,36,.1);background-color:#fffdf9}
+.zanobia-brand{display:flex;align-items:center;gap:.625rem;border-bottom:1px solid rgba(61,42,36,.1);padding:1.25rem}
+.zanobia-brand-name{font-size:1.125rem;line-height:1.25;font-weight:600}
+.zanobia-brand-sub{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:rgba(61,42,36,.55)}
+.zanobia-side-nav{display:flex;flex:1 1 0%;flex-direction:column;gap:.25rem;padding:.75rem}
+.zanobia-side-link{border-radius:.5rem;padding:.625rem .75rem;font-size:.875rem;line-height:1.25rem;color:rgba(61,42,36,.75);transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.zanobia-side-link:hover{background-color:hsla(34,42%,64%,.15);color:#3d2a24}
+.zanobia-side-foot{border-top:1px solid rgba(61,42,36,.1);padding:1rem;font-size:11px;color:rgba(61,42,36,.55)}
+.zanobia-col{display:flex;min-width:0;flex:1 1 0%;flex-direction:column}
+.zanobia-topbar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(61,42,36,.1);background-color:rgba(255,253,249,.9);padding:.875rem 1.25rem;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.zanobia-topbar-brand{display:flex;align-items:center;gap:.5rem}
+.zanobia-topbar-nav{display:flex;gap:.75rem;overflow-x:auto;font-size:.75rem;line-height:1rem}
+.zanobia-topbar-link{white-space:nowrap;color:rgba(61,42,36,.7)}
+@media (min-width:1024px){
+  .zanobia-side{display:flex}
+  .zanobia-topbar{display:none}
+}
+
+/* ── shared page pieces ────────────────────────────────────────────────── */
+.zanobia-main{padding:1.25rem}
+@media (min-width:768px){.zanobia-main{padding:2rem}}
+.zanobia-eyebrow{font-family:var(--zan-mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:#8b5e4b}
+.zanobia-title{margin-top:.5rem;font-size:1.875rem;line-height:2.25rem;font-weight:600}
+.zanobia-lede{margin-top:.5rem;max-width:36rem;font-size:.875rem;line-height:1.25rem;color:rgba(61,42,36,.7)}
+.zanobia-card{border-radius:.75rem;border:1px solid rgba(61,42,36,.1);background-color:#fffdf9}
+.zanobia-gold{color:#c9a87c}
+.zanobia-brown{color:#8b5e4b}
+.zanobia-semibold{font-weight:600}
+.zanobia-medium{font-weight:500}
+.zanobia-sub{font-size:.75rem;line-height:1rem;color:rgba(61,42,36,.55)}
+.zanobia-tnum{font-variant-numeric:tabular-nums}
+/* divide-y with an unset colour: the original's divide-[#3D2A24]/8 isn't a Tailwind v3 class, so the rules fall
+   back to preflight's default border colour */
+.zanobia-list>:not([hidden])~:not([hidden]){border-top:1px solid #e5e7eb}
+.zanobia-status{display:inline-flex;align-items:center;gap:.25rem;font-size:.75rem;line-height:1rem}
+.zanobia-green{color:#047857}
+.zanobia-rose{color:#be123c}
+.zanobia-muted{color:rgba(61,42,36,.55)}
+.zanobia-prio{flex-shrink:0;font-size:10px;text-transform:uppercase;letter-spacing:.025em;color:rgba(61,42,36,.55)}
+.zanobia-prio--high{color:#be123c}
+
+/* ── overview ──────────────────────────────────────────────────────────── */
+.zanobia-hero{display:flex;flex-direction:column;gap:.5rem}
+/* no weight set: the original loaded Cormorant at 500–700 only, so its 400 rendered as 500 */
+.zanobia-hero-title{margin-top:.5rem;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.25;font-weight:500}
+.zanobia-hero-actions{display:flex;gap:.5rem;font-size:.875rem;line-height:1.25rem}
+.zanobia-btn{border-radius:.5rem;background-color:#8b5e4b;padding:.5rem 1rem;color:#fff}
+.zanobia-btn:hover{background-color:#6d4a3c}
+.zanobia-btn-ghost{border-radius:.5rem;border:1px solid rgba(61,42,36,.15);padding:.5rem 1rem}
+.zanobia-btn-ghost:hover{background-color:rgba(61,42,36,.03)}
+@media (min-width:768px){.zanobia-hero{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.zanobia-kpis{margin-top:2.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.zanobia-kpi{padding:1.25rem}
+.zanobia-kpi-value{margin-top:1rem;font-size:1.5rem;line-height:2rem;font-weight:600;font-variant-numeric:tabular-nums}
+.zanobia-kpi-label{margin-top:.25rem;font-size:.75rem;line-height:1rem;color:rgba(61,42,36,.6)}
+.zanobia-kpi-delta{margin-top:.5rem;font-size:11px;font-weight:500;color:#8b5e4b}
+@media (min-width:768px){.zanobia-kpi-value{font-size:1.875rem;line-height:2.25rem}}
+.zanobia-panels{margin-top:2.5rem;display:grid;gap:1.5rem}
+@media (min-width:1024px){
+  .zanobia-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .zanobia-panels{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.zanobia-panel-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(61,42,36,.1);padding:1rem 1.25rem}
+.zanobia-inline{display:flex;align-items:center;gap:.5rem}
+.zanobia-panel-link{font-size:.75rem;line-height:1rem;color:#8b5e4b}
+.zanobia-panel-link:hover{text-decoration-line:underline}
+.zanobia-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;font-size:.875rem;line-height:1.25rem}
+.zanobia-pill{flex-shrink:0;border-radius:9999px;padding:.125rem .625rem;font-size:10px;text-transform:uppercase;letter-spacing:.025em;color:rgba(61,42,36,.7)}
+.zanobia-pill--run{background-color:hsla(34,42%,64%,.25);color:#6d4a3c}
+.zanobia-pill--qc{background-color:#ffe4e6;color:#9f1239}
+.zanobia-cta{margin-top:2.5rem;border-radius:.75rem;border:1px solid rgba(61,42,36,.1);background-color:#8b5e4b;padding:2rem;color:#fbf6f0}
+.zanobia-cta-title{font-size:1.25rem;line-height:1.75rem;font-weight:600}
+.zanobia-cta-text{margin-top:.75rem;max-width:42rem;font-size:.875rem;line-height:1.625;color:hsla(33,58%,96%,.8)}
+.zanobia-cta-link{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;line-height:1.25rem;font-weight:500;color:#c9a87c}
+.zanobia-cta-link:hover{color:#e8d4b8}
+
+/* ── admin ─────────────────────────────────────────────────────────────── */
+.zanobia-modules{margin-top:2.5rem;display:grid;gap:1.5rem}
+@media (min-width:768px){.zanobia-modules{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.zanobia-module{padding:1.5rem}
+.zanobia-module-title{margin-top:1rem;font-size:1.25rem;line-height:1.75rem;font-weight:600}
+.zanobia-module-stat{margin-top:.5rem;font-size:1.5rem;line-height:2rem;font-weight:600}
+.zanobia-module-list{margin-top:1.5rem;font-size:.875rem;line-height:1.25rem;color:rgba(61,42,36,.75)}
+.zanobia-module-list>:not([hidden])~:not([hidden]){margin-top:.5rem}
+.zanobia-dot{height:.25rem;width:.25rem;border-radius:9999px;background-color:#c9a87c}
+
+/* ── inventory ─────────────────────────────────────────────────────────── */
+.zanobia-head{display:flex;flex-direction:column;gap:1rem}
+@media (min-width:768px){.zanobia-head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.zanobia-filters{display:flex;gap:.5rem}
+.zanobia-filter{border-radius:.5rem;border:1px solid rgba(61,42,36,.15);padding:.375rem .75rem;font-size:.875rem;line-height:1.25rem}
+/* button backgrounds carry .zanobia-root: demos.css resets them with :is(button,[type=button]), specificity (0,1,1) */
+.zanobia-root .zanobia-filter--on{border-width:0;background-color:#8b5e4b;color:#fff}
+.zanobia-search{position:relative;margin-top:2rem;max-width:28rem}
+.zanobia-search-icon{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:rgba(61,42,36,.4)}
+.zanobia-root .zanobia-search-input{width:100%;border-radius:.5rem;border:1px solid rgba(61,42,36,.15);background-color:#fffdf9;padding:.625rem 1rem .625rem 2.5rem;font-size:.875rem;line-height:1.25rem;outline:2px solid transparent;outline-offset:2px}
+.zanobia-root .zanobia-search-input:focus{border-color:#8b5e4b}
+.zanobia-table-wrap{margin-top:1.5rem;overflow:hidden}
+.zanobia-table{width:100%;text-align:left;font-size:.875rem;line-height:1.25rem}
+.zanobia-thead{border-bottom:1px solid rgba(61,42,36,.1);background-color:#fbf6f0;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(61,42,36,.6)}
+.zanobia-th{padding:.75rem 1.25rem;font-weight:500}
+.zanobia-td{padding:1rem 1.25rem}
+.zanobia-tr:hover{background-color:hsla(33,58%,96%,.5)}
+.zanobia-ok{font-size:.75rem;line-height:1rem;color:#047857}
+.zanobia-sku{font-family:var(--zan-mono);font-size:.75rem;line-height:1rem}
+.zanobia-loc{color:rgba(61,42,36,.65)}
+.zanobia-right{text-align:right}
+.zanobia-md-cell{display:none}
+@media (min-width:768px){.zanobia-md-cell{display:table-cell}}
+
+/* ── production ────────────────────────────────────────────────────────── */
+.zanobia-lines{margin-top:2.5rem}
+.zanobia-lines>:not([hidden])~:not([hidden]){margin-top:2rem}
+.zanobia-clip{overflow:hidden}
+.zanobia-line-head{border-bottom:1px solid rgba(61,42,36,.1);background-color:#fbf6f0;padding:.75rem 1.25rem;font-weight:600}
+.zanobia-job{padding:1.25rem}
+.zanobia-job-row{display:flex;flex-direction:column;gap:1rem}
+@media (min-width:640px){.zanobia-job-row{flex-direction:row;align-items:center;justify-content:space-between}}
+.zanobia-job-batch{margin-top:.25rem;font-size:.75rem;line-height:1rem;color:rgba(61,42,36,.55)}
+.zanobia-job-actions{display:flex;align-items:center;gap:.75rem}
+.zanobia-root .zanobia-btn-sm{border-radius:.5rem;background-color:#8b5e4b;padding:.375rem .75rem;font-size:.75rem;line-height:1rem;color:#fff}
+.zanobia-root .zanobia-btn-sm:hover{background-color:#6d4a3c}
+.zanobia-bar{margin-top:1rem;height:.5rem;overflow:hidden;border-radius:9999px;background-color:rgba(61,42,36,.1)}
+.zanobia-bar-fill{height:100%;border-radius:9999px;background-color:#c9a87c;transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+
+/* ── shops ─────────────────────────────────────────────────────────────── */
+.zanobia-orders{margin-top:2.5rem;display:grid;gap:1.5rem}
+@media (min-width:1024px){.zanobia-orders{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1280px){.zanobia-orders{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.zanobia-order{border-radius:.75rem;border:1px solid rgba(61,42,36,.1);background-color:#fffdf9;padding:1.25rem;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.zanobia-order--done{border-color:#a7f3d0;opacity:.75}
+.zanobia-order-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}
+.zanobia-order-top>.zanobia-prio{flex-shrink:1}
+.zanobia-order-id{font-family:var(--zan-mono);font-size:10px;color:rgba(61,42,36,.55)}
+.zanobia-order-needed{margin-top:.75rem;font-size:.75rem;line-height:1rem;color:rgba(61,42,36,.6)}
+/* border-[#3D2A24]/8 isn't a Tailwind v3 class either: preflight's colour */
+.zanobia-order-items{margin-top:1rem;border-top:1px solid #e5e7eb;padding-top:1rem;font-size:.875rem;line-height:1.25rem}
+.zanobia-order-items>:not([hidden])~:not([hidden]){margin-top:.5rem}
+.zanobia-order-item{display:flex;justify-content:space-between}
+.zanobia-qty{font-variant-numeric:tabular-nums;color:rgba(61,42,36,.65)}
+.zanobia-root .zanobia-fulfil{margin-top:1.25rem;display:flex;width:100%;align-items:center;justify-content:center;gap:.5rem;border-radius:.5rem;background-color:#8b5e4b;padding:.625rem 0;font-size:.875rem;line-height:1.25rem;font-weight:500;color:#fff}
+.zanobia-root .zanobia-fulfil:hover{background-color:#6d4a3c}
+.zanobia-root .zanobia-fulfil:disabled{cursor:default;background-color:#ecfdf5;color:#065f46}

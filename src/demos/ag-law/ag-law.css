@@ -1,0 +1,213 @@
+/* AG Law demo (Abdelgawad & Partners), ported from the original Tailwind v3 markup (app/demos/ag-law) to plain CSS.
+   Values are the ones the original's compiled stylesheet shipped (including its hsla() rounding of #F6F1E6/xx). */
+
+/* JetBrains Mono: the original's font-mono came from the old site's root layout (--font-geist-mono), not this demo */
+@font-face{font-family:'aglaw JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;src:url('./jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* next/font's metric-matched fallbacks, as the original generated them */
+@font-face{font-family:'aglaw Cormorant fallback';src:local('Times New Roman');ascent-override:95.27%;descent-override:29.59%;line-gap-override:0%;size-adjust:96.98%}
+@font-face{font-family:'aglaw Inter fallback';src:local('Arial');ascent-override:90.49%;descent-override:22.56%;line-gap-override:0%;size-adjust:107.06%}
+@font-face{font-family:'aglaw JetBrains Mono fallback';src:local('Arial');ascent-override:75.79%;descent-override:22.29%;line-gap-override:0%;size-adjust:134.59%}
+
+.aglaw-root{
+  --agl-display:'Cormorant Garamond Variable','aglaw Cormorant fallback',serif;
+  --agl-sans:'Inter Variable','aglaw Inter fallback',sans-serif;
+  --agl-mono:'aglaw JetBrains Mono','aglaw JetBrains Mono fallback',ui-monospace,monospace;
+  color-scheme:light;
+  /* The old site's global body{overflow-x:hidden} made <body> the scroll container of every demo, so on the live
+     original the "sticky" header and summary rail never stuck: they scroll away. Kept for parity; delete this
+     line to let them stick as the demo's markup intended. */
+  overflow-x:hidden;
+}
+/* the old site's globals, which the demo inherited */
+.aglaw-root,.aglaw-root *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+:root .demo.aglaw-root ::selection{background:#9e6dff;color:#08070b}
+/* the old site's faint noise over every page (body.grain::before) */
+.aglaw-root::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.05;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+/* the old site's scrollbars (global ::-webkit-scrollbar): the page's and any inside the demo, e.g. a long outline */
+html:has(.aglaw-root)::-webkit-scrollbar,.aglaw-root ::-webkit-scrollbar{width:10px;height:10px}
+html:has(.aglaw-root)::-webkit-scrollbar-track,.aglaw-root ::-webkit-scrollbar-track{background:#08070b}
+html:has(.aglaw-root)::-webkit-scrollbar-thumb,.aglaw-root ::-webkit-scrollbar-thumb{background:rgba(196,165,255,.18);border-radius:100px}
+html:has(.aglaw-root)::-webkit-scrollbar-thumb:hover,.aglaw-root ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
+/* the browser's own focus ring, as on the original (not the main site's) */
+.aglaw-root :focus-visible{outline:revert;outline-offset:revert}
+
+/* shared */
+.aglaw-tc{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.aglaw-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.28em;color:#B89466}
+.aglaw-gold{color:#B89466}
+.aglaw-flex1{flex:1 1 0%}
+.aglaw-mt1{margin-top:.25rem}
+.aglaw-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+.aglaw-mono{font-family:var(--agl-mono);font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:rgba(15,26,51,.55)}
+.aglaw-span2{grid-column:span 2/span 2}
+.aglaw-wrap{margin-left:auto;margin-right:auto;max-width:1240px;padding:6rem 1.5rem}
+.aglaw-h2{margin-top:.75rem;font-size:clamp(2rem,4.4vw,3.6rem);line-height:1.05}
+/* hairline panel grid: 1px gaps over a tinted ground */
+.aglaw-grid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:1px;overflow:hidden;border-radius:.125rem;border:1px solid rgba(15,26,51,.1);background-color:rgba(15,26,51,.1)}
+
+/* header */
+.aglaw-nav{position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(15,26,51,.1);background-color:hsla(41,47%,93%,.85);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+.aglaw-nav-in{margin-left:auto;margin-right:auto;display:flex;max-width:1240px;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem}
+.aglaw-brand{display:flex;align-items:center;gap:.75rem}
+.aglaw-brand-name{font-size:20px;font-weight:500;letter-spacing:-.025em}
+.aglaw-nav-links{display:none;align-items:center;gap:2rem;font-size:.875rem;line-height:1.25rem}
+.aglaw-nav-link{color:rgba(15,26,51,.75)}
+.aglaw-nav-link:hover{color:#0F1A33}
+.aglaw-nav-cta{display:inline-flex;align-items:center;gap:.5rem;border-radius:.125rem;border:1px solid #0F1A33;background-color:#0F1A33;padding:.5rem 1rem;font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:#F6F1E6}
+.aglaw-nav-cta:hover{border-color:#B89466;background-color:#B89466}
+
+/* footer */
+.aglaw-footer{border-top:1px solid rgba(15,26,51,.1);background-color:#0F1A33;color:hsla(41,47%,93%,.85)}
+.aglaw-footer-in{margin-left:auto;margin-right:auto;display:grid;max-width:1240px;gap:3rem;padding:4rem 1.5rem}
+.aglaw-footer-name{font-size:1.25rem;line-height:1.75rem}
+.aglaw-footer-p{margin-top:1rem;max-width:20rem;font-size:.875rem;line-height:1.625;color:hsla(41,47%,93%,.65)}
+.aglaw-footer-col{font-size:.875rem;line-height:1.625}
+.aglaw-footer-h{margin-bottom:.75rem;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#B89466}
+.aglaw-footer-bar{border-top:1px solid hsla(41,47%,93%,.1);padding:1.25rem 1.5rem;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:hsla(41,47%,93%,.45)}
+
+/* home: hero */
+.aglaw-hero{position:relative;overflow:hidden;border-bottom:1px solid rgba(15,26,51,.1)}
+.aglaw-hero-grid{position:absolute;inset:0;z-index:-10;opacity:.04}
+.aglaw-fill{height:100%;width:100%}
+.aglaw-hero-h1{margin-top:1.5rem;font-size:clamp(2.6rem,7vw,6rem);line-height:1.05;letter-spacing:-.025em}
+.aglaw-hero-p{margin-top:2.5rem;max-width:36rem;font-size:1rem;line-height:1.625;color:rgba(15,26,51,.75)}
+.aglaw-ctas{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:.75rem}
+.aglaw-btn,.aglaw-btn-ghost{display:inline-flex;align-items:center;gap:.5rem;border-radius:.125rem;padding:.875rem 1.5rem;font-size:12px;text-transform:uppercase;letter-spacing:.2em}
+.aglaw-btn{background-color:#0F1A33;color:#F6F1E6}
+.aglaw-btn:hover{background-color:#B89466}
+.aglaw-btn-ghost{border:1px solid rgba(15,26,51,.4);color:#0F1A33}
+.aglaw-btn-ghost:hover{background-color:rgba(15,26,51,.05)}
+.aglaw-grid.aglaw-stats{margin-top:5rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+.aglaw-stat{background-color:#F6F1E6;padding:1.5rem}
+.aglaw-stat-v{font-size:1.875rem;line-height:2.25rem;font-weight:500}
+.aglaw-stat-k{margin-top:.5rem;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:rgba(15,26,51,.65)}
+
+/* home: practice */
+.aglaw-sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem}
+.aglaw-practice{display:flex;flex-direction:column;gap:1.25rem;background-color:#F6F1E6;padding:2rem}
+.aglaw-practice:hover{background-color:#EFE7D5}
+.aglaw-practice-top{display:flex;align-items:center;justify-content:space-between}
+.aglaw-practice-label{font-family:var(--agl-mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:rgba(15,26,51,.5)}
+.aglaw-practice-h{font-size:1.875rem;line-height:2.25rem}
+.aglaw-practice-p{font-size:.875rem;line-height:1.625;color:rgba(15,26,51,.7)}
+
+/* home: quote */
+.aglaw-quote{border-top:1px solid rgba(15,26,51,.1);border-bottom:1px solid rgba(15,26,51,.1);background-color:#0F1A33;color:#F6F1E6}
+.aglaw-wrap.aglaw-quote-in{max-width:1100px}
+.aglaw-blockquote{margin-top:2rem;font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.25}
+.aglaw-quote-by{margin-top:2.5rem;font-size:.875rem;line-height:1.25rem;text-transform:uppercase;letter-spacing:.2em;color:hsla(41,47%,93%,.65)}
+
+/* home: insights */
+.aglaw-insights{margin-top:3rem;border-top:1px solid rgba(15,26,51,.1);border-bottom:1px solid rgba(15,26,51,.1)}
+.aglaw-insights>:not([hidden])~:not([hidden]){border-top:1px solid rgba(15,26,51,.1);border-bottom-width:0}
+.aglaw-insight{display:flex;flex-direction:column;gap:.5rem;padding-top:1.5rem;padding-bottom:1.5rem}
+.aglaw-insight:hover{background-color:rgba(15,26,51,.02)}
+.aglaw-insight-date{width:8rem;flex-shrink:0;font-family:var(--agl-mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:rgba(15,26,51,.55)}
+.aglaw-insight-tag{width:5rem;flex-shrink:0;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#B89466}
+.aglaw-insight-title{font-size:1.125rem;line-height:1.375}
+.aglaw-insight-arrow{display:none;color:rgba(15,26,51,.3);transition:all .15s cubic-bezier(.4,0,.2,1)}
+.aglaw-insight:hover .aglaw-insight-arrow{transform:translate(.125rem,-.125rem);color:#0F1A33}
+
+/* attorneys */
+.aglaw-page{margin-left:auto;margin-right:auto;max-width:1240px;padding:5rem 1.5rem}
+.aglaw-att-h1{margin-top:1rem;font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1.05}
+.aglaw-att-lead{margin-top:1.5rem;max-width:42rem;font-size:1rem;line-height:1.625;color:rgba(15,26,51,.75)}
+.aglaw-att{background-color:#F6F1E6;padding:2rem}
+.aglaw-att-head{display:flex;align-items:flex-start;gap:1.25rem}
+.aglaw-avatar{display:flex;height:4rem;width:4rem;flex-shrink:0;align-items:center;justify-content:center;border-radius:.125rem;border:1px solid rgba(15,26,51,.15);background-color:rgba(15,26,51,.04);font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:rgba(15,26,51,.7)}
+.aglaw-att-name{font-size:1.5rem;line-height:2rem}
+.aglaw-att-role{margin-top:.25rem;font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:#B89466}
+.aglaw-att-bio{margin-top:1.5rem;font-size:.875rem;line-height:1.625;color:rgba(15,26,51,.75)}
+.aglaw-att-dl{margin-top:1.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.5rem;row-gap:.75rem;border-top:1px solid rgba(15,26,51,.1);padding-top:1.25rem;font-size:12px;line-height:1.625}
+.aglaw-att-link{margin-top:1.75rem;display:inline-flex;align-items:center;gap:.5rem;font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:#0F1A33}
+.aglaw-att-link:hover{color:#B89466}
+.aglaw-att-arrow{transition:transform .15s cubic-bezier(.4,0,.2,1)}
+.aglaw-att-link:hover .aglaw-att-arrow{transform:translate(.125rem,-.125rem)}
+
+/* book */
+.aglaw-book{margin-left:auto;margin-right:auto;max-width:1240px;padding:4rem 1.5rem}
+.aglaw-book-h1{margin-top:1rem;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05}
+.aglaw-book-lead{margin-top:1.25rem;max-width:36rem;color:rgba(15,26,51,.75)}
+.aglaw-book-form{margin-top:3rem;display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:2.5rem}
+.aglaw-stack>:not([hidden])~:not([hidden]){margin-top:2rem;margin-bottom:0}
+.aglaw-sec-title{margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:rgba(15,26,51,.65)}
+.aglaw-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+/* button backgrounds are scoped under the root: demos.css resets button backgrounds at (0,1,1) */
+.aglaw-chip{border-radius:.125rem;border:1px solid rgba(15,26,51,.2);padding:.5rem 1rem;font-size:.875rem;line-height:1.25rem;color:#0F1A33}
+.aglaw-chip:hover{border-color:rgba(15,26,51,.45)}
+.aglaw-root .aglaw-chip.aglaw-on{border-color:#0F1A33;background-color:#0F1A33;color:#F6F1E6}
+.aglaw-radios{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:.5rem}
+.aglaw-radio{display:flex;cursor:pointer;align-items:center;gap:.75rem;border-radius:.125rem;border:1px solid rgba(15,26,51,.15);padding:.75rem 1rem;font-size:.875rem;line-height:1.25rem}
+.aglaw-radio:hover{border-color:rgba(15,26,51,.35)}
+.aglaw-radio.aglaw-on{border-color:#0F1A33;background-color:rgba(15,26,51,.04)}
+/* the radio itself is visually hidden, so its card shows keyboard focus */
+.aglaw-radio:has(:focus-visible){outline:auto 1px -webkit-focus-ring-color}
+.aglaw-dot{height:.875rem;width:.875rem;border-radius:9999px;border:1px solid rgba(15,26,51,.4)}
+.aglaw-on .aglaw-dot{border-color:#0F1A33;background-color:#0F1A33}
+.aglaw-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+.aglaw-date{display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;border-radius:.125rem;border:1px solid rgba(15,26,51,.15);padding:.75rem;text-align:left;font-size:.875rem;line-height:1.25rem}
+.aglaw-date:hover{border-color:rgba(15,26,51,.35)}
+.aglaw-root .aglaw-date.aglaw-on{border-color:#0F1A33;background-color:#0F1A33;color:#F6F1E6}
+.aglaw-date-day{font-size:10px;text-transform:uppercase;letter-spacing:.18em;opacity:.7}
+.aglaw-date-d{font-size:1rem;line-height:1.5rem}
+.aglaw-fields{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:.75rem}
+.aglaw-field{display:block}
+.aglaw-field-label{display:block;padding-bottom:.375rem}
+.aglaw-req{margin-left:.25rem;color:#B89466}
+.aglaw-input{width:100%;border-radius:.125rem;border:1px solid rgba(15,26,51,.2);background-color:#F6F1E6;padding:.625rem .75rem;font-size:.875rem;line-height:1.25rem;color:#0F1A33}
+.aglaw-input,.aglaw-input:focus-visible{outline:2px solid transparent;outline-offset:2px}
+.aglaw-input:focus{border-color:#0F1A33}
+.aglaw-textarea{resize:none}
+.aglaw-card{border-radius:.125rem;border:1px solid rgba(15,26,51,.15);background-color:#F6F1E6}
+.aglaw-card-head{border-bottom:1px solid rgba(15,26,51,.1);background-color:rgba(15,26,51,.03);padding:.75rem 1.25rem;font-family:var(--agl-mono);font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:rgba(15,26,51,.65)}
+.aglaw-summary{padding:1.25rem;font-size:.875rem;line-height:1.25rem}
+.aglaw-summary>:not([hidden])~:not([hidden]){margin-top:.75rem;margin-bottom:0}
+.aglaw-srow{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem}
+.aglaw-srow-k{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:rgba(15,26,51,.55)}
+.aglaw-srow-v{text-align:right}
+.aglaw-card-foot{border-top:1px solid rgba(15,26,51,.1);padding:1.25rem}
+.aglaw-root .aglaw-submit{display:inline-flex;width:100%;align-items:center;justify-content:center;gap:.5rem;border-radius:.125rem;background-color:#0F1A33;padding:.75rem 1.25rem;font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:#F6F1E6}
+.aglaw-root .aglaw-submit:hover{background-color:#B89466}
+.aglaw-note{margin-top:1rem;font-size:11px;line-height:1.625;color:rgba(15,26,51,.55)}
+
+/* book: confirmation */
+.aglaw-done{margin-left:auto;margin-right:auto;max-width:820px;padding:5rem 1.5rem}
+.aglaw-done-p{margin-top:1.5rem;max-width:36rem;color:rgba(15,26,51,.75)}
+.aglaw-card.aglaw-done-card{margin-top:3rem;overflow:hidden}
+.aglaw-card-head.aglaw-done-head{padding-left:1.5rem;padding-right:1.5rem}
+.aglaw-done-dl{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:1.5rem;padding:1.5rem}
+.aglaw-row-dd{margin-top:.25rem;font-size:.875rem;line-height:1.25rem;color:#0F1A33}
+.aglaw-done-actions{margin-top:2.5rem;display:flex;gap:.75rem}
+.aglaw-back{display:inline-flex;align-items:center;gap:.5rem;border-radius:.125rem;border:1px solid rgba(15,26,51,.4);padding:.75rem 1.25rem;font-size:12px;text-transform:uppercase;letter-spacing:.18em}
+.aglaw-back:hover{background-color:rgba(15,26,51,.05)}
+
+@media (min-width:640px){
+  .aglaw-radios{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aglaw-dates{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:768px){
+  .aglaw-wrap{padding:8rem 2.5rem}
+  .aglaw-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aglaw-nav-in{padding-left:2.5rem;padding-right:2.5rem}
+  .aglaw-nav-links{display:flex}
+  .aglaw-footer-in{grid-template-columns:repeat(3,minmax(0,1fr));padding-left:2.5rem;padding-right:2.5rem}
+  .aglaw-footer-bar{padding-left:2.5rem;padding-right:2.5rem}
+  .aglaw-hero-p{font-size:1.125rem;line-height:1.75rem}
+  .aglaw-grid.aglaw-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .aglaw-stat-v{font-size:2.25rem;line-height:2.5rem}
+  .aglaw-practice{padding:2.5rem}
+  .aglaw-insight{flex-direction:row;align-items:baseline;gap:3rem;padding-left:.5rem;padding-right:.5rem}
+  .aglaw-insight-title{font-size:1.25rem;line-height:1.75rem}
+  .aglaw-insight-arrow{margin-left:auto;display:block}
+  .aglaw-page{padding:7rem 2.5rem}
+  .aglaw-att-lead{font-size:1.125rem;line-height:1.75rem}
+  .aglaw-att{padding:2.5rem}
+  .aglaw-book{padding:6rem 2.5rem}
+  .aglaw-book-form{grid-template-columns:1fr 360px}
+  .aglaw-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aglaw-span2-md{grid-column:span 2/span 2}
+  .aglaw-rail{position:sticky;top:7rem;align-self:flex-start}
+  .aglaw-done{padding-top:8rem;padding-bottom:8rem}
+  .aglaw-done-dl{grid-template-columns:repeat(2,minmax(0,1fr));padding:2rem}
+}

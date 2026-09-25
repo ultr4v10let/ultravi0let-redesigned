@@ -1,0 +1,221 @@
+/* Merlin demo (ported from the old site's app/demos/merlin, Tailwind v3 translated to plain CSS).
+   Ink #0F1729, primary #3B5BDB (hover #2F4AC0), paper #F4F6FB. Every class is prefixed merlin-. */
+
+/* font-mono was JetBrains Mono, from the old site's root layout (--font-geist-mono); this is that file, Latin subset */
+@font-face {
+  font-family: 'merlin JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('./jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* next/font's metric-matched fallbacks, as the original generated them (they also draw the banner's ←, which the
+   Latin subsets don't cover) */
+@font-face { font-family: 'merlin DM Sans fallback'; src: local('Arial'); ascent-override: 94.9%; descent-override: 29.66%; line-gap-override: 0%; size-adjust: 104.53% }
+@font-face { font-family: 'merlin Fraunces fallback'; src: local('Times New Roman'); ascent-override: 84.71%; descent-override: 22.09%; line-gap-override: 0%; size-adjust: 115.45% }
+@font-face { font-family: 'merlin JetBrains Mono fallback'; src: local('Arial'); ascent-override: 75.79%; descent-override: 22.29%; line-gap-override: 0%; size-adjust: 134.59% }
+
+.merlin-root {
+  --mly-sans: 'DM Sans Variable', 'merlin DM Sans fallback', sans-serif;
+  --mly-display: 'Fraunces Variable', 'merlin Fraunces fallback', serif;
+  --mly-mono: 'merlin JetBrains Mono', 'merlin JetBrains Mono fallback', ui-monospace, monospace;
+  color-scheme: light;
+  /* The old site's global body{overflow-x:hidden} made <body> the scroll container of every demo, so on the live
+     original the "sticky" header never stuck: it scrolls away. Kept for parity; delete this line to let it stick as
+     the demo's markup intended. */
+  overflow-x: hidden;
+}
+/* the old site's globals.css applied these to every element */
+.merlin-root,
+.merlin-root * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html:root .merlin-root ::selection { background: #9e6dff; color: #08070b }
+/* the browser's own focus ring, as on the original (not the main site's) */
+.merlin-root :focus-visible { outline: revert; outline-offset: revert }
+/* the old site's body.grain noise, which lay over every demo */
+.merlin-root::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.05; mix-blend-mode: screen; background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>") }
+
+/* shared bits */
+.merlin-blue { color: #3b5bdb }
+.merlin-m50 { color: rgba(15, 23, 41, 0.5) }
+.merlin-m60 { color: rgba(15, 23, 41, 0.6) }
+.merlin-eyebrow { font-family: var(--mly-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; color: #3b5bdb }
+.merlin-micro { font-family: var(--mly-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em }
+.merlin-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; line-height: 1.25rem; color: #3b5bdb }
+.merlin-link:hover { color: #2f4ac0 }
+.merlin-btn,
+.merlin-btn-line { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.5rem; padding: 0.875rem 1.5rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500 }
+.merlin-btn { background: #3b5bdb; color: #fff }
+.merlin-btn:hover { background: #2f4ac0 }
+.merlin-btn-line { border: 1px solid rgba(15, 23, 41, 0.15) }
+.merlin-btn-line:hover { background: rgba(15, 23, 41, 0.03) }
+.merlin-nav a,
+.merlin-cta,
+.merlin-theme-btn,
+.merlin-tab {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* layout chrome */
+.merlin-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid rgba(15, 23, 41, 0.1); background: rgba(244, 246, 251, 0.9); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px) }
+.merlin-header-in { margin: 0 auto; display: flex; max-width: 1280px; align-items: center; justify-content: space-between; padding: 1rem 1.5rem }
+.merlin-brand { display: flex; align-items: center; gap: 0.625rem }
+.merlin-brand span { font-size: 20px; font-weight: 600; letter-spacing: -0.025em }
+.merlin-nav { display: none; align-items: center; gap: 1.75rem; font-size: 0.875rem; line-height: 1.25rem }
+.merlin-nav a { color: rgba(15, 23, 41, 0.7) }
+.merlin-nav a:hover { color: #0f1729 }
+.merlin-cta { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.5rem; background: #3b5bdb; padding: 0.5rem 1rem; font-size: 13px; font-weight: 500; color: #fff }
+.merlin-cta:hover { background: #2f4ac0 }
+
+/* home */
+.merlin-hero { position: relative; overflow: hidden; border-bottom: 1px solid rgba(15, 23, 41, 0.1) }
+.merlin-glow { pointer-events: none; position: absolute; right: -8rem; top: -8rem; height: 500px; width: 500px; border-radius: 9999px; opacity: 0.3; filter: blur(100px) }
+.merlin-wrap { margin: 0 auto; max-width: 1280px; padding: 5rem 1.5rem }
+.merlin-h1 { margin-top: 1.5rem; font-size: clamp(2.4rem, 6vw, 5rem); line-height: 1.02; letter-spacing: -0.025em }
+.merlin-lead { margin-top: 2rem; max-width: 42rem; font-size: 1rem; line-height: 1.625; color: rgba(15, 23, 41, 0.75) }
+.merlin-ctas { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem }
+.merlin-stats,
+.merlin-features { display: grid; gap: 1px; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(15, 23, 41, 0.1); background: rgba(15, 23, 41, 0.1) }
+.merlin-stats { margin-top: 5rem; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+.merlin-stat { background: #f4f6fb; padding: 1.5rem }
+.merlin-stat-v { font-size: 1.875rem; line-height: 2.25rem; font-weight: 500 }
+.merlin-stat-k { margin-top: 0.5rem; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(15, 23, 41, 0.6) }
+.merlin-line-b { border-bottom: 1px solid rgba(15, 23, 41, 0.1) }
+.merlin-h2 { margin-top: 0.75rem; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.25 }
+.merlin-h2-sm { margin-top: 0.75rem; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.25 }
+.merlin-features { margin-top: 3.5rem; grid-template-columns: repeat(1, minmax(0, 1fr)) }
+.merlin-feature { background: #f4f6fb; padding: 2rem }
+.merlin-feature h3 { margin-top: 1.5rem; font-size: 1.5rem; line-height: 2rem }
+.merlin-feature p { margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.625; color: rgba(15, 23, 41, 0.7) }
+.merlin-white { background: #fff }
+.merlin-lib-head { display: flex; flex-direction: column; gap: 2rem }
+.merlin-themes { margin-top: 3rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem }
+.merlin-theme { overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(15, 23, 41, 0.1); background: #f4f6fb; padding: 1rem; transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) }
+.merlin-theme:hover { transform: translateY(-0.25rem) }
+.merlin-swatches { display: flex; gap: 0.375rem }
+.merlin-swatches div { height: 2rem; flex: 1 1 0%; border-radius: 0.375rem }
+.merlin-theme-name { margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem }
+.merlin-theme-name svg { color: rgba(15, 23, 41, 0.5) }
+.merlin-theme-name span { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500 }
+
+/* editor */
+.merlin-editor { min-height: calc(100svh - 120px) }
+.merlin-editor-grid { margin: 0 auto; display: grid; max-width: 1400px; gap: 0 }
+.merlin-aside { border: 0 solid rgba(15, 23, 41, 0.1); border-bottom-width: 1px; background: #fff; padding: 1.5rem }
+.merlin-aside h1 { margin-top: 0.5rem; font-size: 1.5rem; line-height: 2rem; font-weight: 600; letter-spacing: -0.025em }
+.merlin-fields { margin-top: 2rem }
+.merlin-fields > :not([hidden]) ~ :not([hidden]) { margin-top: 2rem }
+.merlin-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(15, 23, 41, 0.6) }
+.merlin-label-row { display: flex; align-items: center; gap: 0.5rem }
+.merlin-theme-grid { margin-top: 0.75rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem }
+.merlin-theme-btn { display: flex; align-items: center; gap: 0.5rem; border-radius: 0.5rem; border: 1px solid rgba(15, 23, 41, 0.1); padding: 0.75rem; text-align: left; font-size: 0.875rem; line-height: 1.25rem }
+.merlin-theme-btn:hover { border-color: rgba(15, 23, 41, 0.2) }
+.merlin-theme-btn[aria-pressed='true'] { border-color: #3b5bdb; background: rgba(59, 91, 219, 0.05) }
+.merlin-dot { height: 1rem; width: 1rem; flex-shrink: 0; border-radius: 9999px }
+.merlin-input { margin-top: 0.5rem; width: 100%; border-radius: 0.5rem; border: 1px solid rgba(15, 23, 41, 0.15); background: #f4f6fb; padding: 0.625rem 0.75rem; font-size: 0.875rem; line-height: 1.25rem; outline: 2px solid transparent; outline-offset: 2px }
+.merlin-root .merlin-input:focus-visible { outline: 2px solid transparent; outline-offset: 2px }
+textarea.merlin-input { resize: none }
+.merlin-input:focus { border-color: #3b5bdb }
+.merlin-drop { margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; border: 1px dashed rgba(15, 23, 41, 0.2); background: #f4f6fb; padding: 2rem 1rem; text-align: center }
+.merlin-drop svg { margin: 0 auto; color: rgba(15, 23, 41, 0.4) }
+.merlin-drop p { margin-top: 0.5rem; font-size: 0.75rem; line-height: 1rem; color: rgba(15, 23, 41, 0.55) }
+.merlin-drop button { margin-top: 0.75rem; border-radius: 0.375rem; border: 1px solid rgba(15, 23, 41, 0.15); padding: 0.375rem 0.75rem; font-size: 0.75rem; line-height: 1rem }
+.merlin-drop button:hover { background: #fff }
+.merlin-tabs { margin-top: 0.75rem }
+.merlin-tabs > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem }
+.merlin-tab { display: flex; width: 100%; align-items: center; gap: 0.75rem; border-radius: 0.5rem; border: 1px solid rgba(15, 23, 41, 0.1); padding: 0.625rem 0.75rem; text-align: left; font-size: 0.875rem; line-height: 1.25rem; opacity: 0.6 }
+.merlin-tab[aria-pressed='true'] { border-color: rgba(59, 91, 219, 0.3); background: rgba(59, 91, 219, 0.05); opacity: 1 }
+.merlin-tab span { flex: 1 1 0% }
+.merlin-actions { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.5rem }
+.merlin-actions .merlin-btn { justify-content: center; padding: 0.75rem 1rem }
+.merlin-actions .merlin-btn-line { display: block; padding: 0.75rem 1rem }
+.merlin-stage { padding: 1.5rem }
+.merlin-stage > .merlin-micro { margin-bottom: 1rem }
+.merlin-card { overflow: hidden; border-radius: 1rem; border: 1px solid rgba(15, 23, 41, 0.1); background: #fff; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) }
+/* border-[#0F1729]/8 isn't a Tailwind v3 opacity step, so the original fell back to preflight's #e5e7eb */
+.merlin-card-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e5e7eb; padding: 1rem 1.5rem }
+.merlin-card-brand { display: flex; align-items: center; gap: 0.75rem }
+.merlin-card-brand span { font-weight: 600 }
+.merlin-card-logo { display: flex; height: 2.25rem; width: 2.25rem; align-items: center; justify-content: center; border-radius: 0.5rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 700; color: #fff }
+.merlin-card-nav { display: none; gap: 1.25rem; font-size: 0.875rem; line-height: 1.25rem; color: rgba(15, 23, 41, 0.7) }
+.merlin-card-hero { padding: 3rem 1.5rem }
+.merlin-card-hero h2 { font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.25 }
+.merlin-card-hero p { margin-top: 1rem; max-width: 32rem; color: rgba(15, 23, 41, 0.7) }
+.merlin-card-hero button { margin-top: 2rem; border-radius: 0.5rem; padding: 0.625rem 1.25rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; color: #fff }
+.merlin-card-sec { border-top: 1px solid #e5e7eb; padding: 2.5rem 1.5rem }
+.merlin-card-sec h3 { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600 }
+.merlin-card-team { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem }
+.merlin-card-team > div { border-radius: 0.5rem; background: #f4f6fb; padding: 1rem; text-align: center }
+.merlin-card-team .merlin-avatar { margin: 0 auto; height: 3rem; width: 3rem; border-radius: 9999px }
+.merlin-card-team .merlin-role { margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500 }
+.merlin-card-quotes { background: rgba(244, 246, 251, 0.5) }
+.merlin-card-quotes blockquote { margin-top: 1rem; font-size: 0.875rem; line-height: 1.25rem; font-style: italic; color: rgba(15, 23, 41, 0.75) }
+.merlin-card-quotes div { margin-top: 0.5rem; font-size: 0.75rem; line-height: 1rem; color: rgba(15, 23, 41, 0.55) }
+
+/* preview (the published client site) */
+.merlin-preview { background: #f4f6fb }
+.merlin-bar { border-bottom: 1px solid rgba(15, 23, 41, 0.1); background: #fff; padding: 0.75rem 1.5rem }
+.merlin-in { margin: 0 auto; max-width: 1100px }
+.merlin-row { display: flex; align-items: center; justify-content: space-between }
+.merlin-bar .merlin-micro { letter-spacing: 0.18em; color: rgba(15, 23, 41, 0.5) }
+.merlin-site-head { padding: 1.25rem 1.5rem }
+.merlin-site-logo { display: flex; height: 2.5rem; width: 2.5rem; align-items: center; justify-content: center; border-radius: 0.75rem; background: #3b5bdb; font-size: 0.875rem; line-height: 1.25rem; font-weight: 700; color: #fff }
+.merlin-site-name { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600 }
+.merlin-site-nav { display: none; gap: 2rem; font-size: 0.875rem; line-height: 1.25rem; color: rgba(15, 23, 41, 0.75) }
+.merlin-sec { padding: 5rem 1.5rem }
+.merlin-sec h2 { font-size: 1.875rem; line-height: 2.25rem; font-weight: 600 }
+.merlin-site-h1 { margin-top: 1.5rem; font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 1.05 }
+.merlin-site-lead { margin-top: 1.5rem; max-width: 36rem; font-size: 1.125rem; line-height: 1.75rem; color: rgba(15, 23, 41, 0.7) }
+.merlin-site-cta { margin-top: 2.5rem; display: inline-flex; border-radius: 0.5rem; background: #3b5bdb; padding: 0.75rem 1.5rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; color: #fff }
+.merlin-people,
+.merlin-quotes { margin-top: 3rem; display: grid; gap: 1.5rem }
+.merlin-person { border-radius: 0.75rem; border: 1px solid rgba(15, 23, 41, 0.1); background: #fff; padding: 1.5rem }
+.merlin-person div { height: 3.5rem; width: 3.5rem; border-radius: 9999px; background: rgba(116, 192, 252, 0.4) }
+.merlin-person h3 { margin-top: 1rem; font-size: 1.125rem; line-height: 1.75rem; font-weight: 600 }
+.merlin-person p { font-size: 0.875rem; line-height: 1.25rem; color: #3b5bdb }
+.merlin-person p + p { margin-top: 0.5rem; color: rgba(15, 23, 41, 0.65) }
+.merlin-services { margin-top: 3rem; display: grid; gap: 1px; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(15, 23, 41, 0.1); background: rgba(15, 23, 41, 0.1) }
+.merlin-services > div { background: #f4f6fb; padding: 2rem }
+.merlin-services h3 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600 }
+.merlin-services p { margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.25rem; color: rgba(15, 23, 41, 0.7) }
+.merlin-quotes blockquote { border-radius: 0.75rem; border: 1px solid rgba(15, 23, 41, 0.1); background: #fff; padding: 2rem }
+.merlin-quotes p { font-size: 1.125rem; font-style: italic; line-height: 1.625; color: rgba(15, 23, 41, 0.8) }
+.merlin-quotes footer { margin-top: 1rem; font-size: 0.875rem; line-height: 1.25rem; color: rgba(15, 23, 41, 0.55) }
+.merlin-contact { background: #0f1729; color: #fff }
+.merlin-contact-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; color: rgba(244, 246, 251, 0.8) }
+.merlin-contact-list div { display: flex; align-items: center; gap: 0.75rem }
+
+@media (min-width: 640px) {
+  .merlin-people { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (min-width: 768px) {
+  .merlin-header-in { padding-left: 2.5rem; padding-right: 2.5rem }
+  .merlin-nav,
+  .merlin-card-nav,
+  .merlin-site-nav { display: flex }
+  .merlin-wrap { padding: 7rem 2.5rem }
+  .merlin-lead { font-size: 1.125rem; line-height: 1.75rem }
+  .merlin-stats { grid-template-columns: repeat(4, minmax(0, 1fr)) }
+  .merlin-stat-v { font-size: 2.25rem; line-height: 2.5rem }
+  .merlin-features { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .merlin-feature { padding: 2.5rem }
+  .merlin-lib-head { flex-direction: row; align-items: flex-end; justify-content: space-between }
+  .merlin-themes { grid-template-columns: repeat(4, minmax(0, 1fr)) }
+  .merlin-card-hero { padding: 4rem 3rem }
+  .merlin-card-sec { padding-left: 3rem; padding-right: 3rem }
+  .merlin-site-hero { padding-top: 7rem; padding-bottom: 7rem }
+  .merlin-services { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+  .merlin-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (min-width: 1024px) {
+  .merlin-editor-grid { grid-template-columns: 380px 1fr }
+  .merlin-aside { border-bottom-width: 0; border-right-width: 1px; min-height: calc(100svh - 120px) }
+  .merlin-stage { padding: 2.5rem }
+}

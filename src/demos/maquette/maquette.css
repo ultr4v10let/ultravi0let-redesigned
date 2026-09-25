@@ -1,0 +1,154 @@
+/* Maquette (client demo): the old site's app/demos/maquette, its Tailwind v3 classes translated to plain CSS.
+   Values follow Tailwind's default scales; comments name the original utilities where it helps. */
+
+/* Fonts. Barlow and Barlow Condensed come from Fontsource (imported by the layout route). The mono is the old site's
+   JetBrains Mono (its font-mono), latin subset, the same file next/font served. Fallbacks carry next/font's metrics. */
+@font-face{font-family:'Maquette JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;
+  src:url('./jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Maquette Barlow fallback';src:local('Arial');ascent-override:103.43%;descent-override:20.69%;line-gap-override:0%;size-adjust:96.68%}
+@font-face{font-family:'Maquette Barlow Condensed fallback';src:local('Arial');ascent-override:130.73%;descent-override:26.15%;line-gap-override:0%;size-adjust:76.49%}
+@font-face{font-family:'Maquette JetBrains Mono fallback';src:local('Arial');ascent-override:75.79%;descent-override:22.29%;line-gap-override:0%;size-adjust:134.59%}
+
+/* Root: the layout sets background, colour, font and min-height inline, as the original did. */
+.maquette-root{
+  --maq-sans:'Barlow','Maquette Barlow fallback';
+  --maq-display:'Barlow Condensed','Maquette Barlow Condensed fallback';
+  --maq-mono:'Maquette JetBrains Mono','Maquette JetBrains Mono fallback',ui-monospace,monospace;
+  color-scheme:normal;
+}
+.maquette-root,.maquette-root *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+/* the old site's body grain, which sat over every demo */
+.maquette-root::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.05;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+html:root .maquette-root ::selection{background:#9e6dff;color:#08070b}
+/* the original used the browser's own focus ring */
+.maquette-root :focus-visible{outline:revert;outline-offset:revert}
+.maquette-root ::-webkit-inner-spin-button,.maquette-root ::-webkit-outer-spin-button{height:auto}
+/* the old site's page ground and thin violet scrollbar, only while this demo is on the page */
+html:has(.maquette-root){background:#08070b}
+html:has(.maquette-root)::-webkit-scrollbar{width:10px;height:10px}
+html:has(.maquette-root)::-webkit-scrollbar-track{background:#08070b}
+html:has(.maquette-root)::-webkit-scrollbar-thumb{background:rgba(196,165,255,.18);border-radius:100px}
+html:has(.maquette-root)::-webkit-scrollbar-thumb:hover{background:#7c3aed}
+
+/* shared */
+.maquette-orange{color:#F97316}
+.maquette-eyebrow{font-family:var(--maq-mono);font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:#F97316}
+.maquette-eyebrow-icon{display:flex;align-items:center;gap:.5rem}
+.maquette-page-title{font-size:1.875rem;line-height:2.25rem;font-weight:700;text-transform:uppercase}
+.maquette-btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:.375rem;padding:.875rem 1.5rem;font-size:.875rem;line-height:1.25rem}
+.maquette-btn-primary{background-color:#F97316;font-weight:600;color:#14181F}
+.maquette-btn-primary:hover{background-color:#FB923C}
+.maquette-btn-ghost{border:1px solid rgba(232,234,237,.2)}
+.maquette-btn-ghost:hover{background-color:rgba(232,234,237,.04)}
+.maquette-link{color:#F97316}
+.maquette-link:hover{text-decoration-line:underline}
+
+/* header */
+.maquette-header{border-bottom:1px solid rgba(232,234,237,.1);background-color:rgba(20,24,31,.9);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+.maquette-header-in{margin:0 auto;display:flex;max-width:1320px;align-items:center;justify-content:space-between;padding:1rem 1.5rem}
+.maquette-brand{display:flex;align-items:center;gap:.75rem}
+.maquette-brand-name{font-size:1.5rem;line-height:2rem;font-weight:700;text-transform:uppercase;letter-spacing:.025em}
+.maquette-nav{display:none;align-items:center;gap:1.75rem;font-size:.875rem;line-height:1.25rem}
+.maquette-nav a{color:rgba(232,234,237,.7);transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.maquette-nav a:hover{color:#E8EAED}
+.maquette-new{border-radius:.375rem;background-color:#F97316;padding:.5rem 1rem;font-size:13px;font-weight:600;color:#14181F}
+.maquette-new:hover{background-color:#FB923C}
+
+/* home */
+.maquette-hero{position:relative;overflow:hidden;border-bottom:1px solid rgba(232,234,237,.1)}
+.maquette-hero-grid{pointer-events:none;position:absolute;inset:0;opacity:.04}
+.maquette-wrap{margin:0 auto;max-width:1320px;padding:5rem 1.5rem}
+.maquette-hero-title{margin-top:1.5rem;font-size:clamp(2.4rem,6vw,5rem);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-.025em}
+.maquette-lede{margin-top:2rem;max-width:42rem;font-size:1rem;line-height:1.625;color:rgba(232,234,237,.75)}
+.maquette-ctas{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:.75rem}
+.maquette-stats{margin-top:5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;overflow:hidden;border-radius:.375rem;border:1px solid rgba(232,234,237,.1);background-color:rgba(232,234,237,.1)}
+.maquette-stat{background-color:#14181F;padding:1.5rem}
+.maquette-stat-v{font-size:1.875rem;line-height:2.25rem;font-weight:700;text-transform:uppercase}
+.maquette-stat-k{margin-top:.5rem;font-family:var(--maq-mono);font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:rgba(232,234,237,.55)}
+.maquette-services{border-bottom:1px solid rgba(232,234,237,.1);background-color:#1A1F28}
+.maquette-services-title{margin-top:.75rem;font-size:clamp(2rem,4vw,3.4rem);font-weight:700;text-transform:uppercase;line-height:1.25}
+.maquette-lines{margin-top:3.5rem;display:grid;gap:1.5rem}
+.maquette-line{border-radius:.5rem;border:1px solid rgba(232,234,237,.1);background-color:#14181F;padding:2rem;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.maquette-line:hover{border-color:rgba(249,115,22,.4)}
+.maquette-line-tag{font-family:var(--maq-mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:#F97316}
+.maquette-line-icon{margin-top:1.5rem;color:#F97316}
+.maquette-line-title{margin-top:1.5rem;font-size:1.5rem;line-height:2rem;font-weight:700;text-transform:uppercase}
+.maquette-line-desc{margin-top:.75rem;font-size:.875rem;line-height:1.625;color:rgba(232,234,237,.7)}
+.maquette-line-formats{margin-top:1.5rem;font-family:var(--maq-mono);font-size:.75rem;line-height:1rem;color:rgba(232,234,237,.5)}
+
+/* orders */
+.maquette-page{margin:0 auto;max-width:1320px;padding:2.5rem 1.5rem}
+.maquette-orders-head{display:flex;flex-direction:column;gap:1rem}
+.maquette-orders-head h1{margin-top:.5rem}
+.maquette-filters{display:flex;flex-wrap:wrap;gap:.5rem}
+.maquette-filter{border-radius:.375rem;padding:.375rem .75rem;font-size:.75rem;line-height:1rem;font-weight:500;text-transform:uppercase;letter-spacing:.025em;border:1px solid rgba(232,234,237,.15);color:rgba(232,234,237,.7)}
+.maquette-filter[aria-pressed="true"]{border-width:0;background-color:#F97316;color:#14181F}
+.maquette-table-wrap{margin-top:2.5rem;overflow:hidden;border-radius:.5rem;border:1px solid rgba(232,234,237,.1)}
+.maquette-table{width:100%;text-align:left;font-size:.875rem;line-height:1.25rem}
+.maquette-table thead{border-bottom:1px solid rgba(232,234,237,.1);background-color:#1A1F28;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(232,234,237,.55)}
+.maquette-table th{padding:.75rem 1.25rem}
+.maquette-table td{padding:1rem 1.25rem}
+/* divide-y; its divide-[#E8EAED]/8 is off Tailwind's opacity scale and never generated, so the rows took preflight's #e5e7eb */
+.maquette-table tbody>:not([hidden])~:not([hidden]){border-top-width:1px;border-bottom-width:0;border-color:#e5e7eb}
+.maquette-table tbody tr:hover{background-color:rgba(232,234,237,.02)}
+.maquette-hide-sm,.maquette-hide-md{display:none}
+.maquette-id{font-family:var(--maq-mono);font-size:.75rem;line-height:1rem}
+.maquette-muted-65{color:rgba(232,234,237,.65)}
+.maquette-muted-55{color:rgba(232,234,237,.55)}
+.maquette-job{display:flex;align-items:center;gap:.5rem}
+.maquette-job svg{color:rgba(249,115,22,.7)}
+.maquette-status{border-radius:.25rem;padding:.125rem .5rem;font-size:10px;text-transform:uppercase;letter-spacing:.025em}
+.maquette-status-printing{background-color:rgba(249,115,22,.2);color:#FB923C}
+.maquette-status-queued{background-color:rgba(232,234,237,.1);color:rgba(232,234,237,.7)}
+.maquette-status-ready,.maquette-status-shipped{background-color:rgba(16,185,129,.2);color:#34D399}
+.maquette-ship{font-size:.75rem;line-height:1rem}
+.maquette-clock{color:#FB923C}
+.maquette-done{color:#34D399}
+
+/* quote */
+.maquette-quote{margin:0 auto;max-width:720px;padding:2.5rem 1.5rem}
+.maquette-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;line-height:1.25rem;color:rgba(232,234,237,.6)}
+.maquette-back:hover{color:#F97316}
+.maquette-quote-head{margin-top:2rem;display:flex;align-items:center;gap:.75rem}
+.maquette-quote-intro{margin-top:.75rem;font-size:.875rem;line-height:1.25rem;color:rgba(232,234,237,.65)}
+.maquette-success{margin-top:2.5rem;border-radius:.5rem;border:1px solid rgba(16,185,129,.3);background-color:rgba(16,185,129,.1);padding:2rem;text-align:center}
+.maquette-success-title{font-size:1.125rem;line-height:1.75rem;font-weight:600;color:#34D399}
+.maquette-success p{margin-top:.5rem;font-size:.875rem;line-height:1.25rem;color:rgba(232,234,237,.7)}
+.maquette-success button{margin-top:1.5rem;font-size:.875rem;line-height:1.25rem}
+.maquette-form{margin-top:2.5rem}
+.maquette-form>:not([hidden])~:not([hidden]){margin-top:2rem;margin-bottom:0}
+.maquette-label{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:rgba(232,234,237,.55)}
+.maquette-opts{margin-top:.75rem;display:grid;gap:.5rem}
+.maquette-opt{border-radius:.5rem;border:1px solid rgba(232,234,237,.15);padding:.75rem 1rem;text-align:left;font-size:.875rem;line-height:1.25rem}
+.maquette-opt:hover{border-color:rgba(232,234,237,.3)}
+.maquette-opt[aria-pressed="true"]{border-color:#F97316;background-color:rgba(249,115,22,.1)}
+.maquette-sizes{margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.maquette-size{border-radius:.375rem;padding:.5rem 1rem;font-size:.875rem;line-height:1.25rem;border:1px solid rgba(232,234,237,.15)}
+.maquette-size[aria-pressed="true"]{border-width:0;background-color:#F97316;color:#14181F;font-weight:500}
+.maquette-root .maquette-qty{margin-top:.5rem;width:100%;max-width:200px;border-radius:.5rem;border:1px solid rgba(232,234,237,.15);background-color:#1A1F28;padding:.625rem 1rem;font-size:.875rem;line-height:1.25rem;outline:2px solid transparent;outline-offset:2px}
+.maquette-qty:focus{border-color:#F97316}
+.maquette-estimate{border-radius:.5rem;border:1px solid rgba(232,234,237,.1);background-color:#1A1F28;padding:1.5rem}
+.maquette-estimate-v{margin-top:.5rem;font-size:2.25rem;line-height:2.5rem;font-weight:700;color:#F97316}
+.maquette-estimate-note{margin-top:.5rem;font-size:.75rem;line-height:1rem;color:rgba(232,234,237,.5)}
+/* two classes: demos.css's button reset is (0,1,1) through its [type=submit] */
+.maquette-root .maquette-submit{width:100%;border-radius:.375rem;background-color:#F97316;padding:.875rem 0;font-size:.875rem;line-height:1.25rem;font-weight:600;color:#14181F}
+.maquette-submit:hover{background-color:#FB923C}
+
+@media (min-width:640px){
+  .maquette-hide-sm{display:table-cell}
+  .maquette-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (min-width:768px){
+  .maquette-header-in{padding-left:2.5rem;padding-right:2.5rem}
+  .maquette-nav{display:flex}
+  .maquette-wrap{padding:7rem 2.5rem}
+  .maquette-lede{font-size:1.125rem;line-height:1.75rem}
+  .maquette-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .maquette-stat-v{font-size:2.25rem;line-height:2.5rem}
+  .maquette-lines{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .maquette-page,.maquette-quote{padding:3.5rem 2.5rem}
+  .maquette-orders-head{flex-direction:row;align-items:flex-end;justify-content:space-between}
+  .maquette-hide-md{display:table-cell}
+}
