@@ -6,7 +6,7 @@ import { hero, services, site } from '../content/content'
 export const SITE_URL = 'https://www.ultravi0let.com'
 
 export const SEO = {
-  title: 'Ultravi0let — Product design & engineering studio in Cairo',
+  title: 'Ultravi0let — Product design & engineering studio',
   description: 'We build the quiet machinery behind loud products. A senior-only studio in Cairo for design, engineering, cloud and AI, from first prototype to production.',
   image: { path: '/og-image.png', width: 1200, height: 630, alt: 'ULTRAVI0LET — the quiet machinery behind loud products.' },
   themeColor: { light: '#F2EDFE', dark: '#110E2A' },

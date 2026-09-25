@@ -13,7 +13,7 @@ const attr = (re: RegExp) => head.match(re)?.[1]
 test('build output exists', () => assert.ok(DIR, 'run the build first'))
 
 test('title, description and canonical', () => {
-  assert.equal(attr(/<title>([^<]*)<\/title>/), 'Ultravi0let — Product design &amp; engineering studio in Cairo')
+  assert.equal(attr(/<title>([^<]*)<\/title>/), 'Ultravi0let — Product design &amp; engineering studio')
   assert.equal(attr(/<meta name="description" content="([^"]*)"/), 'We build the quiet machinery behind loud products. A senior-only studio in Cairo for design, engineering, cloud and AI, from first prototype to production.')
   assert.equal((head.match(/rel="canonical"/g) ?? []).length, 1)
   assert.equal(attr(/<link rel="canonical" href="([^"]*)"/), `${SITE}/`)
