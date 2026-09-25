@@ -46,13 +46,14 @@ async function serveFonts(page: Page) {
    so every other pixel is still held to an exact match:
    - the --faint contrast fix (BRIEF §5)
    - the four-phases halo on phones (patchedReference above)
-   - the owner's copy changes (content.json: Cairo, reFind Outlet, Zanobia in progress, the form button, two
+   - the owner's copy changes (content.json: founded 2024, Cairo, reFind Outlet, Zanobia in progress, the form button, two
      testimonials) and style changes (no hairline above the footer, two testimonial columns) */
 async function applyIntendedChanges(page: Page) {
   await page.addStyleTag({ content: ':root:not([data-theme="dark"]){--faint:#7262AC}.site-foot{border-top:0}.quotes{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:880px){.quotes{grid-template-columns:1fr}}' })
   await page.evaluate((c) => {
     const text = (sel: string, t: string) => document.querySelectorAll(sel).forEach((el) => { el.textContent = t })
     const p = c.work.projects
+    text('.stats-strip > div:nth-child(1) .v', c.site.founded)
     text('.stats-strip > div:nth-child(2) .v', c.site.base)
     text('.work-hint .eyebrow:first-of-type', c.work.hint[0])
     p.forEach((pr, i) => {
