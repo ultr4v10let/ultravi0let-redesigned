@@ -10,33 +10,320 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemosAgLawRouteRouteImport } from './routes/demos/ag-law/route'
+import { Route as DemosFacetRouteRouteImport } from './routes/demos/facet/route'
+import { Route as DemosMaquetteRouteRouteImport } from './routes/demos/maquette/route'
+import { Route as DemosMerlinRouteRouteImport } from './routes/demos/merlin/route'
+import { Route as DemosZanobiaRouteRouteImport } from './routes/demos/zanobia/route'
+import { Route as DemosAgLawIndexRouteImport } from './routes/demos/ag-law/index'
+import { Route as DemosAgLawAttorneysRouteImport } from './routes/demos/ag-law/attorneys'
+import { Route as DemosAgLawBookRouteImport } from './routes/demos/ag-law/book'
+import { Route as DemosFacetIndexRouteImport } from './routes/demos/facet/index'
+import { Route as DemosFacetBuildRouteImport } from './routes/demos/facet/build'
+import { Route as DemosFacetDashboardRouteImport } from './routes/demos/facet/dashboard'
+import { Route as DemosFacetPreviewRouteImport } from './routes/demos/facet/preview'
+import { Route as DemosFacetSignInRouteImport } from './routes/demos/facet/sign-in'
+import { Route as DemosMaquetteIndexRouteImport } from './routes/demos/maquette/index'
+import { Route as DemosMaquetteOrdersRouteImport } from './routes/demos/maquette/orders'
+import { Route as DemosMaquetteQuoteRouteImport } from './routes/demos/maquette/quote'
+import { Route as DemosMerlinIndexRouteImport } from './routes/demos/merlin/index'
+import { Route as DemosMerlinEditorRouteImport } from './routes/demos/merlin/editor'
+import { Route as DemosMerlinPreviewRouteImport } from './routes/demos/merlin/preview'
+import { Route as DemosZanobiaIndexRouteImport } from './routes/demos/zanobia/index'
+import { Route as DemosZanobiaAdminRouteImport } from './routes/demos/zanobia/admin'
+import { Route as DemosZanobiaInventoryRouteImport } from './routes/demos/zanobia/inventory'
+import { Route as DemosZanobiaProductionRouteImport } from './routes/demos/zanobia/production'
+import { Route as DemosZanobiaShopsRouteImport } from './routes/demos/zanobia/shops'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemosAgLawRouteRoute = DemosAgLawRouteRouteImport.update({
+  id: '/demos/ag-law',
+  path: '/demos/ag-law',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosFacetRouteRoute = DemosFacetRouteRouteImport.update({
+  id: '/demos/facet',
+  path: '/demos/facet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosMaquetteRouteRoute = DemosMaquetteRouteRouteImport.update({
+  id: '/demos/maquette',
+  path: '/demos/maquette',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosMerlinRouteRoute = DemosMerlinRouteRouteImport.update({
+  id: '/demos/merlin',
+  path: '/demos/merlin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosZanobiaRouteRoute = DemosZanobiaRouteRouteImport.update({
+  id: '/demos/zanobia',
+  path: '/demos/zanobia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemosAgLawIndexRoute = DemosAgLawIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemosAgLawRouteRoute,
+} as any)
+const DemosAgLawAttorneysRoute = DemosAgLawAttorneysRouteImport.update({
+  id: '/attorneys',
+  path: '/attorneys',
+  getParentRoute: () => DemosAgLawRouteRoute,
+} as any)
+const DemosAgLawBookRoute = DemosAgLawBookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => DemosAgLawRouteRoute,
+} as any)
+const DemosFacetIndexRoute = DemosFacetIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemosFacetRouteRoute,
+} as any)
+const DemosFacetBuildRoute = DemosFacetBuildRouteImport.update({
+  id: '/build',
+  path: '/build',
+  getParentRoute: () => DemosFacetRouteRoute,
+} as any)
+const DemosFacetDashboardRoute = DemosFacetDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => DemosFacetRouteRoute,
+} as any)
+const DemosFacetPreviewRoute = DemosFacetPreviewRouteImport.update({
+  id: '/preview',
+  path: '/preview',
+  getParentRoute: () => DemosFacetRouteRoute,
+} as any)
+const DemosFacetSignInRoute = DemosFacetSignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => DemosFacetRouteRoute,
+} as any)
+const DemosMaquetteIndexRoute = DemosMaquetteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemosMaquetteRouteRoute,
+} as any)
+const DemosMaquetteOrdersRoute = DemosMaquetteOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => DemosMaquetteRouteRoute,
+} as any)
+const DemosMaquetteQuoteRoute = DemosMaquetteQuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => DemosMaquetteRouteRoute,
+} as any)
+const DemosMerlinIndexRoute = DemosMerlinIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemosMerlinRouteRoute,
+} as any)
+const DemosMerlinEditorRoute = DemosMerlinEditorRouteImport.update({
+  id: '/editor',
+  path: '/editor',
+  getParentRoute: () => DemosMerlinRouteRoute,
+} as any)
+const DemosMerlinPreviewRoute = DemosMerlinPreviewRouteImport.update({
+  id: '/preview',
+  path: '/preview',
+  getParentRoute: () => DemosMerlinRouteRoute,
+} as any)
+const DemosZanobiaIndexRoute = DemosZanobiaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemosZanobiaRouteRoute,
+} as any)
+const DemosZanobiaAdminRoute = DemosZanobiaAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => DemosZanobiaRouteRoute,
+} as any)
+const DemosZanobiaInventoryRoute = DemosZanobiaInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => DemosZanobiaRouteRoute,
+} as any)
+const DemosZanobiaProductionRoute = DemosZanobiaProductionRouteImport.update({
+  id: '/production',
+  path: '/production',
+  getParentRoute: () => DemosZanobiaRouteRoute,
+} as any)
+const DemosZanobiaShopsRoute = DemosZanobiaShopsRouteImport.update({
+  id: '/shops',
+  path: '/shops',
+  getParentRoute: () => DemosZanobiaRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demos/ag-law': typeof DemosAgLawRouteRouteWithChildren
+  '/demos/facet': typeof DemosFacetRouteRouteWithChildren
+  '/demos/maquette': typeof DemosMaquetteRouteRouteWithChildren
+  '/demos/merlin': typeof DemosMerlinRouteRouteWithChildren
+  '/demos/zanobia': typeof DemosZanobiaRouteRouteWithChildren
+  '/demos/ag-law/attorneys': typeof DemosAgLawAttorneysRoute
+  '/demos/ag-law/book': typeof DemosAgLawBookRoute
+  '/demos/facet/build': typeof DemosFacetBuildRoute
+  '/demos/facet/dashboard': typeof DemosFacetDashboardRoute
+  '/demos/facet/preview': typeof DemosFacetPreviewRoute
+  '/demos/facet/sign-in': typeof DemosFacetSignInRoute
+  '/demos/maquette/orders': typeof DemosMaquetteOrdersRoute
+  '/demos/maquette/quote': typeof DemosMaquetteQuoteRoute
+  '/demos/merlin/editor': typeof DemosMerlinEditorRoute
+  '/demos/merlin/preview': typeof DemosMerlinPreviewRoute
+  '/demos/zanobia/admin': typeof DemosZanobiaAdminRoute
+  '/demos/zanobia/inventory': typeof DemosZanobiaInventoryRoute
+  '/demos/zanobia/production': typeof DemosZanobiaProductionRoute
+  '/demos/zanobia/shops': typeof DemosZanobiaShopsRoute
+  '/demos/ag-law/': typeof DemosAgLawIndexRoute
+  '/demos/facet/': typeof DemosFacetIndexRoute
+  '/demos/maquette/': typeof DemosMaquetteIndexRoute
+  '/demos/merlin/': typeof DemosMerlinIndexRoute
+  '/demos/zanobia/': typeof DemosZanobiaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demos/ag-law/attorneys': typeof DemosAgLawAttorneysRoute
+  '/demos/ag-law/book': typeof DemosAgLawBookRoute
+  '/demos/facet/build': typeof DemosFacetBuildRoute
+  '/demos/facet/dashboard': typeof DemosFacetDashboardRoute
+  '/demos/facet/preview': typeof DemosFacetPreviewRoute
+  '/demos/facet/sign-in': typeof DemosFacetSignInRoute
+  '/demos/maquette/orders': typeof DemosMaquetteOrdersRoute
+  '/demos/maquette/quote': typeof DemosMaquetteQuoteRoute
+  '/demos/merlin/editor': typeof DemosMerlinEditorRoute
+  '/demos/merlin/preview': typeof DemosMerlinPreviewRoute
+  '/demos/zanobia/admin': typeof DemosZanobiaAdminRoute
+  '/demos/zanobia/inventory': typeof DemosZanobiaInventoryRoute
+  '/demos/zanobia/production': typeof DemosZanobiaProductionRoute
+  '/demos/zanobia/shops': typeof DemosZanobiaShopsRoute
+  '/demos/ag-law': typeof DemosAgLawIndexRoute
+  '/demos/facet': typeof DemosFacetIndexRoute
+  '/demos/maquette': typeof DemosMaquetteIndexRoute
+  '/demos/merlin': typeof DemosMerlinIndexRoute
+  '/demos/zanobia': typeof DemosZanobiaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/demos/ag-law': typeof DemosAgLawRouteRouteWithChildren
+  '/demos/facet': typeof DemosFacetRouteRouteWithChildren
+  '/demos/maquette': typeof DemosMaquetteRouteRouteWithChildren
+  '/demos/merlin': typeof DemosMerlinRouteRouteWithChildren
+  '/demos/zanobia': typeof DemosZanobiaRouteRouteWithChildren
+  '/demos/ag-law/attorneys': typeof DemosAgLawAttorneysRoute
+  '/demos/ag-law/book': typeof DemosAgLawBookRoute
+  '/demos/facet/build': typeof DemosFacetBuildRoute
+  '/demos/facet/dashboard': typeof DemosFacetDashboardRoute
+  '/demos/facet/preview': typeof DemosFacetPreviewRoute
+  '/demos/facet/sign-in': typeof DemosFacetSignInRoute
+  '/demos/maquette/orders': typeof DemosMaquetteOrdersRoute
+  '/demos/maquette/quote': typeof DemosMaquetteQuoteRoute
+  '/demos/merlin/editor': typeof DemosMerlinEditorRoute
+  '/demos/merlin/preview': typeof DemosMerlinPreviewRoute
+  '/demos/zanobia/admin': typeof DemosZanobiaAdminRoute
+  '/demos/zanobia/inventory': typeof DemosZanobiaInventoryRoute
+  '/demos/zanobia/production': typeof DemosZanobiaProductionRoute
+  '/demos/zanobia/shops': typeof DemosZanobiaShopsRoute
+  '/demos/ag-law/': typeof DemosAgLawIndexRoute
+  '/demos/facet/': typeof DemosFacetIndexRoute
+  '/demos/maquette/': typeof DemosMaquetteIndexRoute
+  '/demos/merlin/': typeof DemosMerlinIndexRoute
+  '/demos/zanobia/': typeof DemosZanobiaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/demos/ag-law'
+    | '/demos/facet'
+    | '/demos/maquette'
+    | '/demos/merlin'
+    | '/demos/zanobia'
+    | '/demos/ag-law/attorneys'
+    | '/demos/ag-law/book'
+    | '/demos/facet/build'
+    | '/demos/facet/dashboard'
+    | '/demos/facet/preview'
+    | '/demos/facet/sign-in'
+    | '/demos/maquette/orders'
+    | '/demos/maquette/quote'
+    | '/demos/merlin/editor'
+    | '/demos/merlin/preview'
+    | '/demos/zanobia/admin'
+    | '/demos/zanobia/inventory'
+    | '/demos/zanobia/production'
+    | '/demos/zanobia/shops'
+    | '/demos/ag-law/'
+    | '/demos/facet/'
+    | '/demos/maquette/'
+    | '/demos/merlin/'
+    | '/demos/zanobia/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/demos/ag-law/attorneys'
+    | '/demos/ag-law/book'
+    | '/demos/facet/build'
+    | '/demos/facet/dashboard'
+    | '/demos/facet/preview'
+    | '/demos/facet/sign-in'
+    | '/demos/maquette/orders'
+    | '/demos/maquette/quote'
+    | '/demos/merlin/editor'
+    | '/demos/merlin/preview'
+    | '/demos/zanobia/admin'
+    | '/demos/zanobia/inventory'
+    | '/demos/zanobia/production'
+    | '/demos/zanobia/shops'
+    | '/demos/ag-law'
+    | '/demos/facet'
+    | '/demos/maquette'
+    | '/demos/merlin'
+    | '/demos/zanobia'
+  id:
+    | '__root__'
+    | '/'
+    | '/demos/ag-law'
+    | '/demos/facet'
+    | '/demos/maquette'
+    | '/demos/merlin'
+    | '/demos/zanobia'
+    | '/demos/ag-law/attorneys'
+    | '/demos/ag-law/book'
+    | '/demos/facet/build'
+    | '/demos/facet/dashboard'
+    | '/demos/facet/preview'
+    | '/demos/facet/sign-in'
+    | '/demos/maquette/orders'
+    | '/demos/maquette/quote'
+    | '/demos/merlin/editor'
+    | '/demos/merlin/preview'
+    | '/demos/zanobia/admin'
+    | '/demos/zanobia/inventory'
+    | '/demos/zanobia/production'
+    | '/demos/zanobia/shops'
+    | '/demos/ag-law/'
+    | '/demos/facet/'
+    | '/demos/maquette/'
+    | '/demos/merlin/'
+    | '/demos/zanobia/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemosAgLawRouteRoute: typeof DemosAgLawRouteRouteWithChildren
+  DemosFacetRouteRoute: typeof DemosFacetRouteRouteWithChildren
+  DemosMaquetteRouteRoute: typeof DemosMaquetteRouteRouteWithChildren
+  DemosMerlinRouteRoute: typeof DemosMerlinRouteRouteWithChildren
+  DemosZanobiaRouteRoute: typeof DemosZanobiaRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +335,269 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demos/ag-law': {
+      id: '/demos/ag-law'
+      path: '/demos/ag-law'
+      fullPath: '/demos/ag-law'
+      preLoaderRoute: typeof DemosAgLawRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos/facet': {
+      id: '/demos/facet'
+      path: '/demos/facet'
+      fullPath: '/demos/facet'
+      preLoaderRoute: typeof DemosFacetRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos/maquette': {
+      id: '/demos/maquette'
+      path: '/demos/maquette'
+      fullPath: '/demos/maquette'
+      preLoaderRoute: typeof DemosMaquetteRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos/merlin': {
+      id: '/demos/merlin'
+      path: '/demos/merlin'
+      fullPath: '/demos/merlin'
+      preLoaderRoute: typeof DemosMerlinRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos/zanobia': {
+      id: '/demos/zanobia'
+      path: '/demos/zanobia'
+      fullPath: '/demos/zanobia'
+      preLoaderRoute: typeof DemosZanobiaRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demos/ag-law/': {
+      id: '/demos/ag-law/'
+      path: '/'
+      fullPath: '/demos/ag-law/'
+      preLoaderRoute: typeof DemosAgLawIndexRouteImport
+      parentRoute: typeof DemosAgLawRouteRoute
+    }
+    '/demos/ag-law/attorneys': {
+      id: '/demos/ag-law/attorneys'
+      path: '/attorneys'
+      fullPath: '/demos/ag-law/attorneys'
+      preLoaderRoute: typeof DemosAgLawAttorneysRouteImport
+      parentRoute: typeof DemosAgLawRouteRoute
+    }
+    '/demos/ag-law/book': {
+      id: '/demos/ag-law/book'
+      path: '/book'
+      fullPath: '/demos/ag-law/book'
+      preLoaderRoute: typeof DemosAgLawBookRouteImport
+      parentRoute: typeof DemosAgLawRouteRoute
+    }
+    '/demos/facet/': {
+      id: '/demos/facet/'
+      path: '/'
+      fullPath: '/demos/facet/'
+      preLoaderRoute: typeof DemosFacetIndexRouteImport
+      parentRoute: typeof DemosFacetRouteRoute
+    }
+    '/demos/facet/build': {
+      id: '/demos/facet/build'
+      path: '/build'
+      fullPath: '/demos/facet/build'
+      preLoaderRoute: typeof DemosFacetBuildRouteImport
+      parentRoute: typeof DemosFacetRouteRoute
+    }
+    '/demos/facet/dashboard': {
+      id: '/demos/facet/dashboard'
+      path: '/dashboard'
+      fullPath: '/demos/facet/dashboard'
+      preLoaderRoute: typeof DemosFacetDashboardRouteImport
+      parentRoute: typeof DemosFacetRouteRoute
+    }
+    '/demos/facet/preview': {
+      id: '/demos/facet/preview'
+      path: '/preview'
+      fullPath: '/demos/facet/preview'
+      preLoaderRoute: typeof DemosFacetPreviewRouteImport
+      parentRoute: typeof DemosFacetRouteRoute
+    }
+    '/demos/facet/sign-in': {
+      id: '/demos/facet/sign-in'
+      path: '/sign-in'
+      fullPath: '/demos/facet/sign-in'
+      preLoaderRoute: typeof DemosFacetSignInRouteImport
+      parentRoute: typeof DemosFacetRouteRoute
+    }
+    '/demos/maquette/': {
+      id: '/demos/maquette/'
+      path: '/'
+      fullPath: '/demos/maquette/'
+      preLoaderRoute: typeof DemosMaquetteIndexRouteImport
+      parentRoute: typeof DemosMaquetteRouteRoute
+    }
+    '/demos/maquette/orders': {
+      id: '/demos/maquette/orders'
+      path: '/orders'
+      fullPath: '/demos/maquette/orders'
+      preLoaderRoute: typeof DemosMaquetteOrdersRouteImport
+      parentRoute: typeof DemosMaquetteRouteRoute
+    }
+    '/demos/maquette/quote': {
+      id: '/demos/maquette/quote'
+      path: '/quote'
+      fullPath: '/demos/maquette/quote'
+      preLoaderRoute: typeof DemosMaquetteQuoteRouteImport
+      parentRoute: typeof DemosMaquetteRouteRoute
+    }
+    '/demos/merlin/': {
+      id: '/demos/merlin/'
+      path: '/'
+      fullPath: '/demos/merlin/'
+      preLoaderRoute: typeof DemosMerlinIndexRouteImport
+      parentRoute: typeof DemosMerlinRouteRoute
+    }
+    '/demos/merlin/editor': {
+      id: '/demos/merlin/editor'
+      path: '/editor'
+      fullPath: '/demos/merlin/editor'
+      preLoaderRoute: typeof DemosMerlinEditorRouteImport
+      parentRoute: typeof DemosMerlinRouteRoute
+    }
+    '/demos/merlin/preview': {
+      id: '/demos/merlin/preview'
+      path: '/preview'
+      fullPath: '/demos/merlin/preview'
+      preLoaderRoute: typeof DemosMerlinPreviewRouteImport
+      parentRoute: typeof DemosMerlinRouteRoute
+    }
+    '/demos/zanobia/': {
+      id: '/demos/zanobia/'
+      path: '/'
+      fullPath: '/demos/zanobia/'
+      preLoaderRoute: typeof DemosZanobiaIndexRouteImport
+      parentRoute: typeof DemosZanobiaRouteRoute
+    }
+    '/demos/zanobia/admin': {
+      id: '/demos/zanobia/admin'
+      path: '/admin'
+      fullPath: '/demos/zanobia/admin'
+      preLoaderRoute: typeof DemosZanobiaAdminRouteImport
+      parentRoute: typeof DemosZanobiaRouteRoute
+    }
+    '/demos/zanobia/inventory': {
+      id: '/demos/zanobia/inventory'
+      path: '/inventory'
+      fullPath: '/demos/zanobia/inventory'
+      preLoaderRoute: typeof DemosZanobiaInventoryRouteImport
+      parentRoute: typeof DemosZanobiaRouteRoute
+    }
+    '/demos/zanobia/production': {
+      id: '/demos/zanobia/production'
+      path: '/production'
+      fullPath: '/demos/zanobia/production'
+      preLoaderRoute: typeof DemosZanobiaProductionRouteImport
+      parentRoute: typeof DemosZanobiaRouteRoute
+    }
+    '/demos/zanobia/shops': {
+      id: '/demos/zanobia/shops'
+      path: '/shops'
+      fullPath: '/demos/zanobia/shops'
+      preLoaderRoute: typeof DemosZanobiaShopsRouteImport
+      parentRoute: typeof DemosZanobiaRouteRoute
+    }
   }
 }
 
+interface DemosAgLawRouteRouteChildren {
+  DemosAgLawAttorneysRoute: typeof DemosAgLawAttorneysRoute
+  DemosAgLawBookRoute: typeof DemosAgLawBookRoute
+  DemosAgLawIndexRoute: typeof DemosAgLawIndexRoute
+}
+
+const DemosAgLawRouteRouteChildren: DemosAgLawRouteRouteChildren = {
+  DemosAgLawAttorneysRoute: DemosAgLawAttorneysRoute,
+  DemosAgLawBookRoute: DemosAgLawBookRoute,
+  DemosAgLawIndexRoute: DemosAgLawIndexRoute,
+}
+
+const DemosAgLawRouteRouteWithChildren = DemosAgLawRouteRoute._addFileChildren(
+  DemosAgLawRouteRouteChildren,
+)
+
+interface DemosFacetRouteRouteChildren {
+  DemosFacetBuildRoute: typeof DemosFacetBuildRoute
+  DemosFacetDashboardRoute: typeof DemosFacetDashboardRoute
+  DemosFacetPreviewRoute: typeof DemosFacetPreviewRoute
+  DemosFacetSignInRoute: typeof DemosFacetSignInRoute
+  DemosFacetIndexRoute: typeof DemosFacetIndexRoute
+}
+
+const DemosFacetRouteRouteChildren: DemosFacetRouteRouteChildren = {
+  DemosFacetBuildRoute: DemosFacetBuildRoute,
+  DemosFacetDashboardRoute: DemosFacetDashboardRoute,
+  DemosFacetPreviewRoute: DemosFacetPreviewRoute,
+  DemosFacetSignInRoute: DemosFacetSignInRoute,
+  DemosFacetIndexRoute: DemosFacetIndexRoute,
+}
+
+const DemosFacetRouteRouteWithChildren = DemosFacetRouteRoute._addFileChildren(
+  DemosFacetRouteRouteChildren,
+)
+
+interface DemosMaquetteRouteRouteChildren {
+  DemosMaquetteOrdersRoute: typeof DemosMaquetteOrdersRoute
+  DemosMaquetteQuoteRoute: typeof DemosMaquetteQuoteRoute
+  DemosMaquetteIndexRoute: typeof DemosMaquetteIndexRoute
+}
+
+const DemosMaquetteRouteRouteChildren: DemosMaquetteRouteRouteChildren = {
+  DemosMaquetteOrdersRoute: DemosMaquetteOrdersRoute,
+  DemosMaquetteQuoteRoute: DemosMaquetteQuoteRoute,
+  DemosMaquetteIndexRoute: DemosMaquetteIndexRoute,
+}
+
+const DemosMaquetteRouteRouteWithChildren =
+  DemosMaquetteRouteRoute._addFileChildren(DemosMaquetteRouteRouteChildren)
+
+interface DemosMerlinRouteRouteChildren {
+  DemosMerlinEditorRoute: typeof DemosMerlinEditorRoute
+  DemosMerlinPreviewRoute: typeof DemosMerlinPreviewRoute
+  DemosMerlinIndexRoute: typeof DemosMerlinIndexRoute
+}
+
+const DemosMerlinRouteRouteChildren: DemosMerlinRouteRouteChildren = {
+  DemosMerlinEditorRoute: DemosMerlinEditorRoute,
+  DemosMerlinPreviewRoute: DemosMerlinPreviewRoute,
+  DemosMerlinIndexRoute: DemosMerlinIndexRoute,
+}
+
+const DemosMerlinRouteRouteWithChildren =
+  DemosMerlinRouteRoute._addFileChildren(DemosMerlinRouteRouteChildren)
+
+interface DemosZanobiaRouteRouteChildren {
+  DemosZanobiaAdminRoute: typeof DemosZanobiaAdminRoute
+  DemosZanobiaInventoryRoute: typeof DemosZanobiaInventoryRoute
+  DemosZanobiaProductionRoute: typeof DemosZanobiaProductionRoute
+  DemosZanobiaShopsRoute: typeof DemosZanobiaShopsRoute
+  DemosZanobiaIndexRoute: typeof DemosZanobiaIndexRoute
+}
+
+const DemosZanobiaRouteRouteChildren: DemosZanobiaRouteRouteChildren = {
+  DemosZanobiaAdminRoute: DemosZanobiaAdminRoute,
+  DemosZanobiaInventoryRoute: DemosZanobiaInventoryRoute,
+  DemosZanobiaProductionRoute: DemosZanobiaProductionRoute,
+  DemosZanobiaShopsRoute: DemosZanobiaShopsRoute,
+  DemosZanobiaIndexRoute: DemosZanobiaIndexRoute,
+}
+
+const DemosZanobiaRouteRouteWithChildren =
+  DemosZanobiaRouteRoute._addFileChildren(DemosZanobiaRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemosAgLawRouteRoute: DemosAgLawRouteRouteWithChildren,
+  DemosFacetRouteRoute: DemosFacetRouteRouteWithChildren,
+  DemosMaquetteRouteRoute: DemosMaquetteRouteRouteWithChildren,
+  DemosMerlinRouteRoute: DemosMerlinRouteRouteWithChildren,
+  DemosZanobiaRouteRoute: DemosZanobiaRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
