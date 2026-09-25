@@ -65,7 +65,8 @@ export function processFilm(section: HTMLElement): Film {
       const slim = W < 880, headH = slim ? 64 : 88
       const ground = slim ? clamp(H * 0.37, 292, 340) : clamp(H * 0.31, 236, 300)
       HZ = Math.round(H - ground)
-      R = clamp(Math.min(W, HZ) * (slim ? 0.2 : 0.19), 54, 150)
+      /* owner's change: phones and portrait tablets had the prototype's 0.2 (a halo 40% of the screen wide) */
+      R = clamp(Math.min(W, HZ) * (slim ? 0.15 : 0.19), 44, 150)
       const apex = Math.max(headH + R + 46, HZ * 0.34)
       const y0 = HZ + 0.62 * R, yc = (8 * apex - 2 * y0) / 6
       const d = `M${(0.04 * W).toFixed(1)} ${y0.toFixed(1)} C${(0.22 * W).toFixed(1)} ${yc.toFixed(1)} ${(0.78 * W).toFixed(1)} ${yc.toFixed(1)} ${(0.96 * W).toFixed(1)} ${y0.toFixed(1)}`

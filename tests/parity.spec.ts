@@ -10,8 +10,17 @@ import pixelmatch from 'pixelmatch'
 import { PNG } from 'pngjs'
 import content from '../src/content/content.json' with { type: 'json' }
 
-const REFERENCE = pathToFileURL(resolve('handoff/design/reference/ultravi0let-final.html')).href
 const OUT = resolve('test-results/parity')
+/* The reference is one self-contained file. The owner's change to the four-phases halo on phones (0.2 of the stage
+   became 0.15, processFilm.ts) is in its script, so it is applied to a copy of the file, which the test loads. */
+const HALO = ['slim ? 0.2 : 0.19), 54, 150)', 'slim ? 0.15 : 0.19), 44, 150)']
+function patchedReference() {
+  const html = readFileSync('handoff/design/reference/ultravi0let-final.html', 'utf8')
+  if (!html.includes(HALO[0])) throw new Error('the reference no longer has the halo formula this test patches')
+  mkdirSync(OUT, { recursive: true })
+  writeFileSync(`${OUT}/reference.html`, html.replace(HALO[0], HALO[1]))
+  return pathToFileURL(`${OUT}/reference.html`).href
+}
 /* share of pixels allowed to differ (anti-aliasing noise); anything above is a real difference to explain */
 const TOLERANCE = 0.002
 
@@ -36,6 +45,7 @@ async function serveFonts(page: Page) {
 /* The approved reference predates some deliberate changes. They are applied to the reference page before comparing,
    so every other pixel is still held to an exact match:
    - the --faint contrast fix (BRIEF §5)
+   - the four-phases halo on phones (patchedReference above)
    - the owner's copy changes (content.json: Cairo, reFind Outlet, Zanobia in progress, the form button, two
      testimonials) and style changes (no hairline above the footer, two testimonial columns) */
 async function applyIntendedChanges(page: Page) {
@@ -121,7 +131,7 @@ for (const mode of MODES) {
       if (isBuild) await page.waitForSelector('#sky[data-gl="1"]')
       return page
     }
-    const ref = await open(REFERENCE, false)
+    const ref = await open(patchedReference(), false)
     const build = await open(baseURL + '/', true)
 
     const report: string[] = []

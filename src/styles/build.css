@@ -13,6 +13,14 @@ h3{margin:0}
 /* six tab panels inside the one text panel; only the chosen one shows */
 .v-read>[role="tabpanel"]{display:flex;flex-direction:column;gap:inherit}
 .v-read>[role="tabpanel"][hidden]{display:none}
+/* phones and portrait tablets: the viewer is in the page's flow, so a project whose description takes one more line
+   would move everything below it as the rows scroll by (and land in-page links a line off). The six panels share one
+   grid cell and the hidden ones keep their space, so the panel is always as tall as the longest description. */
+@media (max-width:880px){
+  .v-read{display:grid}
+  .v-read>[role="tabpanel"]{grid-area:1/1}
+  .v-read>[role="tabpanel"][hidden]{display:flex;visibility:hidden}
+}
 
 /* ---------------- accessibility (§9) ---------------- */
 /* the hero block is hidden once the film has moved on; the headline stays in the accessibility tree (still invisible,
@@ -87,6 +95,11 @@ h1 .type{position:relative}
 }
 
 /* ---------------- owner's changes to the approved page ---------------- */
+/* phones: the opening film's stage fills the large viewport, so no page shows below it once the browser's toolbars
+   slide away (100svh left a strip); its progress row rides just above the toolbars while they show. On desktop the
+   three viewport heights are the same, so nothing changes there. */
+.stage{height:100lvh}
+.film-ui{bottom:calc(100lvh - 100dvh)}
 /* no hairline between the contact section and the footer */
 .site-foot{border-top:0}
 /* two testimonials now: two columns, not three with one empty */
