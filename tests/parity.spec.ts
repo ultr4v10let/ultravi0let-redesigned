@@ -47,7 +47,8 @@ async function serveFonts(page: Page) {
    - the --faint contrast fix (BRIEF §5)
    - the four-phases halo on phones (patchedReference above)
    - the owner's copy changes (content.json: founded 2024, Cairo, reFind Outlet, Zanobia in progress, the form button, two
-     testimonials) and style changes (no hairline above the footer, two testimonial columns) */
+     testimonials), the messaging pass (headline, hero, tagline, nav CTA, process and contact copy),
+     and style changes (no hairline above the footer, two testimonial columns) */
 async function applyIntendedChanges(page: Page) {
   await page.addStyleTag({ content: ':root:not([data-theme="dark"]){--faint:#7262AC}.site-foot{border-top:0}.quotes{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:880px){.quotes{grid-template-columns:1fr}}' })
   await page.evaluate((c) => {
@@ -70,6 +71,33 @@ async function applyIntendedChanges(page: Page) {
     text('.form .btn', c.contact.form.submit)
     text('.foot-bottom .copyr', c.footer.copyright)
     text('.mn-loc', c.menu.location)
+    const rich = (s: string) => s.replace('[light]', '<span class="light">').replace('[/light]', '</span>')
+    const parts = c.hero.headline.split(/\[light\]|\[\/light\]/)
+    const t1 = document.getElementById('t1'), t2 = document.getElementById('t2'), t3 = document.getElementById('t3')
+    if (t1) t1.textContent = parts[0] ?? ''
+    if (t2) t2.textContent = parts[1] ?? ''
+    if (t3) t3.textContent = parts[2] ?? ''
+    const h1 = document.querySelector('.film-hero h1')
+    if (h1) h1.setAttribute('aria-label', c.hero.headlinePlain)
+    const ghost = document.querySelector('.film-hero h1 .ghost')
+    if (ghost) ghost.innerHTML = rich(c.hero.headline)
+    document.querySelectorAll('.hero-top .eyebrow').forEach((el, i) => { el.textContent = c.hero.eyebrows[i] ?? '' })
+    text('.hero-sub p', c.hero.sub)
+    text('.hero-actions .btn', c.hero.actions[0].label)
+    text('.nav a.cta', c.nav.cta.label)
+    text('.tagline', c.hero.endcard.tagline)
+    text('.p-intro .sec-head > p', c.process.lead)
+    document.querySelectorAll('.p-phase').forEach((el, i) => {
+      const ph = c.process.phases[i]
+      const name = el.querySelector('.p-name'), desc = el.querySelector('.p-r p'), tags = el.querySelector('.phase-tags')
+      if (name) name.textContent = ph.name
+      if (desc) desc.textContent = ph.description
+      if (tags) tags.textContent = ph.tags
+    })
+    const contactH = document.querySelector('#contact h2')
+    if (contactH) contactH.innerHTML = rich(c.contact.heading)
+    text('#contact .lead > p', c.contact.lead)
+    text('#contact > .lead > .eyebrow', c.contact.eyebrow)
     document.querySelectorAll('.quote').forEach((q, i) => { if (i >= c.testimonials.items.length) q.remove() })
   }, content)
 }

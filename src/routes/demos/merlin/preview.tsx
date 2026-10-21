@@ -9,8 +9,8 @@ export const Route = createFileRoute('/demos/merlin/preview')({
 
 const team = [
   { name: 'Sara Al-Mansoori', role: 'CEO & Co-founder', bio: 'Former product lead at a regional fintech.' },
-  { name: 'Omar Haddad', role: 'CTO', bio: 'Infrastructure engineer, 12 years across cloud and data.' },
-  { name: 'Lina Farouk', role: 'Head of Operations', bio: 'Scaled two B2B SaaS teams from seed to Series B.' },
+  { name: 'Omar Haddad', role: 'CTO', bio: 'Infrastructure engineer across cloud and data.' },
+  { name: 'Lina Farouk', role: 'Head of Operations', bio: 'Operations lead for early-stage B2B teams.' },
   { name: 'James Okonkwo', role: 'Design Director', bio: 'Brand systems for enterprise and consumer products.' },
 ]
 
@@ -20,7 +20,7 @@ const testimonials = [
     author: 'Nadia K., Founder',
   },
   {
-    quote: 'The team tab and testimonials module alone saved us three weeks of agency back-and-forth.',
+    quote: 'The team tab and testimonials module replaced a long agency back-and-forth.',
     author: 'Rami S., COO',
   },
 ]
@@ -61,7 +61,7 @@ function MerlinPreview() {
 
       <section className="merlin-line-b merlin-white">
         <div className="merlin-in merlin-sec merlin-site-hero">
-          <p className="merlin-eyebrow">Product studio · Dubai</p>
+          <p className="merlin-eyebrow">Sample company site</p>
           <h1 className="merlin-site-h1" style={{ fontFamily: 'var(--mly-display)' }}>
             Building the infrastructure behind <em className="merlin-blue">tomorrow&apos;s products.</em>
           </h1>
@@ -128,7 +128,7 @@ function MerlinPreview() {
             </div>
             <div>
               <MapPin size={18} />
-              Dubai Design District, UAE
+              Sample address
             </div>
           </div>
         </div>

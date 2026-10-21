@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { pageHead } from '../../../lib/seo'
 import { AgLawLayout } from '../../../demos/ag-law/Layout'
+import { agLawHead } from '../../../demos/ag-law/meta'
 
 export const Route = createFileRoute('/demos/ag-law')({
-  head: () => pageHead({ title: 'AG Law · Counsel of distinction', path: '/demos/ag-law', noindex: true }),
+  head: () => agLawHead('/demos/ag-law', 'AG Law · Practice website'),
   component: AgLawLayout,
 })

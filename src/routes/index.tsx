@@ -8,7 +8,9 @@ import { HeroFilm } from '../sections/HeroFilm'
 import { Marquee } from '../sections/Marquee'
 import { Work } from '../sections/Work'
 import { Services } from '../sections/Services'
+import { Engagement } from '../sections/Engagement'
 import { Studio } from '../sections/Studio'
+import { Team } from '../sections/Team'
 import { ProcessFilm } from '../sections/ProcessFilm'
 import { Testimonials } from '../sections/Testimonials'
 import { Contact } from '../sections/Contact'
@@ -45,7 +47,9 @@ function Home() {
         <div className="wrap">
           <Work ref={work} />
           <Services />
+          <Engagement />
           <Studio />
+          <Team />
         </div>
         <ProcessFilm ref={process} />
         <div className="wrap">

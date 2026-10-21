@@ -9,10 +9,10 @@ export const Route = createFileRoute('/demos/zanobia/')({
 })
 
 const kpis = [
-  { label: 'Units produced today', value: '2,840', delta: '+12%', icon: Factory },
-  { label: 'Shop orders pending', value: '18', delta: '3 urgent', icon: Store },
-  { label: 'SKUs below reorder', value: '7', delta: 'Review', icon: Package },
-  { label: 'Weekly revenue', value: 'EGP 186k', delta: '+8.4%', icon: TrendingUp },
+  { label: 'Production', value: 'Lines', delta: 'Sample', icon: Factory },
+  { label: 'Shop orders', value: 'Queue', delta: 'Sample', icon: Store },
+  { label: 'Inventory', value: 'SKUs', delta: 'Sample', icon: Package },
+  { label: 'Finance', value: 'Ledger', delta: 'Sample', icon: TrendingUp },
 ]
 
 const productionQueue = [

@@ -9,14 +9,17 @@ export function Services() {
         <h2 className="md"><Rich text={services.heading} /></h2>
         <p>{services.lead}</p>
       </div>
-      <div className="svcs reveal">
-        {services.items.map((s) => (
-          <div key={s.n} className="svc">
-            <span className="num">{s.n}</span>
-            <div className="svc-title"><h3 className="svc-name">{s.name}</h3><span className="tags">{s.tags}</span></div>
-            <p className="svc-desc">{s.description}</p>
-          </div>
-        ))}
+      <div>
+        <div className="svcs reveal">
+          {services.items.map((s) => (
+            <div key={s.n} className="svc">
+              <span className="num">{s.n}</span>
+              <div className="svc-title"><h3 className="svc-name">{s.name}</h3><span className="tags">{s.tags}</span></div>
+              <p className="svc-desc">{s.description}</p>
+            </div>
+          ))}
+        </div>
+        <p className="svc-also"><span className="eyebrow">{services.alsoLead}</span> {services.also.join(' · ')}</p>
       </div>
     </section>
   )

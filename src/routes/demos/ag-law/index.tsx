@@ -1,8 +1,10 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRight, Award, BookOpen, Scale, Users } from 'lucide-react'
 import { exact } from '../../../demos/ag-law/link'
+import { agLawHead } from '../../../demos/ag-law/meta'
 
 export const Route = createFileRoute('/demos/ag-law/')({
+  head: () => agLawHead('/demos/ag-law', 'AG Law · Practice website'),
   component: AgLawHome,
 })
 
@@ -47,13 +49,6 @@ const insights = [
   },
 ]
 
-const stats = [
-  { v: '40+', k: 'Years in practice' },
-  { v: '60', k: 'Attorneys' },
-  { v: '06', k: 'Languages of counsel' },
-  { v: 'Band 1', k: 'Chambers Global' },
-]
-
 function AgLawHome() {
   return (
     <main id="main">
@@ -70,16 +65,15 @@ function AgLawHome() {
           />
         </div>
         <div className="aglaw-wrap">
-          <div className="aglaw-eyebrow">Established Cairo · 1986</div>
+          <div className="aglaw-eyebrow">Practice</div>
           <h1 className="aglaw-hero-h1" style={{ fontFamily: 'var(--agl-display)', color: '#0F1A33' }}>
             Counsel of <em>distinction</em>
             <br />
             for matters of consequence.
           </h1>
           <p className="aglaw-hero-p">
-            A senior practice serving leading institutions, sovereign clients and family offices across Egypt, the
-            Levant and the Gulf. Sixty attorneys across four practice groups. Ranked Band 1 by Chambers Global since
-            2018.
+            Corporate, finance, disputes and projects, set out so clients can read the practice and partners can keep
+            the pages current. Names, matters and figures on this demo are illustrative.
           </p>
           <div className="aglaw-ctas">
             <Link {...exact} to="/demos/ag-law/book" className="aglaw-btn aglaw-tc">
@@ -91,17 +85,6 @@ function AgLawHome() {
             </Link>
           </div>
 
-          {/* Stat strip */}
-          <div className="aglaw-grid aglaw-stats">
-            {stats.map((s) => (
-              <div key={s.k} className="aglaw-stat" style={{ fontFamily: 'var(--agl-sans)' }}>
-                <div className="aglaw-stat-v" style={{ fontFamily: 'var(--agl-display)', color: '#0F1A33' }}>
-                  {s.v}
-                </div>
-                <div className="aglaw-stat-k">{s.k}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -135,14 +118,14 @@ function AgLawHome() {
       {/* Quote pull */}
       <section className="aglaw-quote">
         <div className="aglaw-wrap aglaw-quote-in">
-          <div className="aglaw-eyebrow">From the senior partner</div>
+          <div className="aglaw-eyebrow">From the managing partner</div>
           <blockquote className="aglaw-blockquote" style={{ fontFamily: 'var(--agl-display)' }}>
             <em>
               &ldquo;Our work has never been measured in hours billed. It is measured in the consequence of the matters
               our clients entrust to us, and in the discretion with which we resolve them.&rdquo;
             </em>
           </blockquote>
-          <div className="aglaw-quote-by">Ahmed Abdelgawad · Senior Partner</div>
+          <div className="aglaw-quote-by">Ahmed Abdelgawad · Managing Partner</div>
         </div>
       </section>
 
