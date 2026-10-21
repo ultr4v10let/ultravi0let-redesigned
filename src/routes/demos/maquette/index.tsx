@@ -17,8 +17,8 @@ const lines = [
   {
     icon: Shirt,
     title: 'Bulk apparel',
-    desc: 'Screen and DTG runs for graduation and senior-year parties, corporate events and team merchandise — sizing matrices and batch tracking.',
-    formats: 'Screen · DTG',
+    desc: 'Screen and DTG runs for senior parties, corporate events and team merchandise — sizing matrices and batch tracking.',
+    formats: '50 — 5,000+ units',
     tag: 'Line 02',
   },
   {
@@ -33,8 +33,8 @@ const lines = [
 const stats = [
   { v: 'A0', k: 'Max drawing size' },
   { v: '3', k: 'Production lines' },
-  { v: 'Apparel', k: 'Screen and DTG' },
-  { v: 'Merch', k: 'Small-format jobs' },
+  { v: '48h', k: 'Avg. arch turnaround' },
+  { v: '2.4k', k: 'Jobs / month' },
 ]
 
 const display = { fontFamily: 'var(--maq-display)' }

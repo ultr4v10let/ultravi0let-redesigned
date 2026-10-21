@@ -45,7 +45,7 @@
       }
     ],
     "cta": {
-      "label": "Book a call",
+      "label": "Start a project",
       "href": "#contact"
     }
   },
@@ -73,7 +73,7 @@
       },
       {
         "n": "→",
-        "label": "Book a call",
+        "label": "Start a project",
         "href": "#contact"
       }
     ],
@@ -82,13 +82,16 @@
     "appearance": "Appearance"
   },
   "hero": {
-    "eyebrows": ["Product studio — Cairo", "Design · Engineering · Cloud · AI"],
-    "headline": "Senior engineers who [light]launch[/light] your product, then stay on",
-    "headlinePlain": "Senior engineers who launch your product, then stay on",
-    "sub": "A senior-only studio in Cairo for founders who need a product in production. Design, engineering, cloud and AI, from first prototype to launch — then a monthly tech team.",
+    "eyebrows": [
+      "Product studio — the invisible layer",
+      "Design · Engineering · Cloud · AI"
+    ],
+    "headline": "We build the [light]quiet[/light] machinery behind loud products",
+    "headlinePlain": "We build the quiet machinery behind loud products",
+    "sub": "A senior-only product studio that builds and owns the parts of software other people can’t see — and won’t touch. Design, engineering, cloud and AI, from first prototype to production.",
     "actions": [
       {
-        "label": "Book a free scoping call",
+        "label": "Start a project",
         "href": "#contact",
         "kind": "button"
       },
@@ -98,10 +101,15 @@
         "kind": "textlink"
       }
     ],
-    "ringLabels": ["Design", "Engineering", "Cloud", "AI"],
+    "ringLabels": [
+      "Design",
+      "Engineering",
+      "Cloud",
+      "AI"
+    ],
     "endcard": {
       "wordmark": "ULTRAVI0LET",
-      "tagline": "Launch the product. Stay on as the tech team.",
+      "tagline": "The quiet machinery behind loud products.",
       "stats": [
         {
           "k": "Est.",
@@ -122,7 +130,12 @@
       ]
     },
     "film": {
-      "chapters": ["The brief", "The launch", "The product", "Ultravi0let"],
+      "chapters": [
+        "The invisible layer",
+        "Quiet machinery",
+        "Loud products",
+        "Ultravi0let"
+      ],
       "scrollHint": "Scroll",
       "progressFormat": "NNN / 100"
     }
@@ -131,7 +144,7 @@
     "Design",
     "Engineering",
     "Cloud",
-    "Launch",
+    "Security",
     "AI",
     "Integrations",
     "Mobile",
@@ -144,24 +157,27 @@
   "work": {
     "eyebrow": "01 — Selected work",
     "heading": "Things we’ve [light]shipped[/light]",
-    "hint": ["Six products · 2024 — 2026", "Hover a project"],
+    "hint": [
+      "Six products · 2024 — 2026",
+      "Hover a project"
+    ],
     "projects": [
       {
         "n": "01",
         "name": "reFind Outlet",
-        "status": "Live",
+        "status": "Delivered",
         "tags": "E-commerce · Marketplace",
         "year": "2026",
-        "url": "https://refindoutlet.com",
-        "description": "A premium furniture outlet — graded, verified listings from brand partners, fixed outlet prices, and payment held until the buyer confirms delivery. Live at refindoutlet.com.",
+        "url": "https://www.refindoutlet.com/",
+        "description": "Egypt’s first premium furniture outlet — graded, verified listings from brand partners, fixed outlet prices, and payment held until the buyer confirms delivery.",
         "stats": [
+          {
+            "value": "2-day",
+            "label": "Buyer protection"
+          },
           {
             "value": "EN · AR",
             "label": "Languages"
-          },
-          {
-            "value": "Live",
-            "label": "refindoutlet.com"
           }
         ]
       },
@@ -172,15 +188,15 @@
         "tags": "SaaS · Website builder",
         "year": "2025",
         "url": "/demos/merlin",
-        "description": "Dynamic company-site builder — themes, colours, logos and modular tabs for team, testimonials and services. Clients configure a polished presence without writing code.",
+        "description": "Dynamic company-site builder — themes, colours, logos and modular tabs for team, testimonials and services. Clients ship a polished presence in hours, not weeks.",
         "stats": [
           {
-            "value": "Themes",
-            "label": "Colours and logos"
+            "value": "12+",
+            "label": "Themes"
           },
           {
-            "value": "Modular",
-            "label": "Team and services"
+            "value": "< 1 day",
+            "label": "Time to ship"
           }
         ]
       },
@@ -194,38 +210,38 @@
         "description": "End-to-end patisserie operations — factory production, inventory, retail shops, shop-to-factory ordering and back-office finance & HR in one system.",
         "stats": [
           {
-            "value": "Factory",
-            "label": "Production"
+            "value": "Factory + 4 shops",
+            "label": "Sites"
           },
           {
-            "value": "Shops",
-            "label": "Retail ordering"
+            "value": "8",
+            "label": "Modules"
           }
         ]
       },
       {
         "n": "04",
         "name": "AG Law",
-        "status": "Delivered",
-        "tags": "Legal · Web",
+        "status": "Delivered · Undeployed",
+        "tags": "Legal tech · Web",
         "year": "2024",
         "url": "/demos/ag-law",
-        "description": "A fast, mobile-responsive website for a major legal counsel. Partners update services, team, news, clients and gallery themselves, without a developer. React and Django REST, with automated deploys to AWS S3.",
+        "description": "Practice-management suite and booking platform for a senior Cairo law firm. Multi-jurisdictional matter intake, secure client portal, and partner-level workflow.",
         "stats": [
           {
-            "value": "~11 weeks",
-            "label": "May–July 2024"
+            "value": "6",
+            "label": "Modules"
           },
           {
-            "value": "5 people",
-            "label": "~30 pull requests"
+            "value": "99.9%",
+            "label": "Uptime"
           }
         ]
       },
       {
         "n": "05",
         "name": "Maquette",
-        "status": "Delivered",
+        "status": "Delivered · Undeployed",
         "tags": "Print · Production",
         "year": "2024",
         "url": "/demos/maquette",
@@ -264,92 +280,88 @@
     "viewer": {
       "figure": "Fig. {n}",
       "link": "View project",
-      "skyLabels": ["Dawn", "Morning", "Noon", "Dusk", "Twilight", "Night"]
+      "skyLabels": [
+        "Dawn",
+        "Morning",
+        "Noon",
+        "Dusk",
+        "Twilight",
+        "Night"
+      ]
     }
   },
   "services": {
     "eyebrow": "02 — Services",
-    "heading": "Three services, [light]one team[/light]",
-    "lead": "Product engineering, the systems under it, and AI. The rest of the work sits inside those three.",
+    "heading": "Eight disciplines, [light]one team[/light]",
+    "lead": "The full surface area of a modern product company — from the first sketch to the on-call rotation that keeps it alive at 3am.",
     "items": [
       {
         "n": "01",
-        "name": "Product engineering",
-        "tags": "MVP · Launch",
-        "description": "We design and build the product, then ship it to production. Web and mobile, from the first prototype through launch."
+        "name": "Interface Design",
+        "tags": "Brand · Product · Motion",
+        "description": "UI and brand systems that feel inevitable. Visual identity, product surfaces, and design tokens built to scale across teams."
       },
       {
         "n": "02",
-        "name": "Backend, data & cloud",
-        "tags": "APIs · Data · AWS",
-        "description": "The systems under the product: APIs, data, and cloud infrastructure that stay understandable after launch."
+        "name": "Engineering",
+        "tags": "Web · Mobile · API",
+        "description": "Web and mobile applications written by senior engineers. Type-safe, observable, and built to be maintained, not rewritten."
       },
       {
         "n": "03",
-        "name": "AI engineering",
-        "tags": "LLM · RAG · Agents",
-        "description": "LLM, RAG and agent systems built to run in production, with evaluation and guardrails so they stay there."
-      }
-    ],
-    "alsoLead": "Also in the work",
-    "also": [
-      "Interface design",
-      "Systems architecture",
-      "Integrations",
-      "Care after launch"
-    ]
-  },
-  "engagement": {
-    "eyebrow": "How to engage",
-    "heading": "Three steps, [light]then we stay[/light]",
-    "lead": "A fixed-price scoping sprint, a fixed-scope build, then a monthly retainer. Discovery, Launch and Tech Team follow the four phases further down the page.",
-    "cta": "Start with Discovery",
-    "steps": [
-      {
-        "n": "01",
-        "name": "Discovery",
-        "summary": "Fixed price · about two weeks",
-        "description": "A scoping sprint that ends in a launch plan: what to build, in what order, and what the launch has to survive.",
-        "href": "#contact"
+        "name": "Cloud & Infra",
+        "tags": "AWS · GCP · DevOps",
+        "description": "AWS and GCP architectures, CI/CD, and infrastructure-as-code. Predictable cost, predictable uptime."
       },
       {
-        "n": "02",
-        "name": "Launch",
-        "summary": "Fixed scope · to production",
-        "description": "We design and build the product to production. Design, engineering and the cloud it runs on, in a scope agreed up front.",
-        "href": "#contact"
+        "n": "04",
+        "name": "Architecture",
+        "tags": "Systems · DDD · Scale",
+        "description": "Systems design for products that need to last. We choose the boring technology so you can take the exciting risks."
       },
       {
-        "n": "03",
-        "name": "Tech Team",
-        "summary": "Monthly retainer",
-        "description": "We stay on as your engineering team. Features, infrastructure, on-call and AI, on a monthly retainer.",
-        "href": "#contact"
+        "n": "05",
+        "name": "Security",
+        "tags": "Audit · Pen-test · SOC-2",
+        "description": "Threat modelling, code audits, and compliance readiness. Built-in, not bolted-on."
+      },
+      {
+        "n": "06",
+        "name": "Integrations",
+        "tags": "Stripe · AI · ERP",
+        "description": "Payment rails, messaging, identity, AI providers, and legacy systems. We make foreign services feel native."
+      },
+      {
+        "n": "07",
+        "name": "AI Engineering",
+        "tags": "LLM · RAG · Eval",
+        "description": "Production LLM pipelines with retrieval, evaluation, and guardrails. AI that ships, not AI that demos."
+      },
+      {
+        "n": "08",
+        "name": "Care & Support",
+        "tags": "SLA · On-call · Care",
+        "description": "Ongoing partnership after launch. Monitoring, on-call rotation, and a real human at the other end of the line."
       }
     ]
   },
   "studio": {
     "eyebrow": "03 — Studio",
     "title": "A short note",
-    "note": "We are a five-person senior studio in Cairo. Founders take a product from a fixed-scope launch to a monthly technical team.",
+    "note": "We are a senior-only studio. We build the quiet layer that carries the most value — precise, restrained, and a little rare. If it feels quiet, exact, and uncommon, it is right.",
     "signature": "Founders, Ultravi0let"
-  },
-  "team": {
-    "eyebrow": "The team",
-    "heading": "Who you’ll [light]work with[/light]",
-    "lead": "A five-person senior studio in Cairo. You work with the founders."
   },
   "process": {
     "eyebrow": "How we work",
     "heading": "Four phases, [light]no surprises[/light]",
-    "lead": "Discovery, then Architecture and Build as the launch, then Launch & Care as a monthly tech team. Small team, short loops, a demo every Friday.",
+    "lead": "Our engagements run lean. Small teams, short feedback loops, and demos every Friday. The process is the product.",
     "label": "How we work · Four phases, no surprises",
     "phases": [
       {
         "phase": "Phase 01",
         "name": "Discovery",
-        "description": "About two weeks, at a fixed price. It ends in a launch plan: what to build, in what order, and what the launch has to survive.",
-        "tags": "Interviews · Scoping · Launch plan",
+        "description": "Two weeks of deep listening. We map users, constraints, and the gap between where you are and where you want to be.",
+        "tags": "Stakeholder interviews · Competitive audit · Technical scoping",
         "timeOfDay": {
           "light": "Dawn",
           "dark": "Moonrise"
@@ -358,8 +370,8 @@
       {
         "phase": "Phase 02",
         "name": "Architecture",
-        "description": "The launch plan becomes architecture. Information structure, systems and a prototype, decided before the build is locked.",
-        "tags": "IA · Systems · Prototype · Roadmap",
+        "description": "Information architecture, systems design, and a north-star prototype. Decisions get cheap before code gets expensive.",
+        "tags": "IA · Wireframes · Tech RFC · Roadmap",
         "timeOfDay": {
           "light": "Morning",
           "dark": "Night"
@@ -368,8 +380,8 @@
       {
         "phase": "Phase 03",
         "name": "Build",
-        "description": "The fixed-scope build to production. Short cycles, a demo you can click, and a release rather than a status doc.",
-        "tags": "Design · Engineering · Weekly demos",
+        "description": "Two-week sprints. Demo every Friday. You watch the product grow in your hands, not in a status doc.",
+        "tags": "Design · Engineering · QA · Weekly demos",
         "timeOfDay": {
           "light": "Afternoon",
           "dark": "Small hours"
@@ -378,8 +390,8 @@
       {
         "phase": "Phase 04",
         "name": "Launch & Care",
-        "description": "After launch, a monthly retainer. We stay on as your tech team: features, infrastructure, on-call and AI.",
-        "tags": "Features · Infrastructure · On-call · AI",
+        "description": "We don’t disappear at v1. SLOs, monitoring, growth experiments, and a team that picks up the phone.",
+        "tags": "Observability · On-call · Iteration",
         "timeOfDay": {
           "light": "Dusk",
           "dark": "Moonset"
@@ -404,9 +416,9 @@
     ]
   },
   "contact": {
-    "eyebrow": "04 — Book a call",
-    "heading": "Book a free [light]scoping call[/light]",
-    "lead": "Tell us what you’re building. Start with Discovery, a fixed-price scoping sprint. We’ll reply within 24 hours.",
+    "eyebrow": "04 — Let’s build",
+    "heading": "Got an idea? [light]Let’s make it fly[/light]",
+    "lead": "Tell us what you’re building. We’ll come back within 24 hours with three honest sentences about whether we’re the right team.",
     "email": "hello@ultravi0let.com",
     "copy": {
       "idle": "Copy",
@@ -442,37 +454,60 @@
           "required": false
         }
       ],
-      "submit": "Start with Discovery",
+      "submit": "Beam it over",
       "sent": {
         "eyebrow": "Transmission received",
         "title": "Loud and clear.",
-        "body": "Your note made it across. A senior human — no bots, no interns — will write back within 24 hours.",
-        "again": "Send another"
+        "body": "Your idea made it across the sky in one piece. A senior human — no bots, no interns — will write back within 24 hours with three honest sentences, as promised.",
+        "again": "Beam another"
       },
       "error": "That didn’t go through. Write to hello@ultravi0let.com and we’ll pick it up there."
     }
   },
   "footer": {
     "wordmark": "ULTRAVI0LET",
-    "about": "Senior engineers who launch your product, then stay on as your tech team. A studio in Cairo.",
+    "about": "The quiet machinery behind loud products. We build and own the parts of software other people can’t see — and won’t touch.",
     "columns": [
       {
         "title": "Studio",
         "links": [
-          ["Work", "#work"],
-          ["Services", "#services"],
-          ["Engagement", "#engagement"],
-          ["Team", "#team"],
-          ["Process", "#process"],
-          ["Contact", "#contact"]
+          [
+            "Work",
+            "#work"
+          ],
+          [
+            "Services",
+            "#services"
+          ],
+          [
+            "Process",
+            "#process"
+          ],
+          [
+            "Contact",
+            "#contact"
+          ]
         ]
       },
       {
-        "title": "Services",
+        "title": "Disciplines",
         "links": [
-          ["Product engineering", "#services"],
-          ["Backend, data & cloud", "#services"],
-          ["AI engineering", "#services"]
+          [
+            "Design",
+            "#services"
+          ],
+          [
+            "Engineering",
+            "#services"
+          ],
+          [
+            "Cloud & Infra",
+            "#services"
+          ],
+          [
+            "AI",
+            "#services"
+          ]
         ]
       }
     ],

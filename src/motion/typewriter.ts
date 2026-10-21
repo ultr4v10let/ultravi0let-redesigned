@@ -77,10 +77,7 @@ export function typewriter(h1: HTMLElement, reduce: boolean) {
     const lines = geo.lines.flatMap(([s, e], j) => {
       const line = document.createElement('span')
       line.style.whiteSpace = 'nowrap'
-      /* Don't split the light word. WebKit gives the first letter of a broken run a different box than the
-         same letter inside the whole word, so the typed 'l' of "launch" misses its faint twin. */
-      let m = Math.min(e, Math.max(s, n))
-      if (m > s && m < e && isLight(m - 1) && isLight(m)) while (m < e && isLight(m)) m++
+      const m = Math.min(e, Math.max(s, n))
       line.append(...run(s, m, false), ...run(m, e, true))
       return j ? [document.createElement('br'), line] : [line]
     })

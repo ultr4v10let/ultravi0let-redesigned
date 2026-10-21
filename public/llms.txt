@@ -1,22 +1,21 @@
 # Ultravi0let
 
-> A senior-only product studio in Cairo, remote-first, founded in 2024. Senior engineers who launch your product, then stay on as your tech team. Design, engineering, cloud and AI, from first prototype to production.
+> A senior-only product studio in Cairo, remote-first, founded in 2024. We build and own the parts of software other people can’t see — and won’t touch: design, engineering, cloud and AI, from first prototype to production.
 
 Contact: hello@ultravi0let.com
 
 ## Services
-- Product engineering: design and build the product, from first prototype through launch.
-- Backend, data & cloud: APIs, data and cloud infrastructure.
-- AI engineering: LLM, RAG and agent systems for production.
-- Also in the work: interface design, systems architecture, integrations, and care after launch.
-
-## How to engage
-1. Discovery: a fixed-price scoping sprint of about two weeks that ends in a launch plan.
-2. Launch: a fixed-scope build to production.
-3. Tech Team: a monthly retainer. We stay on as the engineering team — features, infrastructure, on-call and AI.
+- Interface Design: UI and brand systems, visual identity, product surfaces and design tokens.
+- Engineering: web and mobile applications written by senior engineers.
+- Cloud & Infra: AWS and GCP architectures, CI/CD and infrastructure-as-code.
+- Architecture: systems design for products that need to last.
+- Security: threat modelling, code audits and compliance readiness.
+- Integrations: payment rails, messaging, identity, AI providers and legacy systems.
+- AI Engineering: production LLM pipelines with retrieval, evaluation and guardrails.
+- Care & Support: monitoring, on-call rotation and ongoing partnership after launch.
 
 ## How we work
-Four phases on the site: Discovery, Architecture, Build (short cycles, a demo every Friday), Launch & Care. They map onto the three engagements above.
+Four phases: Discovery, Architecture, Build (two-week sprints, a demo every Friday), Launch & Care.
 
 ## Pages
-- [Home](https://www.ultravi0let.com/): who we are, selected work, services, how to engage, process, testimonials and contact.
+- [Home](https://www.ultravi0let.com/): who we are, selected work, services, process, testimonials and contact.

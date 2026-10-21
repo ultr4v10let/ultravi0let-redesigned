@@ -96,16 +96,17 @@ function AglFooter() {
             </span>
           </div>
           <p className="aglaw-footer-p">
-            A practice site for corporate, finance, disputes and projects.
+            Counsel of distinction. Established Cairo 1986. Recognised in Chambers Global Band 1 for Corporate &amp;
+            M&amp;A.
           </p>
         </div>
         <div className="aglaw-footer-col">
-          <div className="aglaw-footer-h">Practice</div>
-          Corporate &amp; M&amp;A
+          <div className="aglaw-footer-h">Cairo office</div>
+          12 Mohammed Mazhar St.
           <br />
-          Banking &amp; Finance
+          Zamalek, Cairo 11211
           <br />
-          Disputes · Energy
+          Arab Republic of Egypt
         </div>
         <div className="aglaw-footer-col">
           <div className="aglaw-footer-h">Correspondence</div>

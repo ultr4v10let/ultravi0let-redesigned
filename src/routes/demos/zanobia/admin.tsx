@@ -9,9 +9,9 @@ export const Route = createFileRoute('/demos/zanobia/admin')({
 })
 
 const modules = [
-  { icon: CreditCard, title: 'Finance', items: ['P&L by shop', 'Payables & receivables', 'Cost per batch', 'Monthly close'], stat: 'Ledger', statLabel: 'Sample figures' },
-  { icon: Users, title: 'Human resources', items: ['Shift scheduling', 'Factory & shop staff', 'Leave requests', 'Payroll export'], stat: 'Shifts', statLabel: 'Sample figures' },
-  { icon: Building2, title: 'Administration', items: ['Multi-site permissions', 'Supplier contracts', 'Audit logs', 'Document vault'], stat: 'Sites', statLabel: 'Sample figures' },
+  { icon: CreditCard, title: 'Finance', items: ['P&L by shop', 'Payables & receivables', 'Cost per batch', 'Monthly close'], stat: 'EGP 186k', statLabel: 'Revenue this week' },
+  { icon: Users, title: 'Human resources', items: ['Shift scheduling', 'Factory & shop staff', 'Leave requests', 'Payroll export'], stat: '84', statLabel: 'Active employees' },
+  { icon: Building2, title: 'Administration', items: ['Multi-site permissions', 'Supplier contracts', 'Audit logs', 'Document vault'], stat: '5', statLabel: 'Sites connected' },
 ]
 
 function ZanobiaAdmin() {

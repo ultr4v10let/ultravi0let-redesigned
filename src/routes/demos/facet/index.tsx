@@ -19,7 +19,7 @@ const stats = [
   { v: '3', k: 'Professional fields' },
   { v: '6', k: 'Templates total' },
   { v: '2', k: 'Themes per field' },
-  { v: 'Preview', k: 'Before you share' },
+  { v: '< 10m', k: 'Time to publish' },
 ]
 
 function FacetHome() {

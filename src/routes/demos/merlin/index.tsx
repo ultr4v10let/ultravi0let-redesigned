@@ -38,10 +38,10 @@ const themes = [
 ]
 
 const stats = [
-  { v: 'Themes', k: 'Colours and logos' },
-  { v: 'Tabs', k: 'Team and services' },
-  { v: 'Preview', k: 'Before you publish' },
-  { v: 'Publish', k: 'When it is ready' },
+  { v: '< 4h', k: 'Average time to publish' },
+  { v: '12', k: 'Starter themes' },
+  { v: '6', k: 'Content modules' },
+  { v: '99.9%', k: 'Uptime SLA' },
 ]
 
 function MerlinHome() {
@@ -54,7 +54,7 @@ function MerlinHome() {
           <h1 className="merlin-h1" style={{ fontFamily: 'var(--mly-display)' }}>
             Your company site,
             <br />
-            <em className="merlin-blue">without a developer.</em>
+            <em className="merlin-blue">ready before lunch.</em>
           </h1>
           <p className="merlin-lead">
             Merlin lets clients configure themes, colours, logos and content tabs — team, testimonials, services — without touching code.

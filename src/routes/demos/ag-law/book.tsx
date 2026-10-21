@@ -3,10 +3,10 @@ import type { FormEvent, ReactNode } from 'react'
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ArrowLeft, Calendar, Check, Clock } from 'lucide-react'
 import { exact } from '../../../demos/ag-law/link'
-import { agLawHead } from '../../../demos/ag-law/meta'
+import { pageHead } from '../../../lib/seo'
 
 export const Route = createFileRoute('/demos/ag-law/book')({
-  head: () => agLawHead('/demos/ag-law/book', 'Consultation · AG Law'),
+  head: () => pageHead({ title: 'AG Law · Counsel of distinction', path: '/demos/ag-law/book', noindex: true }),
   /* The next working days, computed where the route renders: the prerendered HTML carries the build day's, and
      hydration reuses them (no mismatch); the page then moves them to the visitor's today, below. */
   loader: () => nextWeekdays(8),
