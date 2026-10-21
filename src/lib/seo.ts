@@ -1,18 +1,19 @@
 /* Site config, every route's <head> (pageHead) and the one JSON-LD graph (SEO.md). Future pages get it right by
    calling pageHead() from their route's head(). */
 import { hero, services, site } from '../content/content'
+import { founders } from '../content/team'
 
 /* The canonical origin, used in every absolute URL (including on preview deployments). */
 export const SITE_URL = 'https://www.ultravi0let.com'
 
 export const SEO = {
-  title: 'Ultravi0let — Product design & engineering studio',
-  description: 'We build the quiet machinery behind loud products. A senior-only studio in Cairo for design, engineering, cloud and AI, from first prototype to production.',
-  image: { path: '/og-image.png', width: 1200, height: 630, alt: 'ULTRAVI0LET — the quiet machinery behind loud products.' },
+  title: 'Ultravi0let — Product studio in Cairo',
+  description: 'Senior engineers who launch your product, then stay on as your tech team. A senior-only studio in Cairo for design, engineering, cloud and AI.',
+  image: { path: '/og-image.png', width: 1200, height: 630, alt: 'ULTRAVI0LET — product studio in Cairo.' },
   themeColor: { light: '#F2EDFE', dark: '#110E2A' },
   alternateNames: ['ULTRAVI0LET', 'Ultraviolet', 'Ultraviolet Studio'],
-  /* LinkedIn, GitHub, Clutch… as soon as they exist (SEO.md) */
-  sameAs: [] as string[],
+  /* Company profiles (GitHub, Clutch…) as soon as they exist. The LinkedIn below is Ziad Khalifa's, the one public profile we can name. */
+  sameAs: founders.flatMap((p) => (p.linkedin ? [p.linkedin] : [])),
 }
 
 export const abs = (path: string) => SITE_URL + path

@@ -63,7 +63,7 @@ function MaquetteQuote() {
       {submitted ? (
         <div className="maquette-success">
           <div className="maquette-success-title">Quote submitted</div>
-          <p>Reference MQ-NEW · Estimated EGP {estimate.toLocaleString()} · A production coordinator will confirm within 2 hours.</p>
+          <p>Reference MQ-NEW · Estimated EGP {estimate.toLocaleString()} · Figures on this page are illustrative.</p>
           <button type="button" onClick={() => setSubmitted(false)} className="maquette-link">
             Create another quote
           </button>

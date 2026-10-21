@@ -16,7 +16,7 @@
     "name": "Ultravi0let",
     "wordmark": "ULTRAVI0LET",
     "email": "hello@ultravi0let.com",
-    "base": "Dubai",
+    "base": "Cairo",
     "mode": "Remote-first",
     "founded": "2022",
     "url": "https://www.ultravi0let.com"
@@ -78,7 +78,7 @@
       }
     ],
     "email": "hello@ultravi0let.com",
-    "location": "Dubai · Remote-first",
+    "location": "Cairo · Remote-first",
     "appearance": "Appearance"
   },
   "hero": {
@@ -117,7 +117,7 @@
         },
         {
           "k": "Base",
-          "v": "Dubai"
+          "v": "Cairo"
         },
         {
           "k": "Team",
@@ -509,7 +509,7 @@
         ]
       }
     ],
-    "copyright": "© 2026 Ultravi0let — Dubai",
+    "copyright": "© 2026 Ultravi0let — Cairo",
     "status": "All systems operational"
   },
   "ui": {

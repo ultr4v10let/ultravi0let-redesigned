@@ -2,7 +2,7 @@ Paste everything below the line into Claude Code, started in this folder.
 
 ---
 
-We're building the production website for Ultravi0let, a senior-only product studio in Dubai, from an approved
+We're building the production website for Ultravi0let, a senior-only product studio in Cairo, from an approved
 design. Everything you need is in `./handoff`, and `CLAUDE.md` has the standing rules.
 
 Start by reading, in this order:

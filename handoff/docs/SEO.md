@@ -33,9 +33,8 @@ Two halves: what the code must do (Claude Code builds all of it), and what only 
 - `<html lang="en">`.
 
 **Head (from `seo/meta.json`)**
-- Title (58 characters): `Ultravi0let — Product design & engineering studio in Dubai`
-- Description (155 characters): `We build the quiet machinery behind loud products. A senior-only studio in Dubai for
-  design, engineering, cloud and AI, from first prototype to production.`
+- Title: `Ultravi0let — Product studio in Cairo`
+- Description: `Senior engineers who launch your product, then stay on as your tech team. A senior-only studio in Cairo for design, engineering, cloud and AI.`
 - Canonical `https://www.ultravi0let.com/`. Pick www or the bare domain once and redirect the other in Vercel. Use
   the canonical origin in every absolute URL, including on preview deployments.
 - Open Graph and Twitter card tags with `og-image.png` (1200×630, in `design/brand/`).
@@ -47,7 +46,7 @@ Two halves: what the code must do (Claude Code builds all of it), and what only 
 
 **Structured data** (`seo/jsonld.json`)
 - A single JSON-LD `@graph` in the home page head: `Organization` (name, alternate names, logo, email, founding year,
-  Dubai / AE, services as `knowsAbout`, `sameAs` profiles), `WebSite` (site name and alternates, which is what Google
+  Cairo / EG, services as `knowsAbout`, `sameAs` profiles), `WebSite` (site name and alternates, which is what Google
   uses for the site name shown in results), `WebPage`.
 - Fill `sameAs` with the real profile URLs (LinkedIn, GitHub, Clutch…) as soon as they exist; leave the array empty
   until then.
@@ -81,8 +80,8 @@ CLS ≤ 0.02 in the lab); see `BRIEF.md` §7.
 1. **Google Search Console**: verify the domain (DNS), submit `sitemap.xml`, request indexing of the home page, then
    watch Coverage and Core Web Vitals. Import the site into **Bing Webmaster Tools** too; Bing's index feeds several AI
    assistants.
-2. **Google Business Profile**: create one for Ultravi0let in Dubai. A remote-first studio can list as a service-area
-   business with the address hidden. This is what surfaces the studio for "… Dubai" searches and on Maps, and where
+2. **Google Business Profile**: create one for Ultravi0let in Cairo. A remote-first studio can list as a service-area
+   business with the address hidden. This is what surfaces the studio for "… Cairo" searches and on Maps, and where
    client reviews belong.
 3. **Links and listings**: the same name, email and one-line description everywhere:
    - LinkedIn company page and the founders' profiles, linking to the site.

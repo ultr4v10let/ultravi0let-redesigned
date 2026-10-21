@@ -4,7 +4,8 @@ import { pageHead } from '../../lib/seo'
 export const zanobiaHead = (path: string) =>
   pageHead({
     title: 'Zanobia Patisserie · Operations console',
-    description: "A senior-only product studio that builds and owns the parts of software other people can't see — and won't touch. Design, engineering, cloud, and AI.",
+    description:
+      'Demonstration of a patisserie operations console. Figures and shop names on these pages are illustrative.',
     path,
     noindex: true,
   })

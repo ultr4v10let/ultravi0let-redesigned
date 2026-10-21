@@ -1,21 +1,21 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRight } from 'lucide-react'
 import { exact } from '../../../demos/ag-law/link'
-import { pageHead } from '../../../lib/seo'
+import { agLawHead } from '../../../demos/ag-law/meta'
 
 export const Route = createFileRoute('/demos/ag-law/attorneys')({
-  head: () => pageHead({ title: 'Attorneys · AG Law', path: '/demos/ag-law/attorneys', noindex: true }),
+  head: () => agLawHead('/demos/ag-law/attorneys', 'Attorneys · AG Law'),
   component: AttorneysPage,
 })
 
 const attorneys = [
   {
     name: 'Ahmed Abdelgawad',
-    title: 'Senior Partner',
+    title: 'Managing Partner',
     practice: 'Corporate · M&A',
     bars: ['Egypt', 'England & Wales'],
     languages: ['Arabic', 'English', 'French'],
-    bio: 'Founding partner. Forty years advising sovereign clients, family offices and listed groups across the MENA region.',
+    bio: 'Founding partner. Advises on corporate work and mergers.',
     education: 'LL.B Cairo · LL.M Harvard',
   },
   {
@@ -24,7 +24,7 @@ const attorneys = [
     practice: 'Banking & Finance',
     bars: ['Egypt', 'DIFC'],
     languages: ['Arabic', 'English'],
-    bio: "Heads the firm's banking practice. Lead counsel on the largest syndicated facility in Egypt in 2024.",
+    bio: "Heads the firm's banking practice.",
     education: 'LL.B Ain Shams · LL.M Cambridge',
   },
   {
@@ -33,7 +33,7 @@ const attorneys = [
     practice: 'Dispute Resolution',
     bars: ['Egypt', 'ICC', 'LCIA'],
     languages: ['Arabic', 'English', 'Italian'],
-    bio: 'Arbitrator and counsel in commercial and investor-state matters. Listed in WWL Future Leaders for Arbitration.',
+    bio: 'Arbitrator and counsel in commercial and investor-state matters.',
     education: 'LL.B Cairo · LL.M Sciences Po',
   },
   {
@@ -42,7 +42,7 @@ const attorneys = [
     practice: 'Energy & Infrastructure',
     bars: ['Egypt', 'ADGM'],
     languages: ['Arabic', 'English'],
-    bio: 'Project finance and concession agreements across upstream, midstream and renewables. Two-time IFLR1000 Rising Star.',
+    bio: 'Project finance and concession agreements across upstream, midstream and renewables.',
     education: 'LL.B Alexandria · LL.M Columbia',
   },
   {
@@ -51,7 +51,7 @@ const attorneys = [
     practice: 'Corporate · M&A',
     bars: ['Egypt'],
     languages: ['Arabic', 'English'],
-    bio: 'Cross-border acquisitions and private equity. Joined the firm from a magic-circle practice in 2022.',
+    bio: 'Cross-border acquisitions and private equity.',
     education: 'LL.B Cairo · LL.M NYU',
   },
   {
@@ -60,7 +60,7 @@ const attorneys = [
     practice: 'Tax & Regulatory',
     bars: ['Egypt', 'Chartered Tax Adviser'],
     languages: ['Arabic', 'English', 'German'],
-    bio: "Transfer pricing, indirect tax and FRA regulatory work. Author of the firm's quarterly tax bulletin.",
+    bio: 'Transfer pricing, indirect tax and regulatory work.',
     education: 'LL.B Cairo · LL.M Munich',
   },
 ]
@@ -73,9 +73,7 @@ function AttorneysPage() {
         The partnership.
       </h1>
       <p className="aglaw-att-lead">
-        Senior practitioners with decades of combined experience. Each of our partners has trained, practiced or sat as
-        adjudicator in jurisdictions beyond Egypt, and our counsel pool is admitted at the bars of London, Paris, the
-        DIFC and the ADGM.
+        Sample profiles for this demonstration. Names, titles and education on this page are illustrative.
       </p>
 
       <div className="aglaw-grid">
