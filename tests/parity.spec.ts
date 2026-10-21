@@ -98,7 +98,20 @@ async function applyIntendedChanges(page: Page) {
     if (contactH) contactH.innerHTML = rich(c.contact.heading)
     text('#contact .lead > p', c.contact.lead)
     text('#contact > .lead > .eyebrow', c.contact.eyebrow)
+    text('.foot-brand p', c.footer.about)
+    document.querySelectorAll('.foot-col').forEach((col, i) => {
+      const src = c.footer.columns[i]
+      const title = col.querySelector('.k')
+      if (title) title.textContent = src.title
+      ;[...col.querySelectorAll('a')].forEach((a, j) => {
+        if (j >= src.links.length) { a.remove(); return }
+        a.textContent = src.links[j][0]
+        a.setAttribute('href', src.links[j][1])
+      })
+    })
     document.querySelectorAll('.quote').forEach((q, i) => { if (i >= c.testimonials.items.length) q.remove() })
+    /* The film measured the endcard before this copy landed. A resize runs that measure again. */
+    window.dispatchEvent(new Event('resize'))
   }, content)
 }
 
@@ -124,7 +137,17 @@ const proc = (p: number, label: string): Shot => ({
 const at = (id: string, canvas?: string): Shot => ({
   name: id,
   canvas,
-  scroll: (page) => page.evaluate((el) => document.getElementById(el)!.getBoundingClientRect().top + scrollY, id),
+  /* Chrome scrolls in whole pixels, so a fractional section position lands on a different remainder on each
+     page and anti-aliases every glyph. A subpixel margin above the section makes its position a whole pixel. */
+  scroll: (page) => page.evaluate((el) => {
+    const node = document.getElementById(el)!
+    const y0 = node.getBoundingClientRect().top + scrollY
+    const frac = y0 - Math.floor(y0)
+    if (frac !== 0) node.style.marginTop = `${1 - frac}px`
+    const y = Math.round(node.getBoundingClientRect().top + scrollY)
+    window.scrollTo(0, y)
+    return y
+  }, id),
 })
 
 const SHOTS: Shot[] = [
