@@ -4,8 +4,7 @@ import { pageHead } from '../../lib/seo'
 export const maquetteHead = (path: string) => () =>
   pageHead({
     title: 'Maquette · Print production platform',
-    description:
-      'Demonstration of a print-production platform for drawings, apparel and merchandise. Figures on these pages are illustrative.',
+    description: "A senior-only product studio that builds and owns the parts of software other people can't see — and won't touch. Design, engineering, cloud, and AI.",
     path,
     noindex: true,
   })
